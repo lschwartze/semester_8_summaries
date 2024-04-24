@@ -1,0 +1,105 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage[explicit]{titlesec}
+\usepackage{ulem}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{amsthm}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[subsection] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition} % definition numbers are dependent on theorem numbers
+\theoremstyle{lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\theoremstyle{corollary}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{example}
+\newtheorem{example}[theorem]{Example}
+
+\titleformat{\subsection}
+{\small}{\thesubsection}{1em}{\uline{#1}}
+\begin{document}
+	\begin{titlepage} 
+		\title{Gae Summary}
+		\clearpage\maketitle
+		\thispagestyle{empty}
+	\end{titlepage}
+	\tableofcontents
+	\newpage
+	\section{Introduction}
+	We will introduce four different models of game theory: \begin{enumerate}
+		\item Static Model of Complete Information: This model only uses one game round where every player has access to all available information (e.g. coin matching).
+		\item Dynamic Model of Complete Information: This is essentially the same as the first model but using many different rounds
+		\item Bayesian Incomplete Information: Similar to the first model but a player may not have complete information about another players strategies (e.g. auctions). That means the game uses hidden information.
+		\item perfect Bayesian Incomplete Information
+	\end{enumerate}
+	\section{Strategic games of Complete Information}
+	\begin{definition}
+		A game in strategic form has three components
+		\begin{itemize}
+			\item the set of (rational) players $P = \{1,2,...,n\}$
+			\item a pure strategy space $S_i$ for player $i$. $S_i$ is the set of all possible decisions of $i$. All decisions are taken simultaneously and all information is common knowledge.
+			\item a utility function $u_i$ for each player $p_i$ that returns a gain (or loss) for player $i$ for a given strategy vector $s = (s_1,s_2,...,s_n)$ which is also called a pure-strategy payoff.
+		\end{itemize}
+	\end{definition}
+	\begin{example}
+		Let $A = [0,1]$  and $P = \{0,1\}$. Each player picks a $x_i \in A$ and wants to maximize the measure of $S(x_i) = \{x \in A: \, \left|x-x_i\right| < \left|x-x_{1-i}\right|\}$. That means $u_i(x_i) = \lambda(S(x_i))$. The Nash equilibrium in this example is $x_0=x_1=\frac{1}{2}$. For three players there is no Nash equilibrium but for any other number there is.
+	\end{example}
+	\begin{definition}
+		Let $i \in P$. We often use the simplified notation $s_{-i}$ as the pure-strategy form of all players except $i$. That is \[s_{-i} = (s_1,..,s_{i-1},s_{i+1},...,s_n)\]
+	\end{definition}
+	\begin{definition}
+		A pure-strategy Nash Equilibrium $s^* = (s_1^*,s_2^*,...,s_n^*)$ is a strategy profile such that $\forall i \in P$ it holds \[u_i(s_i^*,s_{-i}^*) \geq u_i(s_i,s_{-i}^*) \; \forall s_i \in S_i\]
+	\end{definition}
+	\begin{definition}
+		A pure strategy $s_i$ is strictly dominated for player $i$ if there exists \[\sigma_i' \in \Sigma_i\] such that \[u_i(\sigma_i',s_{-i}) > u_i(s_i,s_{-1})\] for all $s_{-i} \in S_{-i}$. $s_i$ is weakly dominated if there is a $\sigma_i'$ such that the inequality is weak but strict for at least one $s_i$.
+	\end{definition}
+	\begin{definition}[mixed strategy]
+		A mixed strategy $\sigma_i$ is a probability distribution over pure strategies. The space of mixed strategies of player $i$ will be denoted by $\Sigma_i$ where $\sigma_i(s_i)$ is the probability that $\sigma_i$ chooses $s_i$. The space of mixed strategy profiles is $\Sigma = \times_i \Sigma_i$. The support of a mixed strategy is the set of pure strategies that are assigned a positive probability. The payoff of player $i$ under the profile $\sigma$ is \[u_i(s) = \sum_{s \in S} \left(\prod_{j=1}^{\left|P\right|} \sigma_j(s_j)\right)u_i(s)\]
+	\end{definition}
+	\begin{definition}[iterative elimination of strictly dominated strategies]
+		Set $S_i^0 = si$ and $\Sigma_i^0 = \Sigma_i$. Now define $S_i^n$ recursively by \[S_i^n = \{s_i \in S_i^{n-1}: \text{there is no } \sigma_i \in \Sigma_i^{n-1} \text{ such that } u_i(\sigma_i,s_{-i}) > u_i(s_i,s_{-1})\}\] and define \[\Sigma_i^n = \{s_i \in \Sigma_i : \sigma_i(s_i)> 0 \text{ only if } s_i\in S_i^n\}\]
+	\end{definition}
+	\subsection{Monopoly Market: 1-Player Cournot}
+	Assume there is only one player (e.g. a company) that produces one product where production for each item costs $c \in \mathbb{R}$. The company can choose the quantity $q$ to produce. Furthermore there is an $a \in \mathbb{R}$ s.t. for each item sold, the player gains $a-q$. This should model the principle of supply and demand. The question is now, how the profit can be maximised.\\
+	We calculate the payoff function w.r.t. to $q$ \[u(q) = (a-c-q)q = q(a-c) - q^2\] We optimize via the first derivative \[0 \overset{!}{=} u'(q) = a-c-2q\] Hence $u$ is maximized at $q = \frac{a-c}{2}$.
+	\subsection{Duopoly: 2-Player Cournot}
+	The setting is the same as in the previous section, and the constant $c$ is the same for both companies. Both choose $q_i$ from $\mathbb{N}$. They can sell each item for a prize of $a-q_1-q_2$.\\
+	Let $(q_1^*,q_2^*)$ be a strategy profile. We fix $q_2^*$ and compute the optimal value for $q_1^*$ (called the best response). \[\max_{q_1} u_1(q_1,q_2^*)\] where \[u_1(q_1,q_2^*) = q_1(a-q_2^*-c)-q_1^2\] and again using the first derivative we find \[q_1^* = \frac{a-q_2^*-c}{2}\] By symmetry one can find the same value for $q_2^*$ and by a substitution \[q_1^* = \frac{a-c}{3}\] By symmetry this must be the unique pure-strategy Nash equilibrium.
+	\section{Dynamic Model of Complete Information}
+	Let $A^0 = (a_1^0,...,a_n^0)$ be a stage-0 strategy profile. At the beginning of stage 1, know history $h^1$ which is simply $a^0$. The possible strategies for player $i$ are now potentially dependent on $h^1$, which is why we denote the set by $A_i(h^1)$. This is generalised for all stages $k$.\\
+	A pure strategy is thus a plan on how to play in each stage $k$ for a possible history $h^k$. Let $H^k$ be the set of all possible stage-$k$ histories and let \[A_i(H^k) = \bigcup_{h^k \in H^k} A_i(h^k)\]
+	The a pure strategy for player $i$ is a sequence of maps $\{s^k\}_{k=0}^K$ where each $s_i^k$ maps $H^k$ to their set of possible actions. \[s_i^k(h^k) \in A_i(h^k)\]
+	The sequence of strategies is thus $a^0 = s^0(\varnothing)$, $a^1 = s^1(a^0)$, $a^2 = s^2(a^0,a^1)$, ....\\
+	This is called the path of the strategy profile. The payoff function can be defined via \[u_i: H^{k+1} \to \mathbb{R}\] is usually some weighted average of the single-stage payoffs. The weight of stage $k$ is $0 \leq \delta^k \leq 1$ which implies the definition of the payoff $u_i$ \[u_i = \sum_{t=0}^{T-1} \delta_i^t u_i^t(a^t)\] where the payoff of stage $t$ is $u_i^t(a^t)$. A pure strategy NE is then a strategy profile $s$ such that no player $i$ can do better with a different strategy, i.e. \[\forall i \in P, u_i(s_i^*,s_{-i}^*) \geq u_i(s_i,s_{-i})\] for all possible $s_i$.
+	\subsection{Subgame-perfect Nash Equilibrium}
+	If we only look at the game starting from stage $k$ we denote this subgame by $G(h^k)$. Here, all players have common knowledge of the history $h^k$ and the payoff is $u_i(h^k,s^k,...,s^{T-1})$. Any strategy profile of the entire game induces a strategy profile on the subgame; for player $i$ $s_i|_{h^k}$ is the restriction of $s_i$ to the histories consistent with $h^k$. In this scenario, a strategy profile $s$ of a multi-stage game is a subgame-perfect equilibrium of for every $h^k$, the restriction $s|_{h^k}$ to $G(h^k)$ is a Nash equilibrium of $G(h^k)$.
+	\subsection{Stackelberg Duopoly Market Game}
+	Two companies need to choose a quantity $q_i \in [0,\infty)$. In stage 0, company 1 chooses $q_1$ while company 2 observes and stays quiet. In stage 1, company 2 chooses an answer $q_2$. As in the Cournot games we assume that both have the same cost $s$ and that there is a constant $a$ such that they can sell for $p(q) = a-q$ where $q = q_1+q_2$. It is easy to see that \[q_2 = \frac{a-c-q_1}{2}\] is the best reaction.\\
+	However company 1 knows the best response to their first pick and can therefore maximize \[u_1(q_1,q_2) = u_1(q_1,\frac{a-c-q_1}{2})\] and chooses \[q_1 = \frac{a-c}{2}\]
+	Thus the pure-strategy Nash Equilibrium of the game in stage 0 is $q_1 = \frac{a-c}{2}$ and in stage 1 with $h^1 = (q_1)$ it is $q_2 = \frac{a-c}{4}$.
+	\subsection{Repeated Finite Prisoner's Dilemma}
+	Since the payoff in each stage equals the sum of this stage and the payoff of the subgame before, we can notice that defecting stays the unique pure-strategy Nash Equilibrium. This is because the first stage is simply the one-round Prisoner's Dilemma. In the second stage, the payoff table changes to the usual table plus the payoff of the previous stage. Since this was zero (which is the Nash Equilibrium) the table doesn't change. This backwards induction can be continued and finally shows that defecting stays the Nash Equilibrium until the last round.\\
+	There are however other Nash Equilibria if an infinite number of rounds are played.
+	\subsection{Rubinstein-Stahl Bargaining Game}
+	Two players have to agree on how to share a pie of size 1. In even periods, player 1 proposes a sharing of $(x,1-x)$ and player 2 accepts or rejects. If player 2 accepts at anytime, the game ends. If player 2 rejects, they can propose their own sharing in every odd period. If player 1 accepts any proposal, the game ends. Notice that periods and stages are not the same. A period consists of two stages. Thus if $(x,1-x)$ is accepted in period $t$ then the payoffs are $\delta_1^tx$ for player 1 and $\delta_2^t(1-x)$ for player 2.\\
+	There is a unique subgame-perfect Nash Equilibrium. Player $i$ always demands a share of $\frac{(1-\delta_j)}{1-\delta_i\delta_j}$. They accept any share greater or equal to $\frac{\delta_i(1-\delta_j)}{1-\delta_i\delta_j}$ and refuses anything else. Note that $\frac{(1-\delta_j)}{1-\delta_i\delta_j}$ is the highest share for player $i$ that is accepted by player $j$. They cannot improve their payoff by proposing a smaller share because that will be accepted. Proposing a higher share for themselves would also decrease payoff, since it would be rejected and the payoff for player $i$ in the next round is \[\delta_i(1-\frac{1-\delta_i}{1-\delta_i\delta_j}) = \delta_i^2\frac{1-\delta_i}{1-\delta_i\delta_j} < \frac{1-\delta_i}{1-\delta_i\delta_j}\]
+	\begin{definition}
+		The continuation payoffs of a strategy profile models the possible payoff a player can achieve if they decide to keep playing (in this case that means refusing the other player's offer).
+	\end{definition}
+	Using this knowledge, we can prove the uniqueness of the Nash Equilibrium. Define $\underline{v}_i$ and $\overline{v}_i$ to be the lowest and highest continuation payoffs of player $i$ in any perfect equilibrium of any subgame that begins with player $i$ making an offer. Analogously, define $\underline{w}_j$ and $\overline{w}_j$ to be the highest and lowest values in subgames starting with $j$. When player 1 makes an offer, player 2 will accept any $x$ such that player 2's share $(1-x)$ exceeds $\delta_2\overline{v}_2$. Player 2 cannot expect more than $\overline{v}_2$ in the continuation game following their refusal. Hence \[\underline{v}_1 \geq 1-\delta_2\overline{v}_2\] By symmetry, player 1 accepts all shares above $\delta1\overline{v}_1$ and \[\underline{v}_2 \geq 1-\delta_1 \overline{v}_1\] Since player 2 will never offer player 1 a share greater that $\delta\overline{v}_1$, player 1's continuation payoff when player 2 makes an offer, $\overline{w}_1$ is at most $\delta_1\overline{v}_1$. Since player 2 can obtain at least $\underline{v}_2$ in the continuation game by rejecting player 1's offer, they will reject any $x$ such that $1-x < \delta_2\underline{v}_2$. Player 1's highest equilibrium payoff when making an offer $\overline{v}_1$ satisfies \[\overline{v}_1 \leq \max\{1-\delta_2\underline{v}_2, \delta_1,\overline{w}_1\} \leq \max\{1-\delta_2\underline{v}_2,\delta_1^2\overline{v}_1\}\] This last maximum is actually equal to $1-\delta_2\underline{v}_2$. Combining everything we have shown and doing some number crunching we get $\underline{v}_1 = \overline{v}_1$. Similarly one proves that $\underline{v}_2 = \overline{v}_2$ and $\underline{w}_i = \overline{w}_i$.
+	\subsection{Infinite Cournot Duopoly}
+	Consider the infinitely repeated Cournot-Duopoly game with discount factor $\delta$ and marginal cost $c$ for both companies. Assume that both players play the following strategy profile which delivers at each stage the social optimum.
+	"Produce half the monopoly quantity $\frac{q_m}{2} = \frac{a-c}{4}$ in the first period. In the $t$-th period, produce $\frac{q_m}{2}$ if both players have produced $\frac{q_m}{2}$ in each of the $t-1$ previous periods. Otherwise produce the Cournot quantity $q_C = \frac{a-c}{3}$."\\
+	We now aim to calculate the values for $\delta$ where the above strategy is a Nash Equilibrium. If both play $\frac{q_m}{2}$ then both have a payoff of $\frac{(a-c)^2}{8}$. If both play $q_C$, each player gets $\frac{(a-c)^2}{9}$. If player $i$ is going to produce $\frac{q_m}{2}$ in this stage, then the quantity that maximizes $j$'s profit in this stage is the solution to \[\max_{q_i} \left(a-q_j-\frac{q_m}{2}-c\right)q_j\] no matter the stage. This means, that this is valid for any subgame of the infinite multi-stage game. The solution is $q_j = \frac{3(a-c)}{8}$ with associated profit $\frac{9(a-c)^2}{64}$. Thus it is a NE for both companies to play the given strategy exactly if \[\frac{1}{1-\delta} (a-c)^2/8 \geq 9(a-c)^2/64 + \frac{\delta}{1-\delta}(a-c)^2/9 \Leftrightarrow \delta \geq \frac{9}{17}\]
+\end{document}

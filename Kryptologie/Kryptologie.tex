@@ -1,0 +1,113 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage[explicit]{titlesec}
+\usepackage{ulem}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{amsthm}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[subsection] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition} % definition numbers are dependent on theorem numbers
+\theoremstyle{lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\theoremstyle{corollary}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{example}
+\newtheorem{example}[theorem]{Example}
+
+\titleformat{\subsection}
+{\small}{\thesubsection}{1em}{\uline{#1}}
+\begin{document}
+	\begin{titlepage} 
+		\title{Kryptologie Zusammenfassung}
+		\clearpage\maketitle
+		\thispagestyle{empty}
+	\end{titlepage}
+	\tableofcontents
+	\newpage
+	\section{Einführung}
+	Im Folgenden sei $m$ eine Nachricht, $E$ ein Verschlüsselungsverfahren, das $m$ und einen geheimen Schlüssel $k$ als Argumente nimmt und den Code $c = E(m,k)$ berechnet. Der Empfänger verwendet $k$ und einen Dechiffrieralgorithmus $D$, um $D(c,k) = m$ zu berechnen. Wie der Schlüssel $k$ zwischen den beiden Parteien ausgetauscht werden kann, ist ein anderes Problem, das hier als gelöst angenommen werden.
+	\subsection{Transpositions- und Substitutionschiffre}
+	Bei Transpositionschiffren bleiben die Klartextbuchstaben unverändert, es es wird nur ihre Position im Chiffre verändert (d.h. es wird ein Anagramm erstellt). Bei einer Substitutionschiffre werden die Buchstaben durch andere ersetzt (z.B. Cäsarverschlüsselung).
+	\subsection{Mono- und Polyalphabetische Chiffre}
+	Bei monoalphabetischen Chiffren wird ein Klartextbuchstaben immer durch das selbe Zeichen ersetzt (z.B. Cäsar Chiffre). Bei polyalphabetischen Chiffren werden nicht immer die selben Zeichen zur Verschlüsselung des selben Buchstabens verwendet.
+	\subsection{Block- und Stromchiffren}
+	Bei Blockchiffren werden immer Blöcke von Klartextbuchstaben zusammen chiffriert und die Verschlüsselung zwischen zwei Blöcken unterscheiden sich jeweils. Bei Stromchiffren hat der Verschlüsselungsalgorithmus einen inneren Zustand, der sich bei jeder Verschlüsselung ändert und Einfluss auf die Verschlüsselung der nächsten Buchstaben ausübt. Wenn eine Veränderung eines einzelnen Buchstabens im Klartext zu großen Veränderungen in der Chiffre führt, spricht man von Lawineneffekt.
+	\subsection{Moderne Kryptographie}
+	Das Entscheidende ist, dass jedwede Kommunikation über einen abhörbaren Kanal verläuft. Es wird daher wichtig sein, dass es keinen Schlüsselaustausch im Voraus benötigt.
+	\section{Historische Chiffren}
+	\subsection{Cäsar Chiffre}
+	Hierbei wird das Alphabet durchnummeriert mit Zahlen von 0 bis 25. Das Verfahren $E$ ist dann definiert durch \[E(x) = x+3 \mod 26\]
+	Man kann das mit 26 verschiedenen Schlüsseln verallgemeinern mit dem Verfahren \[E(x) = x+k \mod 26\]
+	Die Umkehrfunktion ist \[D(x) = c-k \mod 26\]
+	Für $k=13$ ist $E\equiv D$.
+	\subsection{Affine Chiffre}
+	Der Schlüssel besteht aus zwei Komponenten $k = (a,b)$ und man berechnet \[E(x,k) = ax+b \mod 26\]
+	Damit $E$ injektiv ist, muss $ggT(a,26) = 1$. Das heißt $a \in \mathbb{Z}_n^*$. Da jedes Element ein Inverses hat, ist der Code eindeutig dechiffrierbar. Insbesondere ist $D$ auch ein affines Chiffre.
+	\subsection{Allgemeine Monoalphabetische Chiffre}
+	Jeder Buchstabe wird auf genau einen anderen gemappt. Es gibt daher $26!$ viele Schlüssel. Das Sicherheitsniveau ist aber nicht 88 Bits. Ab einer Textlänge von ca 50 Buchstaben kann der Text mittels Häufigkeitsanalyse entschlüsseln.
+	\subsection{Homophone Chiffre}
+	Jedem Buchstaben wird eine Menge an möglichen Verschlüsselungen zu, die abhängig von der Häufigkeit des Klartextbuchstabens sind. Um einen Buchstaben zu verschlüsseln, wird aus der Menge der möglichen Cypher zufällig ein Zeichen gezogen.
+	\subsection{Playfair Chiffre}
+	Hierbei werden immer zwei aufeinanderfolgende Zeichen (Bigramme) verschlüsselt. Man kann damit aber kein Bigramm verschlüsseln, das aus zwei gleichen Buchstaben besteht. Das kann aber leicht gelöst werden, indem im Klartext doppelte Buchstaben entfernt werden. Man identifiziert zwei Buchstaben miteinandern (z.B. I und J) und wählt ein Geheimwort der Länge 5 mit paarweise verschiedenen Buchstaben. Damit wird eine 5$\times$5 Tabelle gefüllt (Geheimwort in die erste Zeile und das restliche Alphabet darunter). Wenn die Buchstaben des zu verschlüsselnen Bigramms in der selben Zeile sind, wird der nächste Buchstabe dieser Zeile verwendet (bei Spalten analog). Ansonsten bildet man mit den beiden Buchstaben ein Rechteck wählt im Uhrzeigersinn die jeweils anderen Buchstaben, die in den Ecken des Rechtecks stehen.
+	\subsection{Vigenère Chiffre}
+	Man wählt ein Schlüsselwort und schreibt es fortlaufend unter den Klartext. Man fasst die Buchstaben als Zahlen auf und addiert sie bitweise modulo 26. Dass ein Trigramm mehrfach vorkommt ist sehr selten und daher ist das Chiffre sicher.\\
+	Diese Überlegung ist aber der Ansatz zur Lösung. Wenn es ein Trigramm gibt, das mehrfach vorkommt, dann wird jeweils der Abstand zwischen zwei gleichen Trigrammen berechnet. Es ist dann sehr wahrscheinlich, dass der größte gemeinsame Teiler der Abstände, die Länge des Schlüsselworts ist. Anschließend ist es nur noch ein Cäsar Chiffre.
+	\subsection{ENIGMA}
+	Das ist ein polyalphabetisches Stromchiffre. Das bedeutet, es gibt einen inneren Zustand, der sich bei jeder Verschlüsselung ändert.
+	\section{Koinzidenzindex}
+	Sei $p=(p_1,p_2,...,p_n)$ eine diskrete Wahrscheinlichkeitsverteilung. Dann ist der Koinzidenzindex von $p$ definiert als \[IC(p) = \sum_{i=1}^{n}p_i^2\] Der kleinstmögliche Wert für $IC(p)$ ist $\frac{1}{n}$ bei einer Gleichverteilung. Der größtmögliche Wert ist 1. Wir wollen nun den Wert schätzen.\\
+	Es sei ein Text gegeben und es gebe eine Wahrscheinlichkeitsverteilung, nach der die Buchstaben im Text verteilt seien. Eine erwartungstreue Schätzung ist dann \[IC = \sum_{a} \frac{n(a)}{m}\cdot \frac{n(a)-1}{m-1}\] wobei $a$ jeder mögliche Buchstabe im Text ist, $n(a)$ die Anzahl wie oft $a$ vorkommt und $m$ die Länge des Texts.
+	\subsection{Methoden zum Knacken der Vigenère Chiffre}
+	Der Text sei $c_1c_2,...,c_m$ und für ein gegebenes $l$ definieren wir uns \[s_i = c_ic_{i+l}c_{i+2l}...\] für $i \in [l]$. Für alle $i$ berechnen wir uns den Koinzidenzindex und vergleichen den Wert mit dem der Sprache in der der Text geschrieben wurde (bei Englisch ungefähr $7\%$). Falls $l$ die gesuchte Schlüssellänge ist, sollten die beiden Werte ungefähr übereinstimmen.
+	Nun sind nur noch Cäsar Chiffren übrig. Um diese zu lösen, kann man alle 26 möglichen Schlüssel ausprobieren und anschließend jenen wählen, sodass die Wahrscheinlichkeitsverteilung des dechiffrierten Buchstaben am nächsten zu jeder der Sprache ist.
+	\subsection{Visuelle Kryptographie}
+	Der Schlüssel ist ein Bild auf einer Folie. Es werden jeweils vier Pixel in $2\times 2$ Blöcken gesammelt, wobei auf der Diagonalen zwei schwarze Pixel und sonst zwei durchsichtige Pixel sind. Es gibt also zwei verschiedene solche Cluster. Wenn diese zufällig gesetzt werden, scheint das Bild ein druchgehender Grauton zu sein. Die Dechiffrierung kann dieselbe Folie verwenden wie die Chiffrierung. Man kann den Schlüssel nur einmal verwenden.
+	\section{Shannons Modell eines klassischen Kryptosystems}
+	Ein Kryptosystem ist ein Tripel $(M,K,C)$ mit \begin{itemize}
+		\item $M$ ist die Nachricht
+		\item $K$ ist der Schlüssel
+		\item $C$ ist die Chiffre
+	\end{itemize}
+	Alle drei kann man als Zufallsvariablen modellieren, die nicht stochastisch unabhängig sind. Weiter nimmt man an 
+	\begin{enumerate}
+		\item Die Verteilung von $M$ entspricht der Buchstabenhäufigkeit
+		\item $K$ ist gleichverteilt
+		\item $M$ und $K$ sind unabhängig
+	\end{enumerate}
+	Es solches Kryptosystem mit De- und Entschlüsselungsfunktionen $D,E$ ist sicher, wenn $M$ und $C$ unabhängig sind.
+	\subsection{One-Time-Pad}
+	Hier werden die Annahmen verwendet \begin{itemize}
+		\item der Schlüssel wird nur einmal verwendet
+		\item die Menge der möglichen Schlüssel ist so groß wie die Menge der möglichen Chiffren
+		\item $E$ ist bijektiv für alle $k$
+		\item der Schlüssel zu $m$ und $c$ ist eindeutig, d.h. $k = k(m,c)$.
+	\end{itemize}
+	\begin{lemma}
+		Jedes one-time-pad Kryptosystem ist absolut sicher.
+	\end{lemma}
+	Rechnet man im Binärsystem kann als Schlüssel eine zufällige $n$-Bit Folge sein, die bitweise auf die Nachricht addiert werde. 
+	\subsection{Pseudozufallsgeneratoren}
+	Man möchte Schlüssel haben, die so lange sind, dass man nicht alle ausprobieren kann. Sie sollten aber ebenso nicht viel länger sein als die benötigte Mindestlänge. Deshalb werden Pseudozufallsgeneratoren. Hierbei wird ein \textit{seed} verwendet, der zur Erzeugung herangezogen wird. Sender und Empfänger haben Zugriff auf den seed.
+	\subsubsection{Linearer Kongruenzgenerator}
+	Dieser liefert Zahlen aus $\mathbb{Z}_n$. Man beginnt hierbei mit dem seed $z_0 < n$ und berechnet anschließend die Folge $z_{i+1} = (a\cdot z_i + b) \mod n$. Aus einem seed von $k$ Bits entstehen bis zu $n \approx 2^k$ Nachfolgezahlen. Die maximale Periodenlänge von $n$ wird genau dann erreicht, wenn \begin{itemize}
+		\item $b$ und $n$ teilerfremd sind
+		\item $a\equiv 1 \mod p$ für alle Primteiler $p$ von $n$
+		\item Falls $n$ durch 4 teilbar ist, muss $a \equiv 1 \mod 4$ gelten
+	\end{itemize} 
+	\subsubsection{Blum-Blum-Shub Generator}
+	Dieser verwendet statt der obigen Iterationsvorschrift höhergradige Polynome der Form \[z_{i+1} = (az_i^2 + bz_i + c) \mod n\] wobei meist sogar $a=1,b=0$ verwendet wird. Das Modul $n$ sollte $n=p\cdot q$ erfüllen, wobei $p$ und $q$ jeweils eine Blum-Primzahl ist, welche erfüllen müssen, dass $p+1$ (bzw. $q+1$) durch 4 teilbar ist. Für den seed muss außerdem gelten $ggT(z_0,n) = 1$. Wenn man nun eine Periode berechnet hat, ergibt sich der Schlüssel beispielsweise als Folge der letzten Bits der Zufallszahlen.
+	\subsubsection{Rückgekoppelte Schieberegister}
+	Die Idee ist, dass die Bits einer Zahl $b_1b_2...b_n$ so verschoben werden, dass sie auf der jeweils nächsten Stelle landen. $b_n$ wird anschließend modular mit $b_1$ addiert und auf die erste Stelle geschoben. Das heißt, als Ergebnis erhält man \[(b_1\oplus b_n)b_1b_2...b_{n-1}\]
+\end{document}

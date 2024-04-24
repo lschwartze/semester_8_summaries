@@ -1,0 +1,78 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage[explicit]{titlesec}
+\usepackage{ulem}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{amsthm}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section] % reset theorem numbering for each chapter
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition} % definition numbers are dependent on theorem numbers
+\theoremstyle{lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\theoremstyle{corollary}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{example}
+\newtheorem{example}[theorem]{Example}
+
+\titleformat{\subsection}
+{\small}{\thesubsection}{1em}{\uline{#1}}
+\begin{document}
+	\begin{titlepage} 
+		\title{Topologie Zusammenfassung}
+		\clearpage\maketitle
+		\thispagestyle{empty}
+	\end{titlepage}
+	\tableofcontents
+	\newpage
+	\section{Topologische Räume}
+	\begin{definition}
+		Sei $X\neq \varnothing$. Eine Topologie auf $X$ ist eine Familie $\mathcal{T} \subset \mathcal{P}(X)$ mit \begin{enumerate}
+			\item $\varnothing \in \mathcal{T}, X \in \mathcal{T}$
+			\item Die Vereinigung beliebig vieler Teilmengen aus $\mathcal{T}$ ist in $\mathcal{T}$
+			\item Der Durchschnitt endlich vieler Teilmengen von $\mathcal{T}$ ist in $\mathcal{T}$
+		\end{enumerate}
+		Das Paar $(X,\mathcal{T})$ heißt topologischer Raum, die Elemente aus $\mathcal{T}$ heißen offene Mengen.
+	\end{definition}
+	\begin{definition}
+		Auf $X \neq \varnothing$ seien $\mathcal{T}$ und $\mathcal{T}'$ zwei Topologien mit $\mathcal{T}\subset \mathcal{T}'$. Dann heißt $\mathcal{T}'$ die feinere und $\mathcal{T}$ die gröbere Topologie. Ist zusätzlich $\mathcal{T} \neq \mathcal{T}'$, dann heißen die Relationen strikt feiner bzw. gröber.
+	\end{definition}
+	\begin{definition}
+		Sei $X\neq \varnothing$. Eine Basis für eine Topologie auf $X$ ist eine Familie $\mathcal{B}\subset \mathcal{P}(X)$ welche die Eigenschaften erfüllt \begin{enumerate}
+			\item $\forall x \in X \, \exists B \in \mathcal{B}$ sodass $x \in B$
+			\item Sind $B_1,B_2 \in \mathcal{B}$ und $x \in B_1\cap B_2$, dann existiert $B_3 \in \mathcal{B}$ mit \[x \in B_3 \subset B_1\cap B_2\]
+		\end{enumerate}
+		Ist eine Basis $\mathcal{B}$ gegeben, so heißt $\mathcal{T}(\mathcal{B})$ die von $\mathcal{B}$ erzeugte Topologie über \[U \in \mathcal{T}(\mathcal{B}) : \Leftrightarrow \forall x \in U \exists B \in \mathcal{B} \text{ mit } x \in B \subset U\]
+	\end{definition}
+	\begin{theorem}
+		Sei $X \neq \varnothing$, $\mathcal{B} \subset \mathcal{P}(X)$ eine Basis für eine Topologie auf $X$. Dann ist $\mathcal{T}(\mathcal{B})$ in der Tat eine Topologie.
+	\end{theorem}
+	\begin{theorem}
+		Sei $X \neq \varnothing$ und $\mathcal{B}$ eine Basis für eine Topologie auf $X$. Dann besteht $\mathcal{T}(\mathcal{B})$ aus genau den Mengen, die sich als Vereinigung von Mengen aus $\mathcal{B}$ schreiben lassen.
+	\end{theorem}
+	\begin{theorem}
+		Sei $(X,\mathcal{T})$ ein topologischer Raum. Sei dann $\mathcal{C} \subset \mathcal{T}$ mit der Eigenschaft \[\forall U \in \mathcal{T} \text{ und } x \in U \, \exists C \in \mathcal{C}: \; x \in C \subset U\]
+		Dann ist $\mathcal{C}$ bereits eine Basis für $\mathcal{T}$.
+	\end{theorem}
+	\begin{theorem}
+		Seien $\mathcal{B}, \mathcal{B}'$ Basen zweier Topologien $\mathcal{T}, \mathcal{T}'$. Dann sind die folgenden beiden Aussagen äquivalent \begin{enumerate}
+			\item $\mathcal{T}'$ ist feiner als $\mathcal{T}$
+			\item $\forall x \in X$ und $\forall B \in \mathcal{B}$ mit $x\in B$ existiert $B'\in \mathcal{B}'$ mit $x\in B' \subset B$.
+		\end{enumerate}
+	\end{theorem}
+	\begin{theorem}
+		Sei $X \neq \varnothing$. Ist dann $\mathcal{S}\subset \mathcal{P}(X)$, so gibt es eine eindeutige gröbste Topologie, welche $\mathcal{S}$ enthält. Diese sei mit $\mathcal{T}(\mathcal{S})$ notiert.\\
+		Ist außerdem $\bigcup_{S \in \mathcal{S}} S = X$, dann ist $\mathcal{T}(\mathcal{S})$ genau die Menge beliebiger Vereinigungen von endlichen Durchschnitten von Mengen aus $\mathcal{S}$. $\mathcal{S}$ heißt Subbasis von $\mathcal{T}(\mathcal{S})$.
+	\end{theorem}
+\end{document}
