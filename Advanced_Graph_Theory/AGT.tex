@@ -105,4 +105,71 @@
 	\begin{theorem}
 		Sei $\varepsilon>0, \delta>0$ und $k=\lceil\ln\left(\frac{2}{\delta}\right)/(2\varepsilon^2)\rceil$. Dann hat der Algorithmus eine Laufzeit von $\mathcal{O}(\ln\left(\frac{1}{\delta}\right)/\varepsilon^2\cdot \ln n)$ und mit Wahrscheinlichkeit mindestens $1-\delta$ unterscheidet sich der berechnete Wert um maximal $\varepsilon$ vom tatsächlichen Wert.
 	\end{theorem}
+	Sei $G$ ein Graph mit $V(G) = U \dot\cup W$. Wir schreiben \[\partial_G = \{uw \in E(G): u \in U, w \in W\}\] Für $A \subset V$ ist $\partial_G(A)$ die Anzahl der Kanten zwischen $A$ und $v\setminus A := B$. Ist $w$ eine Funktion, die jeder Kante ein Gewicht zuordnet, definiere \[w(F) = \sum_{e \in F} w(e)\] für alle $F\subset E$.
+	\begin{definition}
+		Die \textit{expansion} von $A$ ist \[\frac{w(\partial_G(A))}{\min\{\left|A\right|,\left|B\right|\}}\]
+		Der \textit{ratio cut} von $A$ ist \[\frac{w(\partial_G(A))}{\left|A\right|\left|B\right|}\]
+	\end{definition}
+	\subsection{Gomory-Hu Clustering}
+	\begin{definition}
+		Sei $G$ ein Graph und $w$ die Kantengewichte. Der Gomory-Hu-Baum $T$ für $G$ ist ein Graph mit \begin{itemize}
+			\item $V(T) = V(G)$
+			\item beim Löschen einer Kante $uv$ aus dem Baum entstehen zwei Komponenten $T_{uv}(u)$ und $T_{uv}(v)$. Für alle $uv \in E(T)$ soll gelten \[w(\partial_G(T_{uv}(u))) = \min_{X\subseteq V(G): v\notin X \ni u} w(\partial_G(X))\] 
+		\end{itemize}
+		Wir definieren darauf aufbauend \[\lambda(s,t) = \min_{X\subseteq V(G): t \notin X \ni s} w(\partial_G(X))\]
+	\end{definition}
+	\begin{lemma}
+		Sei $G$ ein Graph mit Kantengewichten $w$ und $T$ ein Gomory-Hu-Baum für $G,w$. Seien $s,t \in V(G), s\neq t$, sei $P$ der $st$-Weg in $T$ und $uv \in E(P)$ mit \[\min_{ab \in E(P)} w(\partial_G(T_{ab}(a))) = w(\partial_G(T_{uv}(u)))\] Dann ist $w(\partial_GT_{uv}(u)) = \lambda(s,t)$.
+	\end{lemma}
+	\begin{theorem}
+		Für alle $G,w$ existiert ein Gomory-Hu-Baum. Ein solcher Baum kann in $\mathcal{O}(n\tau)$ berechnet werden. $\tau$ ist dabei die Laufzeit um einen gewichtsminimalen $s-t$ Schnitt für beliebige $s,t$ zu finden.
+	\end{theorem}
+	Mit diesem Konzept kann nun ein Clustering in den folgenden Schritten gefunden werden \begin{enumerate}
+		\item füge einen universellen Knoten $t$ mit Kantengewichten $\alpha$ zurück
+		\item berechne den G-H-Baum $T$
+		\item gib die Komponenten von $T-t$ als Cluster zurück
+	\end{enumerate}
+	\begin{lemma}
+		Wir arbeiten auf einem Graphen $G$ mit Gewichten $w$. Mit dem G-H-clustering erreichen wir ein Cluster $C \subseteq V(G)$. Dann gilt \[\frac{w(\partial_GC)}{\left|V\setminus C\right|} \leq \alpha\]
+	\end{lemma}
+	\begin{lemma}
+		Teilt man in der Situation von oben das Cluster $C$ noch weiter in $Q,P$, dann gilt \[\frac{w(\partial_G(P,Q))}{\min\{\left|P\right|,\left|Q\right|\}}\]
+	\end{lemma}
+	\subsection{Berechnung des Gomory-Hu Baums}
+	\begin{lemma}
+		Die Gewichte eines Cuts sind submodular. Für alle $U,W\subseteq V$ gilt \[w(\partial U) + w(\partial W) \geq w(\partial (W\cap U)) + w(\partial (U \cup W))\]
+	\end{lemma}
+	\begin{lemma}
+		Seien $s,t \in V(G)$ und sei für $X\subseteq V$ $\partial_G X$ ein minimaler $s-t$-Cut. Nun wird $X$ zu einem neuen Knoten $v_x$ kontrahiert. Wobei mehrfache Kanten als eine Kante mit der Summe der Gewichte eingeführt wird. Sei $p,q \in V\setminus X$ und $U\subseteq V\setminus X$ sodass $\partial_{G/X}(U\cup v_x)$ ein minimaler $p-q$-Cut om $G/X$ ist. Dann ist $\partial_G(U\cup X)$ ein minimaler $p-q$-Cut in $G$.
+	\end{lemma}
+	\begin{definition}[Teil GH Baum]
+		Sei $R\subseteq V(G)$. Dann ist ein Baum $T = (R,F)$ mit einer Partition $(C_r)_{r\in R}$ von $R$ ein GH Baum für $R$, wenn \[\forall uv \in F: \partial_G \left(\bigcup_{r \in V(T_{uv}(u))} C_r\right)\] Ist $R=V(G)$, dann entspricht der GH-Baum für $R$ dem GH-Baum für $G$.
+	\end{definition}
+	Mit dieser Überlegung lässt sich der GH-Baum von $G$ rekursiv aufbauen.
+	\subsection{Spectral clustering}
+	Die Idee ist, dass für eine gegebenes $k \in \mathbb{N}$ eine Partition $C_1,...,C_k$ berechnet wird, sodass \[\sum_{i=1}^{k} w(\partial C_i)\] minimal ist. Damit nicht nur isolierte Knoten geclustert werden, soll der \textit{ratio cut} minimiert werden: \[\min_{C_1,...,C_k} \sum_{i=1}^k \frac{w(\partial C_i)}{\left|C_i\right|}\] Da dieses Problem aber NP-schwer ist, soll stattdessen eine Annäherung gefunden werden.
+	\begin{definition}
+		Wie immer ist $G=(V,E)$ und $w$ eine Gewichtsfunktion auf den Kanten. Die Laplace Matrix $L \in \mathbb{R}^{V\times V}$ von $G$ ist \[L_{u,v} = \begin{cases}
+			-w_{uv}, & \text{ if } uv \in E\\
+			\sum_{e \in \delta(u)} w(e), & \text{ if } u=v\\
+			0, & \text{ sonst}
+		\end{cases}\]
+		Man kann schreiben $L = B\cdot W \cdot B^T$ wobei $W \in \mathbb{R}^{E \times E}$ im Feld $e,e$ das Gewicht $w(e)$ hat und 0 sonst. $B$ ist aus $\mathbb{R}^{V \times E}$. Für $B$ geben wir allen Kanten aus $G$ eine Richtung vor. In der Spalte $e = (u,v)$ steht $1$ in Zeile $v$, $-1$ in Zeile $u$ und 0 sonst.
+	\end{definition}
+	\subsection{Chinesischer Restsatz}
+	Gegeben sind $n_1,...n_k \in \mathbb{Z}$ paarweise teilerfremd und $a_i \in \mathbb{Z}_{n_i}$ für $i \in \{1,2,...,k\}$. Gesucht ist ein $x$ sodass \[x = a_i \mod n_i\] für alle $i$. Diese Lösung ist eindeutig modulo $\prod_{i=1}^{k} n_i$. Das Problem wird wie folgt gelöst \begin{enumerate}
+		\item berechne $n = \prod_{i=1}^k n_i$
+		\item berechne $m_i = \frac{n}{n_i}$ für alle $i$
+		\item da $ggT(m_i,n_i) = 1$ existiert ein $y_i$ das invers zu $mi$ modulo $n_i$ ist
+		\item es gilt $x = \sum_{i=1}^k y_i\cdot a_i \cdot m_i$
+	\end{enumerate}
+	\begin{lemma}
+		Es seien $n_1,...,n_k$ paarweise teilerfremd. Sei $n = \prod_{i=1}^k n_i$. Dann ist \[x \mod n \mapsto (x \mod n_1, x \mod n_2, ..., x\mod n_k)\] eine bijektive Abbildung.
+	\end{lemma}
+	\begin{definition}[Euler Funktion]
+		Wir definieren \[\varphi(n) = \left|\{a | ggT(a,n) = 1, \, 1 \leq a \leq n\}\right|\] In anderen Worten $\varphi(n) = \left|\mathbb{Z}_n^*\right|$
+	\end{definition}
+	\begin{lemma}
+		Sei $n = \prod_{i=1}^k p_i^{e_i}$ die Primfaktorisierung von $n$. Dann ist \[\varphi(n) = n \cdot \prod_{i=1}^k \left(1-\frac{1}{p_i}\right)\]
+	\end{lemma}
 \end{document}

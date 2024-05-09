@@ -7,3 +7,7 @@
 \contentsline {subsection}{\numberline {1.5}PageRank}{5}{}%
 \contentsline {section}{\numberline {2}Clustering}{5}{}%
 \contentsline {subsection}{\numberline {2.1}Berechnung des Clustering Koeffizienten}{6}{}%
+\contentsline {subsection}{\numberline {2.2}Gomory-Hu Clustering}{7}{}%
+\contentsline {subsection}{\numberline {2.3}Berechnung des Gomory-Hu Baums}{8}{}%
+\contentsline {subsection}{\numberline {2.4}Spectral clustering}{8}{}%
+\contentsline {subsection}{\numberline {2.5}Chinesischer Restsatz}{9}{}%

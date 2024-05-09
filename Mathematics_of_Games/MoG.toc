@@ -9,3 +9,9 @@
 \contentsline {subsection}{\numberline {3.3}Repeated Finite Prisoner's Dilemma}{6}{}%
 \contentsline {subsection}{\numberline {3.4}Rubinstein-Stahl Bargaining Game}{6}{}%
 \contentsline {subsection}{\numberline {3.5}Infinite Cournot Duopoly}{7}{}%
+\contentsline {subsection}{\numberline {3.6}Simple Time Stopping Game}{8}{}%
+\contentsline {subsection}{\numberline {3.7}Bayesian Games}{9}{}%
+\contentsline {subsection}{\numberline {3.8}perturbed matching coins game}{9}{}%
+\contentsline {subsection}{\numberline {3.9}Perturbed battle of the sexes}{10}{}%
+\contentsline {subsection}{\numberline {3.10}Public Good Game}{10}{}%
+\contentsline {subsection}{\numberline {3.11}First Prize auction with two types}{11}{}%

@@ -75,4 +75,57 @@
 		Sei $X \neq \varnothing$. Ist dann $\mathcal{S}\subset \mathcal{P}(X)$, so gibt es eine eindeutige gröbste Topologie, welche $\mathcal{S}$ enthält. Diese sei mit $\mathcal{T}(\mathcal{S})$ notiert.\\
 		Ist außerdem $\bigcup_{S \in \mathcal{S}} S = X$, dann ist $\mathcal{T}(\mathcal{S})$ genau die Menge beliebiger Vereinigungen von endlichen Durchschnitten von Mengen aus $\mathcal{S}$. $\mathcal{S}$ heißt Subbasis von $\mathcal{T}(\mathcal{S})$.
 	\end{theorem}
+\section{Konstruktion Topologischer Räume}
+	\subsection{Die Spurtopologie}
+	\begin{definition}
+		Sei $(X,\mathcal{T})$ ein topologischer Raum und sei $\varnothing \neq Y \subset X$. Dann ist \[\mathcal{T}_Y = \{U \cap Y: U \in T\}\] die Spurtopologie.
+	\end{definition}
+	\subsection{Produkttopologie}
+	\begin{definition}
+		Seien $X,Y$ topologische Räume. Dann ist die Menge \[\mathcal{B} = \{U\times V: U \text{ offen in } X, V \text{ offen in } Y\}\] Basis einer Topologie (der Produkttopologie) auf $X\times Y$. $\mathcal{B}$ selber ist aber keine Topologie.
+	\end{definition}
+	\begin{theorem}
+		Ist $\mathcal{B}$ eine Basis für eine Topologie auf $X$ und ist $\mathcal{C}$ eine Basis für eine Topologie auf $Y$, so ist \[\mathcal{D} 0 \{B\times C: B \in \mathcal{B}, C \in \mathcal{C}\}\] eine Basis für die Produkttopologie auf $X\times Y$.
+	\end{theorem}
+	\begin{theorem}
+		Es seien $X,Y$ topologische Räume und $A\subset X, B\subset Y$. Dann ist die Produkttopologie der Spurtopologien bezüglich $A$ und $B$ gleich der Spurtopologie der Produkttopologie bezüglich $A\times Y$ auf $X\times Y$.
+	\end{theorem}
+	\subsection{Quotiententopologie}
+	Wir schreiben $X' = X/\sim$ als die Quotientenmenge von $X$ bezüglich der Äquivalenzrelation $\sim$. $\varphi: X \to X'$ sei die Funktion, die jedem Element $x \in X$ seinen Repräsentanten in $X'$ zuordnet.
+	\begin{theorem}
+		Sei $\mathcal{T}$ eine Topologie auf $X$. Dann ist \[\mathcal{T}' = \{U \in X': \varphi^{-1}(U) \in \mathcal{T}\}\] eine Topologie auf $X'$.
+	\end{theorem}
+	Dieses Konzept lässt sich auf allgemeine surjektive Funktionen verallgemeinern.
+\section{Inneres, Häufungspunkte, Abschluss, Grenzwerte}
+	\begin{theorem}
+		$A\subset Y$ ist abgeschlossen in der Spurtopologie, genau dann, wenn $A = F \cap Y$ mit $F$ in $X$ abgeschlossen.
+	\end{theorem}
+	\begin{theorem}
+		Ist $Y\subset Y$ selber abgeschlossen, in $X$, so ist jede relativ abgeschlossene Menge $Y\subset Y$ auch abgeschlossen in $X$
+	\end{theorem}
+	\begin{theorem}
+		Sei $X$ ein topologischer Raum und $A \subset X$. Dann gilt \begin{itemize}
+			\item $x \in \bar{A} \Leftrightarrow $ für jede Umgebung $U$ von $x$ gilt $A \cap U \neq \varnothing$.
+			\item ist $\mathcal{B}$ eine Basis für diese Topologie, so gilt \[x \in A \Leftrightarrow A \cap B \neq \varnothing \; \forall B \in \mathcal{B}: x \in B\]
+		\end{itemize}
+	\end{theorem}
+	\begin{definition}
+		Ein Punkt $x \in X$ heißt Häufungspunkt von $A$, wenn für jede Umgebung $U$ von $x$ gilt \[U \cap (A \setminus \{x\}) \neq \varnothing\] Das bedeutet, $x$ liegt im Abschluss von $A \setminus \{x\}$.	
+	\end{definition}
+	\begin{theorem}
+		Sei $A'$ die Menge aller Häufungspunkte, so gilt \[\bar{A} = A \cup A'\]
+	\end{theorem}
+	\begin{definition}
+		Eine Folge $x_n \subset X$ heißt konvergent gegen $x$, wenn es für alle offenen Umgebungen $U$ von $x$ ein $N$ gibt, sodass $x_n \in U$ für alle $n \geq N$. 
+	\end{definition}
+	\begin{definition}
+		Ein topologischer Raum $X$ heißt Hausdorffsch, wenn $\forall x,y \in X$ gibt es zwei offene Mengen $U_x, U_y$ mit $x \in U_x, y \in U_y$ und $U_x \cap U_y \neq \varnothing$.
+	\end{definition}
+	\begin{theorem}
+		Sei $X$ ein Hausdorff-Raum. Es gilt \begin{itemize}
+			\item Alle einelementigen und alle endlichen Teilmengen von $X$ sind abgeschlossen
+			\item ist $A \subset X$, dann ist $x \in X$ Häufungspunkt von $A$ genau dann, wenn jede Umgebung von $x$ unendlich viele Elemente aus $A$ enthält
+			\item jede Folge aus $X$ besitzt maximal einen Grenzwert.
+		\end{itemize}
+	\end{theorem}
 \end{document}
