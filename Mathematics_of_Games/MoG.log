@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  7 MAY 2024 13:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  14 MAY 2024 13:49
 entering extended mode
 **./MoG.tex
 (MoG.tex
@@ -235,14 +235,18 @@ Overfull \hbox (8.28561pt too wide) in paragraph at lines 102--104
 dis-count fac-tor $\OML/cmm/m/it/12 $ \OT1/cmr/m/n/12 and marginal
  []
 
-[7] [8] [9] [10] [11] (MoG.aux) ) 
-Here is how much of TeX's memory you used:
- 2893 strings out of 479322
- 39598 string characters out of 2856609
- 355434 words of memory out of 3000000
- 20344 multiletter control sequences out of 15000+600000
- 412976 words of font info for 64 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 67i,6n,74p,1747b,212s stack positions out of 5000i,500n,10000p,200000b,80000s
+[7] [8] [9] [10] [11] [12]
 
-Output written on MoG.dvi (12 pages, 48628 bytes).
+LaTeX Warning: Command \d invalid in math mode on input line 146.
+
+[13] [14] [15] (MoG.aux) ) 
+Here is how much of TeX's memory you used:
+ 2897 strings out of 479322
+ 39636 string characters out of 2856609
+ 355434 words of memory out of 3000000
+ 20346 multiletter control sequences out of 15000+600000
+ 413677 words of font info for 66 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 67i,9n,74p,1747b,245s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on MoG.dvi (16 pages, 63024 bytes).

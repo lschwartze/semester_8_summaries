@@ -110,4 +110,42 @@
 	Dieser verwendet statt der obigen Iterationsvorschrift höhergradige Polynome der Form \[z_{i+1} = (az_i^2 + bz_i + c) \mod n\] wobei meist sogar $a=1,b=0$ verwendet wird. Das Modul $n$ sollte $n=p\cdot q$ erfüllen, wobei $p$ und $q$ jeweils eine Blum-Primzahl ist, welche erfüllen müssen, dass $p+1$ (bzw. $q+1$) durch 4 teilbar ist. Für den seed muss außerdem gelten $ggT(z_0,n) = 1$. Wenn man nun eine Periode berechnet hat, ergibt sich der Schlüssel beispielsweise als Folge der letzten Bits der Zufallszahlen.
 	\subsubsection{Rückgekoppelte Schieberegister}
 	Die Idee ist, dass die Bits einer Zahl $b_1b_2...b_n$ so verschoben werden, dass sie auf der jeweils nächsten Stelle landen. $b_n$ wird anschließend modular mit $b_1$ addiert und auf die erste Stelle geschoben. Das heißt, als Ergebnis erhält man \[(b_1\oplus b_n)b_1b_2...b_{n-1}\]
+		\subsection{Chinesischer Restsatz}
+	Gegeben sind $n_1,...n_k \in \mathbb{Z}$ paarweise teilerfremd und $a_i \in \mathbb{Z}_{n_i}$ für $i \in \{1,2,...,k\}$. Gesucht ist ein $x$ sodass \[x = a_i \mod n_i\] für alle $i$. Diese Lösung ist eindeutig modulo $\prod_{i=1}^{k} n_i$. Das Problem wird wie folgt gelöst \begin{enumerate}
+		\item berechne $n = \prod_{i=1}^k n_i$
+		\item berechne $m_i = \frac{n}{n_i}$ für alle $i$
+		\item da $ggT(m_i,n_i) = 1$ existiert ein $y_i$ das invers zu $mi$ modulo $n_i$ ist
+		\item es gilt $x = \sum_{i=1}^k y_i\cdot a_i \cdot m_i$
+	\end{enumerate}
+	\begin{lemma}
+		Es seien $n_1,...,n_k$ paarweise teilerfremd. Sei $n = \prod_{i=1}^k n_i$. Dann ist \[x \mod n \mapsto (x \mod n_1, x \mod n_2, ..., x\mod n_k)\] eine bijektive Abbildung.
+	\end{lemma}
+	\begin{definition}[Euler Funktion]
+		Wir definieren \[\varphi(n) = \left|\{a | ggT(a,n) = 1, \, 1 \leq a \leq n\}\right|\] In anderen Worten $\varphi(n) = \left|\mathbb{Z}_n^*\right|$
+	\end{definition}
+	\begin{lemma}
+		Sei $n = \prod_{i=1}^k p_i^{e_i}$ die Primfaktorisierung von $n$. Dann ist \[\varphi(n) = n \cdot \prod_{i=1}^k \left(1-\frac{1}{p_i}\right)\]
+	\end{lemma}
+	\begin{theorem}[Satz von Euler]
+		Für jedes $a\in\mathbb{Z}_n^*$ gilt $a^{\varphi(n)}\equiv 1 \, \mod n$.
+	\end{theorem}
+	\begin{corollary}
+		Sei $k$ die Ordnung von $a\in\mathbb{Z}_n^*$ und $e\in\mathbb{Z}$. Dann ist $a^e\equiv 1$ genau dann, wenn $k$ $e$ teilt.
+	\end{corollary}
+	\begin{corollary}
+		Für $a\in\mathbb{Z}_n^*$ ist $ord(a)$ ein Teiler von $\varphi(n)$.
+	\end{corollary}
+	\subsection{RSA}
+	Wähle zwei Primzahlen $p,q$, berechne $n=p\cdot q$. Wähle $e$ teilerfremd zu $(p-1)(q-1)$. $(n,e)$ heißt \textit{öffentlicher Schlüssel}. Berechne $d$ mit $d\cdot e \equiv 1 \, \mod \varphi(n)$. $d$ ist der private Schlüssel.\\
+	Verschlüsselung geschieht durch $c = m^e \mod n$ wobei $m$ die Nachricht ist. Es gilt $m = c^d \mod n$, da $m\equiv (m^e)^d \, \mod n$.
+	\subsection{zyklische Gruppen}
+	\begin{theorem}
+		Die Gruppe $\mathbb{Z}_n^*$ ist zyklisch genau dann, wenn $n \in \{1,2,4,p^k,2p^k\}$ bei $p$ eine ungerade Primzahl ist.
+	\end{theorem}
+	\begin{lemma}
+		Ist $k$ die Ordnung von $a \in G$ und $l\in \mathbb{N}$, so ist $\frac{k}{ggT(k,l)}$ die Ordnung von $a^l$.
+	\end{lemma}
+	\begin{theorem}
+		Eine endliche zyklische Gruppe $G$ hat genau $\varphi(\left|G\right|)$ Erzeuger. Daraus folgt, dass eine zyklische Gruppe $\mathbb{Z}_n^*$ genau $\varphi(\varphi(n))$ Erzeuger hat.
+	\end{theorem}
 \end{document}

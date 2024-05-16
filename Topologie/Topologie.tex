@@ -75,7 +75,7 @@
 		Sei $X \neq \varnothing$. Ist dann $\mathcal{S}\subset \mathcal{P}(X)$, so gibt es eine eindeutige gröbste Topologie, welche $\mathcal{S}$ enthält. Diese sei mit $\mathcal{T}(\mathcal{S})$ notiert.\\
 		Ist außerdem $\bigcup_{S \in \mathcal{S}} S = X$, dann ist $\mathcal{T}(\mathcal{S})$ genau die Menge beliebiger Vereinigungen von endlichen Durchschnitten von Mengen aus $\mathcal{S}$. $\mathcal{S}$ heißt Subbasis von $\mathcal{T}(\mathcal{S})$.
 	\end{theorem}
-\section{Konstruktion Topologischer Räume}
+	\section{Konstruktion Topologischer Räume}
 	\subsection{Die Spurtopologie}
 	\begin{definition}
 		Sei $(X,\mathcal{T})$ ein topologischer Raum und sei $\varnothing \neq Y \subset X$. Dann ist \[\mathcal{T}_Y = \{U \cap Y: U \in T\}\] die Spurtopologie.
@@ -96,7 +96,7 @@
 		Sei $\mathcal{T}$ eine Topologie auf $X$. Dann ist \[\mathcal{T}' = \{U \in X': \varphi^{-1}(U) \in \mathcal{T}\}\] eine Topologie auf $X'$.
 	\end{theorem}
 	Dieses Konzept lässt sich auf allgemeine surjektive Funktionen verallgemeinern.
-\section{Inneres, Häufungspunkte, Abschluss, Grenzwerte}
+	\section{Inneres, Häufungspunkte, Abschluss, Grenzwerte}
 	\begin{theorem}
 		$A\subset Y$ ist abgeschlossen in der Spurtopologie, genau dann, wenn $A = F \cap Y$ mit $F$ in $X$ abgeschlossen.
 	\end{theorem}
@@ -127,5 +127,40 @@
 			\item ist $A \subset X$, dann ist $x \in X$ Häufungspunkt von $A$ genau dann, wenn jede Umgebung von $x$ unendlich viele Elemente aus $A$ enthält
 			\item jede Folge aus $X$ besitzt maximal einen Grenzwert.
 		\end{itemize}
+	\end{theorem}
+	\section{Stetigkeit}
+	\begin{definition}
+		Seien $X$ und $Y$ topologische Räume. Eine Abbildung $f:X \to Y$ ist stetig, wenn für alle offenen Mengen $U \subset Y$ das Urbild $f^{-1}(U)$ offen in $X$ ist.
+	\end{definition}
+	\begin{theorem}
+		Seien $X$, $Y$ topologische Räume. Es sei $f:X \to Y$ eine Funktion, dann sind die folgenden Eigenschaften äquivalent. \begin{enumerate}
+			\item $f$ ist stetig
+			\item Für jede Menge $A \subset X$ ist $f(\overline{A}) \subseteq \overline{f(A)}$
+			\item Für jede in $Y$ abgeschlossene Menge $F \subset Y$ ist $f^{-1}(Y)$ abgeschlossen in $X$
+			\item zu jedem $x \in X$ und jeder Umgebung $V$ von $f(x)$ gibt es eine Umgebung $U$ von $x$, sodass $f(U) \subseteq V$.
+		\end{enumerate}
+	\end{theorem}
+	\begin{definition}
+		Eine bijektive Abbildung $f:X\to Y$ sodass $f$ und $f^{-1}$ stetig sind, heißt Homöomorphismus.
+	\end{definition}
+	\begin{definition}
+		Ist $f$ eine stetige, injektive aber nicht surjektive Abbildung, so sei $\overline{Z} = f(X) \subset Y$. Die Einschränkung \[\tilde{f}: X \to \overline{Z}\] ist bijektiv. Ist $\tilde{f}$ ein Homöomorphismus, so nennen wir $f$ eine Einbettung von $X$ in $Y$.
+	\end{definition}
+	\begin{definition}
+		Existiert zwischen $X$ und $Y$ ein Homöomorphismus, so heißen $X$ und $X$ homöomorph, geschrieben $X \cong Y$.
+	\end{definition}
+	\begin{theorem}
+		Seien $X,Y,Z$ topologische Räume. Dann gilt \begin{enumerate}
+			\item jede konstante Funktion $f:X\to Y$ ist stetig
+			\item ist $A\subset X$, so ist die Inklusion $f: A \to X$ stetig
+			\item sind $f:X\to Y$ stetig und $g:Y \to Z$ stetig, so ist $g\circ f$ stetig
+			\item ist $f:X\to Y$ stetig und $A\subset X$, so ist die Restriktion $f:X \to A$ stetig bzgl. der Spurtopologie.
+		\end{enumerate}
+	\end{theorem}
+	\begin{theorem}
+		Seien $X,Y$ topologische Räume und es gelte $X = A\cup B$ mit $A,B$ abgeschlossen. Weiter seien die beiden Funktionen $f:A\to Y$ und $g:B \to Y$ stetig bzgl. der jeweiligen Spurtopologien und sei \[f(x) = g(x) \; \forall x \in A \cap B\] dann ist \[h(x) = \begin{cases}
+			f(x), & x \in A\\
+			g(x), & x \in B
+		\end{cases}\] stetig auf $X$.
 	\end{theorem}
 \end{document}

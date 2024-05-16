@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  9 MAY 2024 22:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  15 MAY 2024 11:45
 entering extended mode
 **./AGT.tex
 (AGT.tex
@@ -235,14 +235,27 @@ Overfull \hbox (8.76158pt too wide) in paragraph at lines 102--105
 n-destens 2. Hi-erfur wird zunachst
  []
 
-[5] [6] [7] [8] [9] (AGT.aux) ) 
+[5] [6] [7] [8] [9]
+Overfull \hbox (10.86261pt too wide) in paragraph at lines 177--178
+[][]\OT1/cmr/m/n/12 berechne die Eigen-vek-toren $\OML/cmm/m/it/12 x[]; :::; x[
+]$ \OT1/cmr/m/n/12 zu den $\OML/cmm/m/it/12 k$ \OT1/cmr/m/n/12 kle-in-sten Eige
+n-werten (ohne Vielfach-
+ []
+
+[10]
+Overfull \hbox (19.39584pt too wide) detected at line 190
+\U/msb/m/n/12 E\OT1/cmr/m/n/12 [[]] = [] \U/msb/m/n/12 E\OT1/cmr/m/n/12 [[]] = 
+[] [] + []
+ []
+
+[11] [12] (AGT.aux) ) 
 Here is how much of TeX's memory you used:
  2899 strings out of 479322
  39658 string characters out of 2856609
- 352434 words of memory out of 3000000
+ 353434 words of memory out of 3000000
  20348 multiletter control sequences out of 15000+600000
  413621 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 67i,12n,74p,723b,231s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 67i,12n,74p,852b,231s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on AGT.dvi (10 pages, 34624 bytes).
+Output written on AGT.dvi (13 pages, 45188 bytes).

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  22 APR 2024 17:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  16 MAY 2024 16:27
 entering extended mode
 **./Kryptologie.tex
 (Kryptologie.tex
@@ -235,14 +235,14 @@ Overfull \hbox (7.81067pt too wide) in paragraph at lines 48--49
 einen abhorbaren Kanal verlauft.
  []
 
-[2] [3] [4] [5] [6] [7] (Kryptologie.aux) ) 
+[2] [3] [4] [5] [6] [7] [8] (Kryptologie.aux) ) 
 Here is how much of TeX's memory you used:
- 2896 strings out of 479322
- 39724 string characters out of 2856609
+ 2897 strings out of 479322
+ 39735 string characters out of 2856609
  350450 words of memory out of 3000000
- 20347 multiletter control sequences out of 15000+600000
+ 20348 multiletter control sequences out of 15000+600000
  412976 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  67i,6n,74p,854b,212s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Kryptologie.dvi (8 pages, 27652 bytes).
+Output written on Kryptologie.dvi (9 pages, 33224 bytes).

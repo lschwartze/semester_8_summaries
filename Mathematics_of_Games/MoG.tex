@@ -132,4 +132,44 @@
 	\subsection{First Prize auction with two types}
 	Let's consider a first-price auction with two types $\underline{\theta}$ (cheap) and $\overline{\theta}$ (generous). Let $\underline{p}, \overline{p}$ be the respective probabilities for a player $i$. Let's look for an equilibrium where $\underline{\theta}$ bids $\underline{\theta}$ and type $\overline{\theta}$ randomizes according to the continuous distribution $F(s)$ in $[\underline{s},\overline{s}]$. Clearly $\underline{s} = \underline{\theta}$. If $\underline{s} > \underline{\theta}$ then a player with type $\overline{\theta}$ would be better off bidding just above $\underline{\theta}$ rather than bidding $\underline{s}$ as this would not reduce her probability of winning ans would reduce her payment if they win. For player $i$ with type $\overline{theta}$ to play in an equilibrium with a mixed strategy with support $[\underline{s},\overline{s}$], it must hold that \[(\overline{\theta}-s)[\underline{p}+\overline{p}F(s)] = c \; \forall s \in [\underline{s},\overline{s}]\] where $c$ is constant. That is, the expected payoff of the generous type should be constant where for bid $s$ the generous tpe gets $\overline{\theta}-s$ with probability $\underline{p}+ \overline{p}F(s)$. as $F(\underline{\theta}) = 0$ the constant $c$ is equal to $(\overline{\theta}-\underline{\theta})\underline{p}$. This $F(\cdot)$ is defined by \[(\overline{\theta} - s)[\underline{p}+\overline{p}F(s)] = (\overline{p}-\underline{p}) \]
 	Let $G(s) = \underline{p}+\overline{p}F(s)$ denote the cumulative distribution of bids for $s\geq \theta$. Then we get \[(\overline{\theta}-s)G(s) = (\overline{\theta}-\underline{\theta})\underline{p}\] Finally $F(s) = 1$ implies $(\overline{\theta} - \overline{s}) = (\overline{\theta} - \underline{\theta})\underline{p}$, that is \[\overline{s} = \overline{p}\overline{\theta}+\underline{p}\underline{\theta}\]
+	\subsection{Double Auction}
+	Here buyers and sellers make their moves simultaneously. The sellers submit an asking price and the buyers their bids. An auctioneer then chooses a price that clears the market:\\
+	All sellers who asked for less sell and all the buyers who offered more buy. The number of units that are supplied at this price equals the number of units that were demanded.\\
+	The simplest possible version is with one seller (player 1) and one buyer (player 2). The seller has a cost $c$ and the buyer has a valuation $v$. The simultaneously choose bids $b_1,b_2 \in [0,1]$. If $b_1\leq b_2$ they trade at price $t = \frac{b_1+b_2}{2}$. Otherwise they do not trade. We get the utility functions \[u_1 = t-c\] and \[u_2 = v-t\] if $b_1\leq b_2$. If we consider complete information, there are infinite NE (e.g. of the form $b_1=b_2 \in [c,v])$.\\
+	The incomplete version is slightly more difficult. The players' types are distributed according to $P_i$ in $[0,1]$. We are looking for a Bayesian NE $s_1(\cdot)$ and $s_2(\cdot)$ depending on $c$ and $v$ respectively. Let $F_1$, $F_2$ be the equilibrium cumulative distributions of the players' types. That is $F_1(b)$ is the probability that the seller has a cost that induces her to bid less than $b$ \[F_1(b) = \mathbb{P}(s_1(c)\leq b)\]
+	The expected payoff of the seller bidding $b_1$ with cost $c$ thus is \[\int_{b_1}^{1} \left(\frac{b_1+b_2}{2}-c\right)\, dF_2(b_2)\] Obviously, the probability that $b_2$ is in a given interval $[\underline{b}_2, \overline{b}_2]$ is given by $F_2(\overline{b}_2) - F_2(\underline{b}_2)$.\\
+	Now, consider two costs $c',c''$ for the seller. Let $b_1' = s_1(c')$ and $b_1'' = s_1(c'')$. The optimization by the seller requires \[\int_{b_1'}^1 \left(\frac{b_1' + b_2}{2} - c'\right)\,dF_2(b_2) \geq \int_{b_1''}^1\left(\frac{b_1'' + b_2}{2} - c'\right)\,dF_2(b_2)\] that is $b_1'$ is the best response to $c'$ and the integral is the expected payoff for player 1. Since \[\int_{b_1'}^1 \left(\frac{b_1' + b_2}{2} - c''\right)\,dF_2(b_2) \leq \int_{b_1''}^1\left(\frac{b_1'' + b_2}{2} - c''\right)\,dF_2(b_2)\] We conclude \[(c'-c'')(F_2(b_1'') - F_2(b_1')) \geq 0\] so that $b_1'' \geq b_1'$ and $c' \geq c''$ and similarly for the buyer. The optimization problem of the seller thus is \[\max_{b_1} \int_{b_1}^1 \left(\frac{b_1+b_2}{2}-c\right)\, dF_2(b_2)\] This implies \begin{enumerate}
+		\item $\frac{1}{2}(1-F_2(s_1(c))) - (s_1(c)-c)f_2(s_1(c)) = 0$ or 
+		\item $\frac{1}{2}(1-F_2(s_1(c))) - (s_1(c)-c)f_2(s_1(c)) > 0$ and $s_1(c) = 1$ or 
+		\item $\frac{1}{2}(1-F_2(s_1(c))) - (s_1(c)-c)f_2(s_1(c)) < 0$ and $s_1(c) = 0$
+	\end{enumerate}
+	Since $f_2(1) = 1$ and $F_2(0) = 0$, only the first one can be satisfied. We get an analogous formula for the buyer \[\max_{b_2} \int_0^{b_2} \left(v-\frac{b_1+b_2}{2}\right) \d F_1(b_1)\] leading to \[(v-s_2(v))f_1(s_2(v)) = \frac{1}{2} F_1(s_2(v))\]
+	Now, assuming $P_1$, $P_2$ uniform we are looking for affine strategies \[s_1(c) = \alpha_1 + \beta_1c\]\[s_2(v) = \alpha_2 + \beta_2v\] This implies $f_i(b) = \frac{1}{\beta_i}$. Plugging in this and doing a bit of number crunching gives \[\beta_1 = \beta_2 = \frac{2}{3}, \alpha_1 = \frac{1}{4}, \alpha_2 = \frac{1}{12}\]
+	\subsection{Two-Player First-Price Auction}
+	Consider a two-player first-price sealed-bid auction in which the bidders' valuations on a good are iid on $[0,1]$. The bids $b_i$ are submitted simultaneously. Bidder $i$ has a valuation of $v_i$ thus earning $v_i-b_i$ in case of winning the auction. In case of a tie, the winner is chosen at random. Suppose that each bidder bids $b_i = v_ic$ where $c$ is a constant. Note that $\mathbb{P}[b_i = b_j] = 0$ given a value of $v_i$. Thus player $i$'s optimal bid solves \[\max_{b_i} ((v_i-b_i)\mathbb{P}[b_i > v_jc]) = \max_{b_i} ((v_i-b_i)\frac{b_i}{c})\] By taking the first order condition we get $\frac{v_i}{c} = 2\frac{b_i}{c}$.
+	\subsection{Cournot Duopoly with Incomplete Information}
+	Consider a Cournot duopoly operating in a market with inverse demand $P(Q) = a-Q$ where $Q = q_1+q_2$. Both firms have total costs $c_i(q_i) = cq_i$ but the cost is uncertain. It is high ($c = c_H$) with probability $\gamma$ and low ($c = c_L$) with probability $1-\gamma$. Information is asymmetric, that is firm 1 knows $\gamma$ but firm 2 does not. The payoff for player 1 is \[u_1(q_1,q_2,c) = \begin{cases}
+		(a-Q-c_H)q_1, & \text{ if } c = c_H\\
+		(a-Q-c_L)q_1, & \text{ if } c = c_L
+	\end{cases}\]
+	\begin{example}
+		Consider a car-seller and a potential buyer. Suppose that the quality of the car $\theta$ is uniformly drawn from $[0,1]$ which is known to the seller but not to the buyer. Suppose that the buyer can make an offer $p \in [0,1]$ which the seller can accept or reject. (This can be modelled as a simultaneous move auction since the buyer can announce a range of acceptable prices.)\\
+		The payoff functions are given by \[u_S = \begin{cases}
+			p, & \text{ if offer accepted}\\
+			\theta, & \text{ otherwise}
+		\end{cases}\]
+		\[u_B = \begin{cases}
+			a+b\theta-p, & \text{ if offer accepted}\\
+			0, & \text{ otherwise}
+		\end{cases}\]
+		Assume that $a \in [0,1)$, $b \in (0,2)$ and that $a+b>1$ so that it is more efficient for the buyer to own the car $\forall \theta \in [0,1]$. Give a BNE in which the seller accepts if and only if $p \geq \theta$.\\
+		\underline{Solution:}\\
+		Obviously the seller accepts the offer if and only if the payoff for accepting is at least as big as the payoff for rejecting, i.e. $p \geq \theta$. Since the buyer does not know $\theta$ we have to integrate for all values of $\theta$ that are possible to get the expected payoff of the buyer, i.e. \[\int_0^p (a+b\theta-p)\, d\theta = p(a+\frac{b}{2}p - p) = pa + p^2(\frac{b}{2}-1)\]
+		To maximize this we need to compute the derivative \[p(b-2)+a \overset{!}{=} 0 \Leftrightarrow p = \frac{-a}{b-2}\]
+	\end{example}
+	\begin{example}
+		Suppose that a risk-averse bidder has utility $u(\theta-b)$ if they win and $u(0)$, that is some punishment value, if they lose.\\
+		Show that for second-price auctions risk averse bidders behave like risk-neutral bidders.\\
+		There are two discrete types $\overline{\theta}$ with probability $\overline{p}$ and $\underline{\theta}$ with probability $\underline{p}$ for the first-price auction. Show that here, using some randomization seen in class for $\overline{\theta}$ the auctioneer has more revenue since the bidders are willing to give more.
+	\end{example}
 \end{document}
