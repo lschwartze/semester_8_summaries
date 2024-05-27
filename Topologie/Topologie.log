@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  14 MAY 2024 11:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  21 MAY 2024 11:24
 entering extended mode
 **./Topologie.tex
 (Topologie.tex
@@ -229,7 +229,20 @@ LaTeX Warning: No \author given.
 \tf@toc=\write3
 \openout3 = `Topologie.toc'.
 
- [1] [2] [3] [4] [5] [6] (Topologie.aux) ) 
+ [1] [2] [3] [4] [5]
+Overfull \hbox (4.06636pt too wide) in paragraph at lines 177--178
+\OT1/cmr/bx/n/12 Lemma 5.3. []\OT1/cmr/m/it/12 Sei $\OML/cmm/m/it/12 X$ \OT1/cm
+r/m/it/12 ein un-zusam-menhangen-der topol-o-gis-cher Raum mit Sep-a-ra-tion $
+\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 U; V\OT1/cmr/m/n/12 )$\OT1/cmr/m/it/12 .
+ []
+
+
+Overfull \hbox (3.04231pt too wide) in paragraph at lines 180--181
+\OT1/cmr/bx/n/12 Theorem 5.4. []\OT1/cmr/m/it/12 Die Vere-ini-gung zusam-menha
+ngen-der Raume ist zusam-menhangend, wenn
+ []
+
+[6] (Topologie.aux) ) 
 Here is how much of TeX's memory you used:
  2896 strings out of 479322
  39654 string characters out of 2856609
@@ -237,6 +250,6 @@ Here is how much of TeX's memory you used:
  20345 multiletter control sequences out of 15000+600000
  413677 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 67i,8n,74p,352b,237s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 67i,8n,74p,381b,237s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Topologie.dvi (7 pages, 18948 bytes).
+Output written on Topologie.dvi (7 pages, 21228 bytes).

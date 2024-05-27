@@ -197,4 +197,16 @@
 		\item in der ersten Phase werden nun Knoten so lange zwischen jeweils zwei Clustern getauscht, wie eine Verbesserung möglich ist
 		\item in der zweiten Phase wird jedes Cluster, das in der ersten Phase berechnet wurde zu einem Knoten kontrahiert. Der dabei entstandene Graph wird dann in die erste Phase eingegeben und so weiter
 	\end{enumerate}
+	\subsection{Label Propagation Clustering}
+	\begin{enumerate}
+		\item nummeriere die Knoten in zufälliger Reihenfolge
+		\item für alle Knoten $v$, ändere die Nummer zu der häufigsten Nummer in $\delta(v)$
+		\item wiederhole bis Konvergenz
+	\end{enumerate}
+	Es stellt sich nun die Frage, was die Zielfunktion sein soll. Sei \[l:V \to \{1,...,k\}\] die Funktion der initialen Nummerierung der Knoten. Die Zielfunktion sollte dann \[\mathcal{H}(l) = \sum_{uv \in E} \delta(l(u),l(v))\] sein wobei $\delta$ hier das Kronecker-Delta sei. Diese Funktion wird vom Algorithmus automatisch maximiert. Problem: diese Funktion wird maximiert, wenn jeder Knoten das selbe Label hat, das heißt, wenn es nur ein Cluster mit allen Knoten gibt. Deshalb wird die Zielfunktion leicht abgeändert zu \[\bar{\mathcal{H}}(l) = \sum_{uv \in E} \delta(l(u),l(v)) - C\sum_\alpha \left|l^{-1}(\alpha)\right|^2\]
+	\subsection{Correlation Clustering}
+	Ein Graph, der in mehrere disjunkte Cliquen zerfällt, sollte offensichtlich in diese Cliquen geclustert werden. Seinen die Cluster eines Graphen nummeriert mit $C_1,...,C_k$, dann führt das zu der Zielfunktion \[\min_{C_1,...,C_k} \sum_{i=1}^{k} \left(\binom{\left|C_i\right|}{2} - \left|E[C_i]\right|\right) + \sum_{i=1}^k \sum_{j=1, j\neq i}^k \left|\partial(C_i,C_j)\right|\] In der Theorie ist dieses Verfahren sehr interessant, allerdings normalerweise nicht praktisch umsetzbar. Deswegen wird das nicht weiter verfolgt.
+	\subsection{Cluster-Metrik}
+	Wenn die verschiedenen Algorithmen miteinander verglichen werden, ist ein Test-Graph nötig. Solche Testfälle werden meist so aufgebaut, dass ein objektiv bestes Clustering existiert (\textit{ground truth}). Dann muss verglichen werden, welcher Algorithmus ein Clustering produziert, dass am nächsten an dieses Clustering heranreicht. Dafür sind Clustering-Metriken nötig.\\
+	\underline{Rand Distanz}: Seien $A,B$ zwei Clusterings. Wir nennen $u,v \in V$ eine Unstimmigkeit, wenn $\exists a \in A: u,v \in a$ aber $\not\exists b \in B: u,v \in b$ oder umgekehrt. $d(A,B)$ als die Anzahl der Unstimmigkeiten ist eine Metrik. Diese Metrik ist leicht zu berechnen, denn \[d(A,b) = \sum_{a \in A} \binom{\left|a\right|}{2} + \sum_{b \in B} \binom{\left|b\right|}{2} - 2\sum_{a\in A, b \in B} \binom{\left|a\cap b\right|}{2}\]
 \end{document}

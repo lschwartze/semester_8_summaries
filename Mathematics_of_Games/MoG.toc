@@ -18,3 +18,4 @@
 \contentsline {subsection}{\numberline {3.12}Double Auction}{11}{}%
 \contentsline {subsection}{\numberline {3.13}Two-Player First-Price Auction}{13}{}%
 \contentsline {subsection}{\numberline {3.14}Cournot Duopoly with Incomplete Information}{14}{}%
+\contentsline {subsection}{\numberline {3.15}Perfect Bayesian Games: Signaling Games}{15}{}%

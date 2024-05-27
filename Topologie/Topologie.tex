@@ -163,4 +163,23 @@
 			g(x), & x \in B
 		\end{cases}\] stetig auf $X$.
 	\end{theorem}
+	\begin{theorem}
+		Es sei \[f:A \to X\times Y\] eine vektorwertige Funktion. $f$ ist stetig genau dann, wenn $f_1$ und $f_2$ stetig sind.
+	\end{theorem}
+	\section{Zusammenhängende topologische Räume}
+	\begin{definition}
+		Ein topologischer Raum $X$ heißt unzusammenhängend, wenn $\exists U,V$ offen, sodass $U\cap V = \varnothing$, $U \neq \varnothing, V \neq \varnothing$ und $X = U\cup V$. $X$ heißt zusammenhängend, wenn es keine solche Separation gibt. Das ist äquivalent dazu, dass $X$ und $\varnothing$ die einzigen abgeschloffenen Mengen sind.
+	\end{definition}
+	\begin{lemma}
+		Sei $X$ ein topologischer Raum und sei $Y\subset X$. Eine Separation von $Y$ bzgl. der Spurtopologie ist ein Paar $(A,B)$ mit \[A\neq \varnothing, B \neq \varnothing, A\cup B = Y, \overline{A}\cap B = \varnothing, A \cap \overline{B} = \varnothing\]
+	\end{lemma}
+	\begin{lemma}
+		Sei $X$ ein unzusammenhängender topologischer Raum mit Separation $(U,V)$. Ist $Y\subset X$ zusammenhängend, so ist $Y\subset U$ oder $Y\subset V$. 
+	\end{lemma}
+	\begin{theorem}
+		Die Vereinigung zusammenhängender Räume ist zusammenhängend, wenn alle Räume mindestens einen Punkt gemeinsam haben.
+	\end{theorem}
+	\begin{theorem}
+		Sind $X,Y$ zusammenhängende Räume, so ist $X\times Y$ zusammenhängend.
+	\end{theorem}
 \end{document}
