@@ -15,3 +15,5 @@
 \contentsline {subsection}{\numberline {2.7}Label Propagation Clustering}{12}{}%
 \contentsline {subsection}{\numberline {2.8}Correlation Clustering}{13}{}%
 \contentsline {subsection}{\numberline {2.9}Cluster-Metrik}{13}{}%
+\contentsline {section}{\numberline {3}Streaming}{14}{}%
+\contentsline {subsection}{\numberline {3.1}HyperLogLog}{14}{}%

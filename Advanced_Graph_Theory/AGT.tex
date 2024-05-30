@@ -164,49 +164,19 @@
 			\item ist $\mathcal{C}$ die Menge der Komponenten von $G$. Dann ist $\chi_C, \, C \in \mathcal{C}$ orthogonale Eigenbasis des Eigenwerts 0.
 		\end{enumerate}
 	\end{lemma}
-	Zurück zu ratio cuts. Sei $A \subsetneq V$ mit $A\neq \varnothing$. Wähle \[\mathbb{R}^V \ni z = \sqrt{\frac{\left|\overline{A}\right|}{\left|A\right|}} \chi_A - \sqrt{\frac{\left|A\right|}{\left|\overline{A}\right|}}\chi_{\overline{A}}\] woraus folgt \[z^TLz = \left|V\right|\sum_{uv \in \partial A} w_{uv}(\frac{1}{\left|A\right|} + \frac{1}{\left|\overline{A}\right|}) = \underbrace{\left|V\right|\left(\frac{w(\partial A)}{\left|A\right|} + \frac{w(\partial A)}{\left|\overline{A}\right|}\right)}_{\text{ratio-cut Zielfunktion}}\] Die ratio-cut Zielfunktion zu minimieren ist also obige Matrix-Vektor-Multiplikation über alle solchen $z^A$ zu minimieren. Wir beobachten zunächst \begin{enumerate}
-		\item $||z^A||_2^2 = \left|V\right|$ für alle $A$
-		\item $\chi^Tz^A = 0$
-	\end{enumerate}
-	Da alle $z^A$ diese Eigenschaften erfüllen, können diese als Nebenbedingung zur Optimierungsproblem ergänzt werden, ohne dass der Lösungsraum verändert wird. Minimiert man $x^T L x$ nun über alle $x$ mit obigen Nebenbedingungen aber streicht die Bedingung, dass $x=z^A$ für ein $A$, so erhält man ein relaxiertes Problem, das potentiell leichter zu lösen ist. Sei nun $x^*$ eine Lösung für das relaxierte Problem, dann setze \[A = \{v \in V: x^*_v \geq 0\}\]
-	\begin{theorem}[Rayleigh-Koeffizienten]
-		Sei $B \in \mathbb{R}^{n\times n}$ symmetrisch. Seien $\lambda_1 \leq \dots \lambda_n$ Eigenwerte mit Vielfachheiten. Seien $v^{(1)},...,v^{(n)}$ eine orthogonale Basis von Eigenvektoren, sodass $v^{(i)}$ Eigenvektor zum Eigenwert $\lambda_i$ ist. Es gilt \[\lambda_{i+1} = \min_{x \bot v^{(1)},...,v^{(i)}} \frac{x^TBx}{x^Tx}\] Ein Vektor $x$ minimiert diesen Term genau dann, wenn er ein Eigenvektor zum Eigenwert $\lambda_{i+1}$ ist.
-	\end{theorem}
-	Ziel ist es nun, das ratio-cut Annäherungsverfahren von oben auf $k$ Cluster zu verallgemeinern. Das geschieht wie folgt \begin{enumerate}
-		\item bilde die Laplace'sche
-		\item berechne die Eigenvektoren $x^{(1)},...,x^{(k)}$ zu den $k$ kleinsten Eigenwerten (ohne Vielfachheit). Es ist keine Einschränkung anzunehmen, dass die $x^{(i)}$ paarweise orthogonal und normiert sind.
-		\item sie $X \in \mathbb{R}^{V\times k}$ die Matrix gebildet aus obigen Eigenvektoren als Spalten. Sei $r^{(v)}$ die Zeile zum Knoten $v$
-		\item wende ein Clustering-Verfahren auf die Zeilen $r^{(v)}$ an
-		\item gebe die Cluster aus
-	\end{enumerate}
-	\subsection{Modularity}
-	Hierbei handelt es sich um eine Zieflunktion für Graphen-Clusterings. Ist $\mathcal{C}$ ein Clustering, so soll $q(\mathcal{C})$ maximiert werden. Für einen ungewichteten Graphen ist \[q(\mathcal{C}) = \sum_{C \in \mathcal{C}} \left(\frac{\left|E[C]\right|}{m} - \left(\sum_{v \in C} \frac{d(v)}{2m}\right)^2\right)\] wobei \[E[C] = \{e=(uv): \, u,v \in C\}\] und im gewichteten Graphen \[q(\mathcal{C}) = \sum_{C \in \mathcal{C}} \left(\frac{w(E[C])}{m} - \left(\sum_{v \in C} \frac{w(\delta(v))}{2m}\right)^2\right)\]
-	\underline{Motivation}
-	\begin{itemize}
-		\item Wenn die modularity maximiert wird, so liefert das eine optimale Anzahl an Clustern
-		\item Für einen Graphen $G$ mit $m$ Kante, kann ein Zufallsgraph $R$ mit $m$ Kanten betrachtet werden. Ist die Dichte ($\frac{\left|E[G]\right|}{\binom{\left|C\right|}{2}}$) eines Clusters in $G$ höher als in $R$, so ist das ein gutes Indiz
-	\end{itemize}
-	\underline{Ziel}: konstruiere einen Zufallsgraphen $R$ auf $V(G)$, sodass die Grade jedes Knotens gleich bleiben.\\
-	Die Idee ist leicht. In $R$ wird jeder Knoten von $G$ übernommen aber die Kanten werden nur zur Hälfte eingesetzt. Das heißt jede Kante hat einen Anfangsknoten (damit der Grad jedes Knotens gleich bleibt) aber noch keinen Endknoten. Dann werden die Halbkanten (genannt stubs) zufällig verbunden. Bemerke, dass der resultierende Graph ein Multigraph wird. Da wir $\sum_{C \in \mathcal{C}} \frac{\left|E_G(C)\right|}{m}$ mit $\sum_{C \in \mathcal{C}} \frac{\left|E_R(C)\right|}{m}$ vergleichen wollen, müssen wir den Erwartungswert von $\left|E_R(C)\right|$ bestimmen. Es gilt \[\mathbb{E}[\left|E_R(C)\right|] = \sum_{u,v \in C} \mathbb{E}[\text{Anzahl der Kante zwischen $u$ und $v$}] = \sum_{u,v \in C} \underbrace{\frac{d(u)d(v)}{2m-1}}_{u \neq v} + \underbrace{\frac{(d(u)-1)d(u)}{4m-2}}_{u=v}\]
-	Die Anzahl der Schleifen ist sehr klein. Deswegen wird dieser Term abgeschätzt mit $\sum_{u,v \in C}\frac{d(u)d(v)}{4m} = \frac{1}{4m} \sum_{u \in C} \sum_{v \in C} d(v)d(u)= \frac{1}{4m} \left(\sum_{v \in C} d(v)\right)^2$. Auf diese Weise kann die Modularity mit der eines Zufallsgraphen verglichen werden.
-	\subsection{Louvain-Algorithmus}
-	Hierbei handelt es sich um ein Verfahren Clusterings mit maximaler Modularity zu bestimmen. Der Algorithmus funktioniert auf gewichteten Graphen. \begin{enumerate}
-		\item Input sind ein Graph $G$ und ein initiales Clustering $\mathcal{C} = \{\{v\}: v \in V\}$.
-		\item fixiere einen Knoten $v$ aus dem Cluster $C_v$ und schreibe \[q(\mathcal{C}) = \sum_{C \in \mathcal{C}}\underbrace{\left(\frac{\left|E[C]\right|}{m} - \left(\sum_{u \in C} \frac{d(u)}{2m}\right)^2\right)}_{:=p(C)}\]
-		\item definiere $\Delta^v p(C_v) = p(C_v \setminus\{v\})-p(C_v)$ und $\Delta^v p(C) = p(C(\cup \{v\})) - p(C)$.
-		\item in der ersten Phase werden nun Knoten so lange zwischen jeweils zwei Clustern getauscht, wie eine Verbesserung möglich ist
-		\item in der zweiten Phase wird jedes Cluster, das in der ersten Phase berechnet wurde zu einem Knoten kontrahiert. Der dabei entstandene Graph wird dann in die erste Phase eingegeben und so weiter
-	\end{enumerate}
-	\subsection{Label Propagation Clustering}
-	\begin{enumerate}
-		\item nummeriere die Knoten in zufälliger Reihenfolge
-		\item für alle Knoten $v$, ändere die Nummer zu der häufigsten Nummer in $\delta(v)$
-		\item wiederhole bis Konvergenz
-	\end{enumerate}
-	Es stellt sich nun die Frage, was die Zielfunktion sein soll. Sei \[l:V \to \{1,...,k\}\] die Funktion der initialen Nummerierung der Knoten. Die Zielfunktion sollte dann \[\mathcal{H}(l) = \sum_{uv \in E} \delta(l(u),l(v))\] sein wobei $\delta$ hier das Kronecker-Delta sei. Diese Funktion wird vom Algorithmus automatisch maximiert. Problem: diese Funktion wird maximiert, wenn jeder Knoten das selbe Label hat, das heißt, wenn es nur ein Cluster mit allen Knoten gibt. Deshalb wird die Zielfunktion leicht abgeändert zu \[\bar{\mathcal{H}}(l) = \sum_{uv \in E} \delta(l(u),l(v)) - C\sum_\alpha \left|l^{-1}(\alpha)\right|^2\]
-	\subsection{Correlation Clustering}
-	Ein Graph, der in mehrere disjunkte Cliquen zerfällt, sollte offensichtlich in diese Cliquen geclustert werden. Seinen die Cluster eines Graphen nummeriert mit $C_1,...,C_k$, dann führt das zu der Zielfunktion \[\min_{C_1,...,C_k} \sum_{i=1}^{k} \left(\binom{\left|C_i\right|}{2} - \left|E[C_i]\right|\right) + \sum_{i=1}^k \sum_{j=1, j\neq i}^k \left|\partial(C_i,C_j)\right|\] In der Theorie ist dieses Verfahren sehr interessant, allerdings normalerweise nicht praktisch umsetzbar. Deswegen wird das nicht weiter verfolgt.
-	\subsection{Cluster-Metrik}
-	Wenn die verschiedenen Algorithmen miteinander verglichen werden, ist ein Test-Graph nötig. Solche Testfälle werden meist so aufgebaut, dass ein objektiv bestes Clustering existiert (\textit{ground truth}). Dann muss verglichen werden, welcher Algorithmus ein Clustering produziert, dass am nächsten an dieses Clustering heranreicht. Dafür sind Clustering-Metriken nötig.\\
-	\underline{Rand Distanz}: Seien $A,B$ zwei Clusterings. Wir nennen $u,v \in V$ eine Unstimmigkeit, wenn $\exists a \in A: u,v \in a$ aber $\not\exists b \in B: u,v \in b$ oder umgekehrt. $d(A,B)$ als die Anzahl der Unstimmigkeiten ist eine Metrik. Diese Metrik ist leicht zu berechnen, denn \[d(A,b) = \sum_{a \in A} \binom{\left|a\right|}{2} + \sum_{b \in B} \binom{\left|b\right|}{2} - 2\sum_{a\in A, b \in B} \binom{\left|a\cap b\right|}{2}\]
-\end{document}
+	Zurück zu ratio cuts. Sei $A \subsetneq V$ mit $A\neq \varnothing$. Wähle \[\mathbb{R}^V \ni z = \sqrt{\frac{\left|\overline{A}\right|}{\left|A\right|}} \chi_A - \sqrt{\frac{\left|A\right|}{\left|\overline{A}\right|}}\chi_{\overline{A}}\] woraus folgt \[z^TLz = \left|V\right|\sum_{uv \in \partial A} w_{uv}(\frac{1}{\left|A\right|} + \frac{1}{\left|\ofsum_{j=1, j\neq i}^k \left|\partial(C_i,C_j)\right|\] In der Theorie ist dieses Verfahren sehr interessant, allerdings normalerweise nicht praktisch umsetzbar. Deswegen wird das nicht weiter verfolgt.
+		\subsection{Cluster-Metrik}
+		Wenn die verschiedenen Algorithmen miteinander verglichen werden, ist ein Test-Graph nötig. Solche Testfälle werden meist so aufgebaut, dass ein objektiv bestes Clustering existiert (\textit{ground truth}). Dann muss verglichen werden, welcher Algorithmus ein Clustering produziert, dass am nächsten an dieses Clustering heranreicht. Dafür sind Clustering-Metriken nötig.\\
+		\underline{Rand Distanz}: Seien $A,B$ zwei Clusterings. Wir nennen $u,v \in V$ eine Unstimmigkeit, wenn $\exists a \in A: u,v \in a$ aber $\not\exists b \in B: u,v \in b$ oder umgekehrt. $d(A,B)$ als die Anzahl der Unstimmigkeiten ist eine Metrik. Diese Metrik ist leicht zu berechnen, denn \[d(A,B) = \sum_{a \in A} \binom{\left|a\right|}{2} + \sum_{b \in B} \binom{\left|b\right|}{2} - 2\sum_{a\in A, b \in B} \binom{\left|a\cap b\right|}{2}\]
+		\underline{Entropie}:
+		Sei $V$ der Größe $n$ und seien $A,B,C$ drei Clusterings. Diese werden in folgender Weise als Zufallsvariablen modelliert: wähle ein $v\in V$ mit gleichmäßiger Wahrscheinlichkeit. Dann ist \[X_A: V \to A, v \mapsto a \ni v\] eine Zufallsvariable wobei \[\mathbb{P}[X_A = a] = \frac{\left|a\right|}{n}\] Es sei dann weiter \[H(A) = H(X_A) = -\sum_{a \in A} \frac{\left|a\right|}{n} \log_2\left(\frac{\left|a\right|}{n}\right)\] Die Entropie des Clusterings. Weiter ist \[H(A,B) = -\sum_{a\in A, b \in B} \frac{\left|a \cap b\right|}{n} \log_2\left(\frac{\left|a\cap b\right|}{n}\right)\] und $VI(A,B) = 2H(A,B) - H(A) - H(B)$ die \textit{variation of information}. Diese ist dann eine Metrik.
+		\section{Streaming}
+		\subsection{HyperLogLog}
+		Es wird eine Reihe an Zahlen eingelesen, die nicht in den Speicher passt. Wie kann die Anzahl der paarweise verschiedenen Zahlen festgestellt werden?\\
+		Die Zahlenreihe $a_1,...a_n$ wird beim Einlesen in Binärdarstellung umgewandelt. Die Binärzahlen werden anschließend mit einer zufälligen aber deterministischen Transformation in eine andere Binärzahl konvertiert. Bei jeder transformierten Zahl werden die letzten Stellen betrachtet und die Anzahl der 0en am Ende gezählt. Die maximale Zahl $R$ von 0en am Ende einer Zahl wird gespeichert. Ausgegeben wird $2^R$.
+		\begin{theorem}
+			Sei $F_0$ die Anzahl der paarweise verschiedenen Elemente eines Streams von $m$ Zahlen und sei $Y$ der Output des Algorithmus ($Y=2^R$). Jedes $a$ des Streams liegt in $\{1,...,n\}$. Es wird $\mathcal{O}(\log n)$ Platz gebraucht und für alle Integer $c > 2$ ist \[\mathbb{P}\left[\frac{1}{c} \leq \frac{Y}{F_0}\leq c\right] \geq 1-\frac{3}{c}\] 
+		\end{theorem}
+	\subsection{Streaming mit Graphen}
+	Die Knoten des Graphens sind initial im Speicher. Dieser ist nur $\mathcal{O}(n\cdot \log(n)^p)$ für ein $p$. Das heißt die Kanten (ungefähr $n^2$) können nicht gespeichert werden. Der Stream besteht nun aus den Kanten, also $e_1,e_2,...,e_m$.
+	\end{document}

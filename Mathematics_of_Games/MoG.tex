@@ -179,5 +179,42 @@
 		\item $\forall a_1$: $\theta_2^*(\cdot | a_1) \in \arg \max_{\alpha_2} \sum_\theta \mu(\theta|\alpha_1)u_2(a_1,\alpha_2,\theta)$
 		\item $\mu(\theta|a_1) = p(\theta)\sigma_1^*(a_1|\theta)/\sum_{\theta'\in \Theta} p(\theta')\sigma_1^*(a_1|\theta')$ if $\sum_{\theta' \in \Theta} p(\theta')\sigma_1^*(a_1|\theta') > 0$ and $\mu(\cdot |a_1)$ is any probability distribution on $\Theta$ if $\sum_{\theta' \in \Theta} p(\theta')\sigma_1^*(a_1|\theta') \leq 0$. 
 	\end{enumerate}
-	1 and 2 are the perfect conditions. 3 corresponds to the application of Bayes' rule. 
+	1 and 2 are the perfect conditions. 3 corresponds to the application of Bayes' rule.\\
+	A pure perfect Bayesian NE where every type of player 1 play the same strategy is called a \textit{pooling BNE}. In this case player two can not change their distribution on types. A pure perfect Bayesian NE where player 1's strategy is unique to their type is called a separating NE. Here, player 2 can uniquely determine player 1's type.
+	\begin{definition}[the intuitive criterion]
+		Let $a_1$ be a strategy for player 1 and let $J(a_1)$ be the set of types whose equilibrium payoff is better than their payoff when playing $a_1$ and player 2 plays an undominated strategy. The equilibrium fails the intuition test if there is a type $\theta$ who would do better by playing $a_1$ than by playing the equilibrium strategy if player 2's beliefs assign probability 0 to all types in $J(a_1)$.
+	\end{definition}
+	\begin{example}[pronking]
+		A herd of antelopes is being hunted by a lion. $\frac{2}{5}$ of the antelopes are tedious (T) and the other are fast (F). An antelope can either pronk (P) or immediately start running (R). The lion can then decide whether to hunt (H) or not (N). The payoffs are as follows 
+		\begin{center}
+			\begin{table}[h]
+				\begin{tabular}{|c|c|c|}
+					\hline
+					$(a_A,a_L)$ & T & F\\
+					\hline
+					(P,H) & (-6,7) & (4,-5)\\
+					\hline
+					(P,N) & (4,0) & (9,0)\\
+					\hline
+					(R,H) & (-5,6) & (5,-6)\\
+					\hline
+					(R,N) & (5,0) & (5,0)\\
+					\hline
+				\end{tabular}
+			\end{table}
+		\end{center}
+	Let $\mu(A|X)$ be the belief of the lion that an antelope who signals $X$ is of type $A$.\\
+	\underline{Pooling Equilibria}: Pooling on P\\
+	The lion needs to react with N otherwise both types are better of by running immediately. The lion has gained no information about the types so he react with N since \[0 \geq 7\cdot \frac{2}{5} - 5\cdot \frac{3}{5}\]
+	We need to ensure that the antelopes don't deviate. This is the case if the lion reacts with H to R. Let $\mu = \mu(T|R)$. Then the lion reacts with H to R if \[6\mu - 6(1-\mu) \geq 0 \Leftrightarrow \mu \geq \frac{1}{2}\]
+	Thus ((P,P),(H,N),$\frac{2}{5},\mu(T|R)\geq\frac{1}{2})$ is a pooling equilibrium.\\
+	Pooling on R:
+	The lion reacts with N as \[6\cdot \frac{2}{5} - 6\cdot \frac{3}{5} \leq 0\] This would give incentive to fast antelopes to deviate and pronk. Therefore we need that the lion reacts with H to P. Let $\mu = \mu(T|P)$. Then this is the case if \[7\mu - 5(1-\mu) \geq 0 \Leftrightarrow \mu \geq \frac{5}{12}\] Thus there is a second pooling equilibrium ((R,R),(H,N),$\mu(T|P)\geq \frac{5}{12},\frac{2}{3}$).\\
+	\underline{separating equilibria}:\\
+	There are none. Assume that T always plays P and F always plays R. Then the lion will only hunt if the antelope is tedious, i.e. if they pronked. Then type T would deviate.\\
+	Assume that T always plays R and F always plays P. Then the lion will only hunt if the antelope is tedious, i.e. if they ran. Then type T would deviate.\\
+	\underline{intuition criterion}:\\
+	In the first pooling equilibrium, let $a_1 = R$. Then $J(R) = \{F\}$ and we should assign $\mu(F|R)=0$. As in equilibrium $\mu(T|R) \geq \frac{1}{2}$ we get $\mu(F|R)\leq \frac{1}{2}$ so the new assignment is in accordance to our equilibrium which means that it passes the intuition test.\\
+	In the second pooling equilibrium, let $a_1 = P$. Then $J(P) = \{T\}$. Then we should assign $\mu(T|P) = 0$. This is a contradiction as in equilibrium $\mu(T|P) \geq \frac{5}{12}$. Therefore the second PE fails the test.
+	\end{example}
 \end{document}

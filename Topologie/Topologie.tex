@@ -182,4 +182,25 @@
 	\begin{theorem}
 		Sind $X,Y$ zusammenhängende Räume, so ist $X\times Y$ zusammenhängend.
 	\end{theorem}
+	\begin{theorem}
+		Sei $A\subset X$ ein zusammenhängender Teilraum. Dann ist $B$ mit $A\subset B \subset \overline{A}$ zusammenhängend.
+	\end{theorem}
+	\begin{theorem}
+		Das stetige Bild eines zusammenhängenden Raumes ist zusammenhängend.
+	\end{theorem}
+	\begin{definition}
+		Sei $X$ ein topologischer Raum. \begin{enumerate}
+			\item Für $x,y \in X$ definieren wir einen Weg von $x$ nach $y$ als stetige Abbildung \[\gamma: [a,b] \to X\] mit \[\gamma(a) = x, \; \gamma(b) = y\]
+			\item $X$ ist weg-zusammenhängend, wenn es für alle $x,y$ einen Weg $\gamma$ gibt, der in $X$ enthalten ist
+		\end{enumerate}
+	\end{definition}
+	\begin{lemma}
+		Weg-zusammenhängend $\Rightarrow$ zusammenhängend aber umgekehrt nicht.
+	\end{lemma}
+	\begin{definition}
+		Für einen topologischen Raum $X$ bilden wir eine Äquivalenzrelation $\sim$ über \[x,y \in x: x \sim y \Leftrightarrow \exists Y \subset X: Y \text{ zusammenhängend mit } x,y \in Y\] 
+	\end{definition}
+	\begin{theorem}
+		Zusammenhangskomponenten eines topologischen Raums $X$ sind zusammenhängende, paarweise disjunkte Teilmengen von $X$ deren Vereinigung $X$ ist. Das sind genau die Äquivalenzklassen von $\sim$. Jede zusammenhängende Teilmenge von $X$ ist ganz in einer der Zusammenhangskomponenten enthalten.
+	\end{theorem}
 \end{document}

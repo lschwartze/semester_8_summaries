@@ -148,4 +148,19 @@
 	\begin{theorem}
 		Eine endliche zyklische Gruppe $G$ hat genau $\varphi(\left|G\right|)$ Erzeuger. Daraus folgt, dass eine zyklische Gruppe $\mathbb{Z}_n^*$ genau $\varphi(\varphi(n))$ Erzeuger hat.
 	\end{theorem}
+	Die Frage ist nun, wie Erzeuger gefunden werden können. Ein Erzeuger muss gewisse Eigenschaften erfüllen, die leicht überprüft werden können. Es wird dann einfach zufällig ein Element aus $\mathbb{Z}_n^*$ gewählt und die Eigenschaften überprüft. Zum Beispiel das folgende Kriterium.
+	\begin{theorem}
+		Sei $\mathbb{Z}_n^*$ zyklisch. $a \in \mathbb{Z}_n^*$ ist ein Erzeuger, wenn \[a^{\frac{\varphi(n)}{q}} \mod n \not\equiv 1\] für alle $q$ die $\varphi(n)$ teilen.
+	\end{theorem}
+	\subsection{Exponentiation und diskreter Logarithmus}
+	Sei $\mathbb{Z}_n^*$ eine zyklische Gruppe, wobei wir uns auf $n$ prim beschränken wollen. Sei $x \in \mathbb{Z}_n^*$. Dann gibt es zu jedem Erzeuger ein bis auf modulo eindeutiges $k$, sodass $a^k \equiv x$. Dieses $k$ wird der diskrete Logarithmus genannt. $k$ zu bestimmen ist ein schwieriges Problem und daher Grundlage für viele Kryptosysteme.
+	\begin{definition}[Diffie-Hellman-Schlüsselvereinbarung]
+		Es wird eine große Primzahl $n$ und eine Primitivwurzel $a$ festgelegt. Alice wählt $x<n$ und Bob $y<n$. Alice berechnet $\tilde{x} = (a^x \mod n)$ und Bob $\tilde{y} = (a^y \mod n)$. Die Ergebnisse werden ausgetauscht. Nun berechnen beide $z = (\tilde{x}^y \mod n) = (\tilde{y}^x \mod n) = (a^{xy} \mod n)$. Dieses $z$ kann nun als gemeinsamer Schlüssel verwendet werden.
+	\end{definition}
+	\begin{definition}[No-Key-System von Shamir]
+		Es muss eine große Primzahl $n$ gewählt werden. Alice will $m<n$ an Bob schicken. Dafür wählt sie ein zufälliges $a \in \mathbb{Z}_{n-1}^*$ und berechnet zusätzlich $a' = a^{-1}$. Sie berechnet $c = m^a \mod n$ und schickt $c$ an Bob. Dieser wählt ebenso ein zufälliges $b \in \mathbb{Z}_{n-1}^*$ und das Inverse $b'$ und berechnet $c' = c^b$ und schickt dies an Alice zurück. Alice bestimmt $c'' = c'^{a'}$ und schickt das an Bob. Dieser kann anschließend mit $c''^{b'} = m$ die initiale Nachricht bestimmen.
+	\end{definition}
+	\begin{definition}[ElGamal-Verfahren]
+		Es wird wieder eine große Primzahl $n$ und eine Primitivwurzel $a$ bestimmt. Bob wählt zufällig $y < n$ und berechnet $\tilde{y} = (a^y \mod n)$. Das ist der öffentliche und $y$ der geheime Schlüssel. Alice möchte die Nachricht $m < n$ verschicken. Sie wählt zufällig $x<n$ und berechnet $\tilde{x} = (a^x \mod n)$. Dann berechnet sie $((\tilde{y})^x \mod n) = z$. Damit wird die Zahl verschlüsselt und $c = (mz \mod n)$ versandt. Alice sendet Bob die Informationen ($\tilde{x},c$). Mittels $(\tilde{x}^y \mod n) = z$ bestimmt Bob auch $z$ und entschlüsselt damit $m$ mit $z^{-1}$.
+	\end{definition}
 \end{document}
