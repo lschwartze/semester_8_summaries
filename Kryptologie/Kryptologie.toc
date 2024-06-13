@@ -25,3 +25,4 @@
 \contentsline {subsection}{\numberline {4.4}RSA}{8}{}%
 \contentsline {subsection}{\numberline {4.5}zyklische Gruppen}{8}{}%
 \contentsline {subsection}{\numberline {4.6}Exponentiation und diskreter Logarithmus}{9}{}%
+\contentsline {subsection}{\numberline {4.7}große Primzahlen finden}{10}{}%

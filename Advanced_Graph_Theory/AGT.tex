@@ -10,7 +10,7 @@
 \usepackage{amsthm}
 
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[subsection] % reset theorem numbering for each chapter
+\newtheorem{theorem}{Satz}[subsection] % reset theorem numbering for each chapter
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition} % definition numbers are dependent on theorem numbers
@@ -18,13 +18,13 @@
 \newtheorem{lemma}[theorem]{Lemma}
 
 \theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
+\newtheorem{remark}[theorem]{Bemerkung}
 
 \theoremstyle{corollary}
-\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{corollary}[theorem]{Korollar}
 
 \theoremstyle{example}
-\newtheorem{example}[theorem]{Example}
+\newtheorem{example}[theorem]{Beispiel}
 
 \titleformat{\subsection}
 {\small}{\thesubsection}{1em}{\uline{#1}}
@@ -164,19 +164,141 @@
 			\item ist $\mathcal{C}$ die Menge der Komponenten von $G$. Dann ist $\chi_C, \, C \in \mathcal{C}$ orthogonale Eigenbasis des Eigenwerts 0.
 		\end{enumerate}
 	\end{lemma}
-	Zurück zu ratio cuts. Sei $A \subsetneq V$ mit $A\neq \varnothing$. Wähle \[\mathbb{R}^V \ni z = \sqrt{\frac{\left|\overline{A}\right|}{\left|A\right|}} \chi_A - \sqrt{\frac{\left|A\right|}{\left|\overline{A}\right|}}\chi_{\overline{A}}\] woraus folgt \[z^TLz = \left|V\right|\sum_{uv \in \partial A} w_{uv}(\frac{1}{\left|A\right|} + \frac{1}{\left|\ofsum_{j=1, j\neq i}^k \left|\partial(C_i,C_j)\right|\] In der Theorie ist dieses Verfahren sehr interessant, allerdings normalerweise nicht praktisch umsetzbar. Deswegen wird das nicht weiter verfolgt.
-		\subsection{Cluster-Metrik}
-		Wenn die verschiedenen Algorithmen miteinander verglichen werden, ist ein Test-Graph nötig. Solche Testfälle werden meist so aufgebaut, dass ein objektiv bestes Clustering existiert (\textit{ground truth}). Dann muss verglichen werden, welcher Algorithmus ein Clustering produziert, dass am nächsten an dieses Clustering heranreicht. Dafür sind Clustering-Metriken nötig.\\
-		\underline{Rand Distanz}: Seien $A,B$ zwei Clusterings. Wir nennen $u,v \in V$ eine Unstimmigkeit, wenn $\exists a \in A: u,v \in a$ aber $\not\exists b \in B: u,v \in b$ oder umgekehrt. $d(A,B)$ als die Anzahl der Unstimmigkeiten ist eine Metrik. Diese Metrik ist leicht zu berechnen, denn \[d(A,B) = \sum_{a \in A} \binom{\left|a\right|}{2} + \sum_{b \in B} \binom{\left|b\right|}{2} - 2\sum_{a\in A, b \in B} \binom{\left|a\cap b\right|}{2}\]
-		\underline{Entropie}:
-		Sei $V$ der Größe $n$ und seien $A,B,C$ drei Clusterings. Diese werden in folgender Weise als Zufallsvariablen modelliert: wähle ein $v\in V$ mit gleichmäßiger Wahrscheinlichkeit. Dann ist \[X_A: V \to A, v \mapsto a \ni v\] eine Zufallsvariable wobei \[\mathbb{P}[X_A = a] = \frac{\left|a\right|}{n}\] Es sei dann weiter \[H(A) = H(X_A) = -\sum_{a \in A} \frac{\left|a\right|}{n} \log_2\left(\frac{\left|a\right|}{n}\right)\] Die Entropie des Clusterings. Weiter ist \[H(A,B) = -\sum_{a\in A, b \in B} \frac{\left|a \cap b\right|}{n} \log_2\left(\frac{\left|a\cap b\right|}{n}\right)\] und $VI(A,B) = 2H(A,B) - H(A) - H(B)$ die \textit{variation of information}. Diese ist dann eine Metrik.
-		\section{Streaming}
-		\subsection{HyperLogLog}
-		Es wird eine Reihe an Zahlen eingelesen, die nicht in den Speicher passt. Wie kann die Anzahl der paarweise verschiedenen Zahlen festgestellt werden?\\
-		Die Zahlenreihe $a_1,...a_n$ wird beim Einlesen in Binärdarstellung umgewandelt. Die Binärzahlen werden anschließend mit einer zufälligen aber deterministischen Transformation in eine andere Binärzahl konvertiert. Bei jeder transformierten Zahl werden die letzten Stellen betrachtet und die Anzahl der 0en am Ende gezählt. Die maximale Zahl $R$ von 0en am Ende einer Zahl wird gespeichert. Ausgegeben wird $2^R$.
-		\begin{theorem}
-			Sei $F_0$ die Anzahl der paarweise verschiedenen Elemente eines Streams von $m$ Zahlen und sei $Y$ der Output des Algorithmus ($Y=2^R$). Jedes $a$ des Streams liegt in $\{1,...,n\}$. Es wird $\mathcal{O}(\log n)$ Platz gebraucht und für alle Integer $c > 2$ ist \[\mathbb{P}\left[\frac{1}{c} \leq \frac{Y}{F_0}\leq c\right] \geq 1-\frac{3}{c}\] 
-		\end{theorem}
+	Zurück zu ratio cuts. Sei $A \subsetneq V$ mit $A\neq \varnothing$. Wähle \[\mathbb{R}^V \ni z = \sqrt{\frac{\left|\overline{A}\right|}{\left|A\right|}} \chi_A - \sqrt{\frac{\left|A\right|}{\left|\overline{A}\right|}}\chi_{\overline{A}}\] woraus folgt \[z^TLz = \left|V\right|\sum_{uv \in \partial A} w_{uv}\frac{1}{\left|A\right|} + \frac{1}{\left|\overline A\right|}\sum_{j=1, j\neq i}^k \left|\partial(C_i,C_j)\right|\] In der Theorie ist dieses Verfahren sehr interessant, allerdings normalerweise nicht praktisch umsetzbar. Deswegen wird das nicht weiter verfolgt.
+	\subsection{Cluster-Metrik}
+	Wenn die verschiedenen Algorithmen miteinander verglichen werden, ist ein Test-Graph nötig. Solche Testfälle werden meist so aufgebaut, dass ein objektiv bestes Clustering existiert (\textit{ground truth}). Dann muss verglichen werden, welcher Algorithmus ein Clustering produziert, dass am nächsten an dieses Clustering heranreicht. Dafür sind Clustering-Metriken nötig.\\
+	\underline{Rand Distanz}: Seien $A,B$ zwei Clusterings. Wir nennen $u,v \in V$ eine Unstimmigkeit, wenn $\exists a \in A: u,v \in a$ aber $\not\exists b \in B: u,v \in b$ oder umgekehrt. $d(A,B)$ als die Anzahl der Unstimmigkeiten ist eine Metrik. Diese Metrik ist leicht zu berechnen, denn \[d(A,B) = \sum_{a \in A} \binom{\left|a\right|}{2} + \sum_{b \in B} \binom{\left|b\right|}{2} - 2\sum_{a\in A, b \in B} \binom{\left|a\cap b\right|}{2}\]
+	\underline{Entropie}:
+	Sei $V$ der Größe $n$ und seien $A,B,C$ drei Clusterings. Diese werden in folgender Weise als Zufallsvariablen modelliert: wähle ein $v\in V$ mit gleichmäßiger Wahrscheinlichkeit. Dann ist \[X_A: V \to A, v \mapsto a \ni v\] eine Zufallsvariable wobei \[\mathbb{P}[X_A = a] = \frac{\left|a\right|}{n}\] Es sei dann weiter \[H(A) = H(X_A) = -\sum_{a \in A} \frac{\left|a\right|}{n} \log_2\left(\frac{\left|a\right|}{n}\right)\] Die Entropie des Clusterings. Weiter ist \[H(A,B) = -\sum_{a\in A, b \in B} \frac{\left|a \cap b\right|}{n} \log_2\left(\frac{\left|a\cap b\right|}{n}\right)\] und $VI(A,B) = 2H(A,B) - H(A) - H(B)$ die \textit{variation of information}. Diese ist dann eine Metrik.
+	\section{Streaming}
+	\subsection{HyperLogLog}
+	Es wird eine Reihe an Zahlen eingelesen, die nicht in den Speicher passt. Wie kann die Anzahl der paarweise verschiedenen Zahlen festgestellt werden?\\
+	Die Zahlenreihe $a_1,...a_n$ wird beim Einlesen in Binärdarstellung umgewandelt. Die Binärzahlen werden anschließend mit einer zufälligen aber deterministischen Transformation in eine andere Binärzahl konvertiert. Bei jeder transformierten Zahl werden die letzten Stellen betrachtet und die Anzahl der 0en am Ende gezählt. Die maximale Zahl $R$ von 0en am Ende einer Zahl wird gespeichert. Ausgegeben wird $2^R$.
+	\begin{theorem}
+		Sei $F_0$ die Anzahl der paarweise verschiedenen Elemente eines Streams von $m$ Zahlen und sei $Y$ der Output des Algorithmus ($Y=2^R$). Jedes $a$ des Streams liegt in $\{1,...,n\}$. Es wird $\mathcal{O}(\log n)$ Platz gebraucht und für alle Integer $c > 2$ ist \[\mathbb{P}\left[\frac{1}{c} \leq \frac{Y}{F_0}\leq c\right] \geq 1-\frac{3}{c}\] 
+	\end{theorem}
 	\subsection{Streaming mit Graphen}
 	Die Knoten des Graphens sind initial im Speicher. Dieser ist nur $\mathcal{O}(n\cdot \log(n)^p)$ für ein $p$. Das heißt die Kanten (ungefähr $n^2$) können nicht gespeichert werden. Der Stream besteht nun aus den Kanten, also $e_1,e_2,...,e_m$.
-	\end{document}
+	\subsection{Spanners}
+	Wir wollen für einen sehr großen Graphen $G$ eine komprimierte Version dieses Graphens konstruieren, die die jeweiligen Abstände innerhalb des Graphens bestmöglich erhält.
+	\begin{definition}
+		Gegeben ein Graph $G$, ein $\alpha-spanner$ ist ein Subgraph $H$ s.d. \[d_H(u,v) \leq \alpha d_G(u,v) \; \forall u,v\]
+	\end{definition}
+	Wir wollen einen $(2k+1)-spanner$ berechnen mit $\mathcal{O}(m \log n)$ Zeit. Der Algorithmus wird randomisiert laufen, wobei die erwartete Größe des Graphen $\mathcal{O}(kn^{1+\frac{1}{k}})$ ist. Der folgende Algorithmus dient als Setup.\\
+	\begin{enumerate}
+		\item initialisiere $V_0 = V$, $V_1,...,V_{k-1} = \emptyset$
+		\item for $i=1$ to $k-1$
+		\item for $x \in V_{i-1}$
+		\item mit Wahrscheinlichkeit $n^{-\frac{1}{k}}$ ergänze $x$ zu $V_i$ und setze $B_{i,x} = \{x\}$ und $h(x) = i$
+		\item endfor
+		\item endfor
+	\end{enumerate}
+	$B_{i,x}$ sind \textit{bags} um das Zentrum $x$ und $h(x)$ ist das größte $i$, in dem $x$ noch vorkommt.
+	\begin{enumerate}
+		\item verwende das Setup von oben
+		\item setze $H = (V,\emptyset)$ und $l(v) = h(v)$ für alle $v \in V$
+		\item for uv = next(S)
+		\item stelle sicher, dass $l(u) \leq l(v)$ durch Tauschen
+		\item Finde das Zentrum $x$ des bags mit $v \in B_{l(u),x}$
+		\item if $u \notin B_{l(u),x}$ und es keine Kante $uw$ in $H$ gibt mit $w \in B_{l(u),x}$ ergänze $uv$ zu $H$
+		\item if $l(u) < l(v)$
+		\item ergänze $u$ zu $B_{l(u)+1,x},...,B_{h(x),x}$
+		\item setze $l(u) = h(x)$
+		\item endif
+		\item endfor
+	\end{enumerate}
+	\begin{lemma}
+		Die erwartete Anzahl an bags $B_{k-1,x}$ im Level $k-1$ ist $n^{\frac{1}{k}}$.
+	\end{lemma}
+	\begin{lemma}
+		Ist $u \in B_{i,x}$ dann gibt es einen $u,x$-Pfad der Länge höchstens $i$.
+	\end{lemma}
+	\begin{lemma}
+		$H$ ist ein $(2k-1)-spanner$ von $G$.
+	\end{lemma}
+	\begin{lemma}
+		$\mathbb{E}[\left|E(H)\right|] \leq kn^{1+\frac{1}{k}}$
+	\end{lemma}
+	Aus einer Vermutung von Erdös folgt, dass ein $(2k-1)-spanner$ $\Omega(n^{1+\frac{1}{k}})$ Kanten braucht.
+	\begin{theorem}
+		Für alle Primpotenzen $q$ und $k \in \{2,3\}$ gibt es einen bipartiten Graphen $D_k(q)$ mit $n=2q^k$ Knoten, $(\frac{n}{2})^{1+\frac{1}{k}}$ Kanten und Umfang mindestens $2k+2$.
+	\end{theorem}
+	\subsection{sparsifier}
+	Sei $G$ ein Graph, $\varepsilon>0$. Suche $H\subset G$, $w:E(H) \to \mathbb{R}_+$ sodass $\forall \emptyset \neq A \subsetneq V(G)$ gilt \[(1-\varepsilon) \left|\partial_G(A)\right| \leq w(\partial_H(A)) \leq (1+\varepsilon) \left|\partial_G(A)\right|\]
+	Ohne das Streaming Setting ist das Problem sehr einfach: \begin{enumerate}
+		\item Berechne kleinsten cut $\lambda$
+		\item sei $H = (V,\emptyset)$ und \[p = 9\ln (\frac{n}{\varepsilon^2 \lambda})\]
+		\item $\forall e\in E(G)$ ist $e$ in $E(H)$ mit Wahrscheinlichkeit $p$
+		\item Gewichte überall $\frac{1}{p}$
+	\end{enumerate}
+	\begin{theorem}
+		Mit Wahrscheinlichkeit $1-\mathcal{O}(\frac{1}{n})$ ist $H$ ein sparsifier.
+	\end{theorem}
+	\begin{lemma}
+		Sei $\lambda \geq 1$ die kleinste Schnittgröße und $\alpha > 0$. Dann gilt: die Anzahl der Schnitte der Kardinalität $\leq \alpha\lambda$ ist begrenzt durch $n^{2\alpha}$.
+	\end{lemma}
+	\begin{theorem}[Chernoff-Ungleichung]
+		\[\mathbb{P}[\left|X-\mathbb{E}[X]\right| > \varepsilon \mathbb{E}[X]] \leq 2e^{-\frac{\varepsilon^2\left|\mathbb{E}[X]\right|}{3}}\]
+	\end{theorem}
+	\begin{definition}
+		Sei $G$ ein Graph. Ein Teilgraph $H$ ist ein $k$-Skelett, wenn $\forall C \subseteq E(G)$ mit $\left|C\right|< k$ gilt, dass $C$ ein Schnitt in $G$ ist genau dann, wenn $C$ ein Schnitt in $H$ ist.
+	\end{definition}
+	Ohne Streaming kann ein $k$-Skelett mit folgendem Algorithmus gefunden werden:
+	\begin{enumerate}
+		\item for $i=1,...,k$
+		\item Berechne $F_i$ einen aufspannenden Wald von $G-\bigcup_{j=1}^{i-1} E(F_j)$
+		\item endfor
+		\item $H = \bigcup_{i=1}^k F_i$
+	\end{enumerate}
+	Als Streaming-Algorithmus funktioniert das Konzept genau gleich.
+	\begin{enumerate}
+		\item for $e=next(S)$:
+		\item sei $i$ der minimale Index, sodass $F_i\cup e$ keinen Kreis enthält. Setze $F_i = F_i \cup e$.
+		\item endfor
+	\end{enumerate}
+	\subsection{Minimaler Schnitt als Streaming Algorithmus}
+	Wir wollen den minimalen Schnitt approximieren. Mittels Karger kann ein $\varepsilon$-sparsifier bestimmt werden, aber dafür ist a priori der Wert $\lambda$, also der minimale Schnitt nötig. Es wird also stattdessen $p = \frac{1}{2^r}$ für $r \in \{1,...,l\}$ sodass $2^l \approx \log n$. Es werden aus dem Stream die gewichteten Graphen $G,1/p$ bestimmt. Diese sind aber immer noch zu groß für den Speicher. Deshalb wird aus $G,2^r$ direkt mittels Streaming ein $k$-Skelett $H_{r}$ bestimmt (für $k \approx \log n$). Anschließend wird jenes $i$ bestimmt, sodass $mincut(H_i)<k$ und geben dann $2^i \cdot mincut(H_i)$ zurück.
+	\begin{theorem}
+		Mit hoher Wahrscheinlichkeit gibt der Algorithmus einen Wert $\alpha$ zurück, sodass \[(1-\varepsilon) mincut(G) \leq \alpha \leq (1+\varepsilon)mincut(G)\]
+	\end{theorem}
+	\subsection{Maximalgrad Streaming}
+	Das Problem, den Maximalgrad eines Graphen mit Streaming zu bestimmen ist mit Speicherplatz $\mathcal{O}(n)$ leicht. Das ist aber nicht nötig, wie wir im Folgenden sehen werden.\\
+	\begin{example}[Zählen mit Hashing]
+		Wir wollen in einem allgemeinen Stream die häufigsten Elemente bestimmen.\\
+		Die Idee ist, die Elemente des Streams zu hashen und auf einem kleine Hash-Array die Häufigkeiten zu zählen. Das Problem ist nun, die Kollisionen zu minimieren. Eine Möglichkeit ist, das Hash-Array als Hash-Matrix aufzubauen, wobei jede Zeile einem Hash-Array entspricht. Exakte Kollisionen sind dann wesentlich seltener und um die Häufigkeiten aus der Hash-Matrix zu bestimmen wird schließlich der minimale Wert der Hash-Stellen eines Elements bestimmt.\\
+		Die Hashfunktionen $h_i$ sollten der Form \[h: a \mapsto ((\alpha_i a + \beta_i) \mod p) \mod l\] wobei $\alpha_i\beta_i$ gleichverteilt in $\{0,1,...,p-1\}$ für eine Primzahl $p \leq n$ ist und $l$ Die Größe der Hashtabelle.\\
+		\begin{theorem}
+			Sei $k$ die Anzahl der Hashfunktionen. Sei $\hat f_a$ die bestimmte Anzahl an Vorkommen des Elements $a$ in einem Stream der Länge $m$. Es gilt $\hat f_a \geq f_a$ die tatsächliche Anzahl an Vorkommen. Außerdem gilt, \[\mathbb{P}[\hat f_a \leq f_a + \varepsilon m] \geq 1-\left(\frac{1}{\varepsilon l}\right)^k\]
+		\end{theorem}
+	\end{example}
+	\begin{example}[heavy hitters]
+		Für eine Grenze $T$ wollen wir nun bestimmen, welche Elemente mindestens $T$ mal vorkommen. Mit der Vorüberlegung ist das recht leicht, denn wir können den Stream durchgehen und überprüfen ob $\hat f_a \geq T$ ist. Wenn schon ergänzen wir $a$ zu unserer Liste. Auf genau diese Weise können die Knoten mit größtem Grad eines Graphen bestimmt werden.
+	\end{example}
+	Wenn wir nun einen Stream $A = (a_1,...)$ mit $a_i \in \{0,1,..,n-1\}$ haben, so können wir $a$ schreiben als $e_{a+1} \in \mathbb{R}^n$. Sei dann $f = \sum_{a \in A} e_{a+1}$. Sind dann $c_r$ die Zeilen der Hash-Matrix $C$, so gilt der folgende \begin{theorem}
+		$\exists L$ sodass \[\begin{pmatrix}
+			c_1^T\\ c_2^T\\ \vdots \\ c_k^T
+		\end{pmatrix} = Lf\]
+	\end{theorem}
+	\begin{lemma}[Johnson-Lindenstrauss]
+		\label{lemma: JL}
+		(Das soll nur eine sehr grobe Darstellung sein).\\
+		Es gibt für Daten einer sehr hohen Dimension eine passende Zufallstransformation $L$, die mit hoher Wahrscheinlichkeit die Abstände zwischen Originaldaten beibehält, wenn es die Daten auf eine wesentlich niedriger dimensionale Bildmenge abbildet.
+	\end{lemma}
+	\subsection{Dynamisches Streaming}
+	In diesem Fall kann sich der Graph innerhalb des Streams verändern. D.h. der Stream $S$ besteht aus Elementen \[S = ((e_1,\sigma_1 = \pm 1), (e_2,\sigma_2 =\pm 1), ..., )\]
+	wobei $+1$ bedeutet, dass die Kante hinzugefügt wird und $-1$, dass die Kante gelöscht werden soll. Anstelle von $\pm1$ kann auch ein Gewicht $w_i$ übergeben werden, wobei $w_i = 0$ dann bedeuten soll, dass die Kante entfernt wird. Gegeben eine Position $t$ im Stream sei $G_t = (V, \{e_i: i\leq t \; \land \; \sum_{e_j=e_i} \sigma_j = 1\})$ im ungewichteten Fall.\\
+	\begin{example}
+		Gegeben sei ein dynamischer Stream $(a_i,w_i)$. Definiere Einheitsvektoren $e_a \in \mathbb{R}^n$. Berechne den Gewichtvektor \[w = \sum_{i=1}^{m} w_ie_{a_i}\]
+		Das Ziel ist nun, den Support von $w$ zu bestimmen.
+	\end{example}
+	\begin{example}[Zusammenhang]
+		Gegeben sei ein dynamischer Graph-Stream $S$. Es soll festgestellt werden, ob der korrespondierende Graph zusammenhängend ist. Wir betrachten nur den ungewichteten Fall. \begin{enumerate}
+			\item for $(e,\sigma) = enxt(S)$
+			\item berechne eine Abbildung wie unter Lemma \ref{lemma: JL} $\bar x$
+			\item endfor
+			\item wähle zufällig eine Kante unter $\bar x$ und kontrahiere diese
+			\item repeat
+		\end{enumerate}
+	Ist am Ende nur ein Knoten übrig, so sit der Graph mit hoher Wahrscheinlichkeit zusammenhängend.
+	\end{example}
+\end{document}

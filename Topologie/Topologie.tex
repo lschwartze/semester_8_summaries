@@ -10,7 +10,7 @@
 \usepackage{amsthm}
 
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section] % reset theorem numbering for each chapter
+\newtheorem{theorem}{Satz}[section] % reset theorem numbering for each chapter
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition} % definition numbers are dependent on theorem numbers
@@ -18,13 +18,13 @@
 \newtheorem{lemma}[theorem]{Lemma}
 
 \theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
+\newtheorem{remark}[theorem]{Bemerkung}
 
 \theoremstyle{corollary}
-\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{corollary}[theorem]{Korollar}
 
 \theoremstyle{example}
-\newtheorem{example}[theorem]{Example}
+\newtheorem{example}[theorem]{Beispirl}
 
 \titleformat{\subsection}
 {\small}{\thesubsection}{1em}{\uline{#1}}
@@ -198,9 +198,52 @@
 		Weg-zusammenhängend $\Rightarrow$ zusammenhängend aber umgekehrt nicht.
 	\end{lemma}
 	\begin{definition}
-		Für einen topologischen Raum $X$ bilden wir eine Äquivalenzrelation $\sim$ über \[x,y \in x: x \sim y \Leftrightarrow \exists Y \subset X: Y \text{ zusammenhängend mit } x,y \in Y\] 
+		Für einen topologischen Raum $X$ bilden wir eine Äquivalenzrelation $\sim$ über \[x,y \in X: x \sim y \Leftrightarrow \exists Y \subset X: Y \text{ zusammenhängend mit } x,y \in Y\] 
 	\end{definition}
 	\begin{theorem}
 		Zusammenhangskomponenten eines topologischen Raums $X$ sind zusammenhängende, paarweise disjunkte Teilmengen von $X$ deren Vereinigung $X$ ist. Das sind genau die Äquivalenzklassen von $\sim$. Jede zusammenhängende Teilmenge von $X$ ist ganz in einer der Zusammenhangskomponenten enthalten.
+	\end{theorem}
+	\section{Kompakte Topologische Räume}
+	\begin{definition}
+		Gegeben ein topologischer Raum $(X,\mathcal{T})$. Sei $\mathcal{A}\subset \mathcal{P}(X)$. $\mathcal{A}$ ist eine Überdeckung, wenn \[X = \bigcup_{A \in \mathcal{A}} A\] Gilt außerdem $\mathcal{A} \subset \mathcal{T}$, so spricht man von einer offenen Überdeckung. Wenn es zu jeder offenen Überdeckung $\mathcal{A}$ eine endliche Teilüberdeckung gibt, so ist $X$ kompakt.
+	\end{definition}
+	\begin{lemma}
+		Sei $X$ ein topologischer Raum und $Y\subset X$. Dann ist $Y$ abgeschlossen bezüglich der Spurtopologie genau dann, wenn es $\mathcal{A} \subset \mathcal{T}$ gibt, sodass \[Y \subset \bigcup_{A \in \mathcal{A}} A\] und es von dieser Überdeckung eine endliche Teilüberdeckung gibt.
+	\end{lemma}
+	\begin{theorem}
+		Abgeschlossene Teilräume eines kompakten Raums $X$ sind kompakt.
+	\end{theorem}
+	\begin{theorem}
+		Jeder kompakte Teilraum eines Hausdorff-Raums ist abgeschlossen.
+	\end{theorem}
+	\begin{theorem}
+		Das stetige Bild eines kompakten topologischen Raums ist wieder kompakt.
+	\end{theorem}
+	\begin{remark}
+		Kompaktheit ist eine topologische Eigenschaft.
+	\end{remark}
+	\begin{theorem}
+		Ist $f:X\to Y$ eine bijektive stetige Abbildung, $X$ kompakt und $Y$ Hausdorffsch, so ist $f$ bereits ein Homöomorphismus.
+	\end{theorem}
+	\begin{theorem}
+		Das kartesische Produkt endlich vieler kompakter topologischer Räume ist wieder kompakt.
+	\end{theorem}
+	Es gibt auch die Begriffe der Häufungspunkt- und Folgenkompaktheit. Diese sind schwächer als die klassische Kompaktheit, aber in metrischen Räumen äquivalent.
+	\begin{definition}
+		\begin{enumerate}
+			\item Ein topologischer Raum $X$ heißt lokal kompakt bei $x\in X$, wenn es einen kompakten Teilraum $C$ von $X$ gibt, der eine Umgebung von $X$ enthält.
+			\item $X$ heißt lokal kompakt, wenn er bei allen Punkten $x\in X$ lokal kompakt ist.
+		\end{enumerate}
+	\end{definition}
+	\subsection{Riemann-Sphäre}
+	Die komplexe Ebene kann kompaktifiziert werden, indem die Ebene homöomorph auf eine Kugel mit fehlendem Punkt abgebildet wird. Der Kugelmittelpunkt sei bei $(0,0,\frac{1}{2})^T$ mit Radius $\frac{1}{2}$. Der Homoömorphismus bildet eine komplexe Zahl $z=x+iy$ ab auf $S(z)$. Die Koordinaten auf der Riemann-Sphäre werden als $\xi,\eta,\zeta$ bezeichnet. Die Formel für die Sphäre ist dann \[\xi^2+\eta^2+(\zeta-\frac{1}{2})^2 = \frac{1}{4}\]
+	Die stereografische Abbildung $S(z)$ bildet nun jedes $z\in\mathbb{C}$ ab auf den Schnittpunkt der Verbindungsgerade von $z$ mit dem Nordpol $(0,0,1)^T$ der Kugel. Man kann sich davon überzeugen, dass $S$ ein Homöomorphismus ist.\\
+	Die Kugel kann durch die Zunahme eines einzelnen Punktes (des Nordpols) kompaktifiziert werden. Da es sich um einen Homöomorphismus handelt, kann auch $\mathbb{C}$ kompaktifiziert werden (indem $\infty$ hinzugenommen wird).
+	\begin{theorem}[1-Punkt Kopaktifizierung]
+		Sei $X$ ein lokal kompakter Hausdorff-Raum. Dann gibt es einen Raum $Y$ mit folgenden Eigenschaften \begin{enumerate}
+			\item $X$ ist ein Teilraum von $Y$
+			\item $Y\setminus X$ besteht aus genau einem Element.
+			\item $Y$ ist ein kompakter Raum
+		\end{enumerate}
 	\end{theorem}
 \end{document}

@@ -10,12 +10,14 @@
 \contentsline {subsection}{\numberline {3.4}Rubinstein-Stahl Bargaining Game}{6}{}%
 \contentsline {subsection}{\numberline {3.5}Infinite Cournot Duopoly}{7}{}%
 \contentsline {subsection}{\numberline {3.6}Simple Time Stopping Game}{8}{}%
-\contentsline {subsection}{\numberline {3.7}Bayesian Games}{9}{}%
-\contentsline {subsection}{\numberline {3.8}perturbed matching coins game}{9}{}%
-\contentsline {subsection}{\numberline {3.9}Perturbed battle of the sexes}{10}{}%
-\contentsline {subsection}{\numberline {3.10}Public Good Game}{10}{}%
-\contentsline {subsection}{\numberline {3.11}First Prize auction with two types}{11}{}%
-\contentsline {subsection}{\numberline {3.12}Double Auction}{11}{}%
-\contentsline {subsection}{\numberline {3.13}Two-Player First-Price Auction}{13}{}%
-\contentsline {subsection}{\numberline {3.14}Cournot Duopoly with Incomplete Information}{14}{}%
-\contentsline {subsection}{\numberline {3.15}Perfect Bayesian Games: Signaling Games}{15}{}%
+\contentsline {section}{\numberline {4}Static Model of Incomplete Information}{9}{}%
+\contentsline {subsection}{\numberline {4.1}Bayesian Games}{9}{}%
+\contentsline {subsection}{\numberline {4.2}perturbed matching coins game}{9}{}%
+\contentsline {subsection}{\numberline {4.3}Perturbed battle of the sexes}{10}{}%
+\contentsline {subsection}{\numberline {4.4}Public Good Game}{10}{}%
+\contentsline {subsection}{\numberline {4.5}First Prize auction with two types}{11}{}%
+\contentsline {subsection}{\numberline {4.6}Double Auction}{12}{}%
+\contentsline {subsection}{\numberline {4.7}Two-Player First-Price Auction}{13}{}%
+\contentsline {subsection}{\numberline {4.8}Cournot Duopoly with Incomplete Information}{14}{}%
+\contentsline {subsection}{\numberline {4.9}Perfect Bayesian Games: Signaling Games}{15}{}%
+\contentsline {section}{\numberline {5}Perfect Bayesian Model}{19}{}%

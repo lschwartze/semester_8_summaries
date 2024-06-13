@@ -10,10 +10,12 @@
 \contentsline {subsection}{\numberline {2.2}Gomory-Hu Clustering}{7}{}%
 \contentsline {subsection}{\numberline {2.3}Berechnung des Gomory-Hu Baums}{8}{}%
 \contentsline {subsection}{\numberline {2.4}ratio cuts}{8}{}%
-\contentsline {subsection}{\numberline {2.5}Modularity}{10}{}%
-\contentsline {subsection}{\numberline {2.6}Louvain-Algorithmus}{11}{}%
-\contentsline {subsection}{\numberline {2.7}Label Propagation Clustering}{12}{}%
-\contentsline {subsection}{\numberline {2.8}Correlation Clustering}{13}{}%
-\contentsline {subsection}{\numberline {2.9}Cluster-Metrik}{13}{}%
-\contentsline {section}{\numberline {3}Streaming}{14}{}%
-\contentsline {subsection}{\numberline {3.1}HyperLogLog}{14}{}%
+\contentsline {subsection}{\numberline {2.5}Cluster-Metrik}{9}{}%
+\contentsline {section}{\numberline {3}Streaming}{10}{}%
+\contentsline {subsection}{\numberline {3.1}HyperLogLog}{10}{}%
+\contentsline {subsection}{\numberline {3.2}Streaming mit Graphen}{11}{}%
+\contentsline {subsection}{\numberline {3.3}Spanners}{11}{}%
+\contentsline {subsection}{\numberline {3.4}sparsifier}{12}{}%
+\contentsline {subsection}{\numberline {3.5}Minimaler Schnitt als Streaming Algorithmus}{13}{}%
+\contentsline {subsection}{\numberline {3.6}Maximalgrad Streaming}{14}{}%
+\contentsline {subsection}{\numberline {3.7}Dynamisches Streaming}{15}{}%

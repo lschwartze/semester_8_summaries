@@ -10,7 +10,7 @@
 \usepackage{amsthm}
 
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[subsection] % reset theorem numbering for each chapter
+\newtheorem{theorem}{Satz}[subsection] % reset theorem numbering for each chapter
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition} % definition numbers are dependent on theorem numbers
@@ -18,13 +18,13 @@
 \newtheorem{lemma}[theorem]{Lemma}
 
 \theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
+\newtheorem{remark}[theorem]{Bemerkung}
 
 \theoremstyle{corollary}
-\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{corollary}[theorem]{Korollar}
 
 \theoremstyle{example}
-\newtheorem{example}[theorem]{Example}
+\newtheorem{example}[theorem]{Beispiel}
 
 \titleformat{\subsection}
 {\small}{\thesubsection}{1em}{\uline{#1}}
@@ -163,4 +163,56 @@
 	\begin{definition}[ElGamal-Verfahren]
 		Es wird wieder eine große Primzahl $n$ und eine Primitivwurzel $a$ bestimmt. Bob wählt zufällig $y < n$ und berechnet $\tilde{y} = (a^y \mod n)$. Das ist der öffentliche und $y$ der geheime Schlüssel. Alice möchte die Nachricht $m < n$ verschicken. Sie wählt zufällig $x<n$ und berechnet $\tilde{x} = (a^x \mod n)$. Dann berechnet sie $((\tilde{y})^x \mod n) = z$. Damit wird die Zahl verschlüsselt und $c = (mz \mod n)$ versandt. Alice sendet Bob die Informationen ($\tilde{x},c$). Mittels $(\tilde{x}^y \mod n) = z$ bestimmt Bob auch $z$ und entschlüsselt damit $m$ mit $z^{-1}$.
 	\end{definition}
+	\begin{definition}
+		Ein quadratischer Rest modulo $n$ ist eine Zahl $a \in \mathbb{Z}_n^*$, sodass ein $b \in \mathbb{Z}_n^*$ existiert mit $b^2 \equiv a \mod n$. $b$ heißt dann Quadratwurzel von $a$ modulo $n$.
+	\end{definition}
+	\begin{theorem}
+		Sei $n$ eine ungerade Primzahl. Wenn $a \in \mathbb{Z}_n^*$ ein quadratischer Rest modulo $n$ ist, dann besitzt die Gleichung $x^2 \equiv a \mod n$ genau zwei Lösungen.
+	\end{theorem}
+	\begin{corollary}
+		Modulo einer Primzahl $n>2$ gibt es genau $\frac{n-1}{2}$ quadratische Reste und Quadratwurzeln.
+	\end{corollary}
+	\begin{theorem}
+		Sei $n>2$ prim. Dann ist $a\in\mathbb{Z}_n^*$ ein quadratischer Rest modulo $n$ genau dann, wenn $a^{\frac{n-1}{2}} \equiv 1 \mod n$.
+	\end{theorem}
+	\begin{remark}[Berechnung der Quadratwurzeln]
+		Ist $a \in \mathbb{Z}_n^*$ ein quadratischer Rest und ist $n \equiv 3 \mod 4$ (eine sogenannte \textit{Blum}-Primzahl), dann ist $a^{\frac{n+1}{4}}$ eine Quadratwurzel von $a$. Ist $b$ eine Quadratwurzel von $a$, so ist $n-b$ die zweite.\\
+		Die Fälle $n \equiv 2 \mod 4$ und $n \equiv 0 \mod 4$ sind nicht möglich, da $n$ sonst gerade wäre. $n$ ist aber eine ungerade Primzahl. Der Fall $n \equiv 1 \mod 4$ ist möglich, aber schwierig zu lösen. Dieser wird in der Praxis vermieden.\\
+		Für Primzahltests sind Quadratwurzeln nützlich, denn modulo einer Primzahl hat 1 genau die Quadratwurzeln $\pm1$. Mithilfe des CRT kann man Quadratwurzeln modulo $n = p\cdot q$ bestimmen. 
+	\end{remark}
+	\begin{definition}[Rabin-Verfahren]
+		\begin{enumerate}
+			\item wähle zufällig zwei große Primzahlen $p\neq q$ mit $p \equiv q \equiv 3 \mod 4$
+			\item setze $n=p\cdot q$. $n$ ist der öffentliche und $(p,q)$ der geheime Schlüssel
+			\item Alice berechnet $c ? m^2 \mod n$
+			\item Bob entschlüsselt durch Wurzelziehen. Er berechnet \[m_p = c^{\frac{p+1}{4}} \mod p\] und \[m_q = c^{\frac{q+1}{4}} \mod q\]
+			\item er erhält die vier Lösungen $m_p,1-m_p,m_q,1-m_q$
+			\item daraus ergeben sich vier Gleichungen $x \equiv a \mod r$ mit $a \in \{m_p,1-m_p,m_q,1-m_q\}$ und $r \in \{p,q\}$.
+			\item Lösen mithilfe von CRT erhält er vier Lösungen für $x^2 \equiv c \mod n$ und eine davon ist $m$.
+		\end{enumerate}
+		Um die richtige Nachricht aus den vier Möglichkeiten zu filtern, wird meistens vor der Verschlüsselung eine vorher vereinbarte Redundanz hinzugefügt. So werden zum Beispiel die ersten oder letzten der 64 Bits wiederholt. Mit hoher Wahrscheinlichkeit wird nur eine der vier Lösungen diese Redundanz widerspiegeln. 
+	\end{definition}
+	\subsection{große Primzahlen finden}
+	\begin{theorem}
+		Es gibt ungefähr $\frac{n}{\ln(n)}$ viele Zahlen die höchstens $n$ sind prim.
+	\end{theorem}
+	\begin{theorem}[Fermat-Test]
+		Ist $n$ prim, so gilt $\forall a \in \mathbb{Z}_n^*$, dass \[a^{n-1} \equiv 1 \; \mod n\]
+	\end{theorem}
+	Bemerke, dass in obigem Satz keine Äquivalenz gilt. Das motiviert die folgende
+	\begin{definition}[Carmichael-Zahlen]
+		Ist $n$ nicht prim aber \[a^{n-1} \equiv 1 \; \mod n \; \forall a \in \mathbb{Z}_n^*\] so nennt man $n$ eine Carmichael-Zahl.
+	\end{definition}
+	Das Ziel ist es nun, den Fermat-Test so zu verbessern, dass auch Carmichael-Zahlen erkannt werden. Der Trick ist hierbei die Beobachtung, dass eine Primzahl $n>2$ eine Quadratwurzel $x$ von 1 mit $x \not \equiv \pm 1 \; \mod n$, dann ist $n$ nicht prim. Das daraus entstandene Verfahren heißt \textit{Probabilistischer Primzahltest} nach Miller-Rabin. Wir schreiben die ungerade Zahl $n$ als $1+2^r\cdot u$ mit $u$ ungerade.
+	\begin{enumerate}
+		\item $a = random(1,n-1)$
+		\item if $ggt(a,n) \neq 1$ return \textit{keine Primzahl}
+		\item $d = a^u \, \mod n = modexp(a,u,n)$
+		\item if $d=1$ return \textit{(vermutlich) Primzahl}
+		\item for $i=0$ to $r-1$ do
+		\item if $d=-1$ return \textit{(vermutlich) Primzahl}
+		\item else $d=d^2 \mod n$
+		\item endfor
+		\item return \textit{keine Primzahl}
+	\end{enumerate}
 \end{document}
