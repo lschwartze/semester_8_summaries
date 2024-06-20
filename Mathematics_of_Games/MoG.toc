@@ -21,3 +21,4 @@
 \contentsline {subsection}{\numberline {4.8}Cournot Duopoly with Incomplete Information}{14}{}%
 \contentsline {subsection}{\numberline {4.9}Perfect Bayesian Games: Signaling Games}{15}{}%
 \contentsline {section}{\numberline {5}Perfect Bayesian Model}{19}{}%
+\contentsline {subsection}{\numberline {5.1}First price sealed bid auctions with two periods}{26}{}%

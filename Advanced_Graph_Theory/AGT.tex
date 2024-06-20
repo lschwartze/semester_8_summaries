@@ -301,4 +301,58 @@
 		\end{enumerate}
 	Ist am Ende nur ein Knoten übrig, so sit der Graph mit hoher Wahrscheinlichkeit zusammenhängend.
 	\end{example}
+	\subsection{Sampling}
+	Ziel ist es, ein Element aus einem gegeben Vektor mittels Gleichverteilung zu samplen.
+	\begin{definition}
+		Sei $\delta>0$. Eine lineare Funktion $L:\mathbb{R}^n \to \mathbb{R}^l$ heißt \textit{discerning}, wenn es einen effizienten Algorithmus gibt, der für Input $Lv$ mit Wahrscheinlichkeit $1-\delta$ ein gleichwahrscheinliches Sample von $supp(v)$ ausgibt 
+	\end{definition}
+	\begin{theorem}
+		Für $\delta>0$ gibt es einen Algorithmus und ein $L$, das $\textit{discerning}$ ist, sodass \begin{enumerate}
+			\item $Lv$ effizient berechnet werden kann
+			\item Speicher ist maximal $\mathcal{O}((\log n)^2\log (1/\delta))$.
+		\end{enumerate}
+	\end{theorem}
+	\begin{theorem}
+		Wenn $x$ \textit{sparse} ist, und $\bar{x} = Ax$, dann kann $x$ wieder bestimmt werden mit \textit{compressed sensing}.
+	\end{theorem}
+	Mit genau dieser Idee, kann das Stream Sampling Problem gelöst werden.
+	\subsection{Graph-Komponenten bestimmen}
+	Gegeben sei ein ungewichteter dynamischer Stream $S$. Man bestimmt zuerst einen \textit{graph sketch}
+	\begin{enumerate}
+		\item Initialize $\bar a^{(v)} = 0$ für alle $v \in G$
+		\item Initialize mapping $L$ as in above theorem for $\delta = 0.01$
+		\item for $(uv,\sigma) = next(S)$ do
+		\item Swap $u,v$ if necessary s.t. $u<v$
+		\item Update $\bar a^{(u)} = \bar a^{(u)} + \sigma Le^{(u)}$ and $\bar a^{(v)} = \bar a^{(v)} - - \sigma Le^{(u)}$
+		\item endfor
+	\end{enumerate}
+	Damit funktioniert der Algorithmus \begin{enumerate}
+		\item run \textit{graph sketches} $\lceil13 \ln n\rceil$ times to compute $\bar a^{(v),r}$
+		\item Set $\mathcal{V} = \{\{v\}: v \in V\}$
+		\item for $r=1,...,\lceil13 \ln n\rceil$ do
+		\item for $X \in \mathcal{V}$ do
+		\item try to sample index $uv$ from $supp(\sum_{v \in X} a^{(v)})$ via $\sum_{v \in X} \bar a^{(v),r}$
+		\item if sampling was successful, store $uv$ in a list $\mathcal{L}$
+		\item endfor
+		\item contract each $uv$ in $\mathcal{L}$
+		\item endfor
+	\end{enumerate}
+	\begin{theorem}
+		Mit hoher Wahrscheinlichkeit ist $\mathcal{V}$ die Menge der Knotenmengen der Komponenten.
+	\end{theorem}
+\section{Schwere Probleme}
+	\subsection{Maximum Independent Set}
+	Für einen Baum ist dieses Problem leicht zu lösen.
+	\begin{lemma}
+		Sei $X$ eine unabhängige Knotenmenge. Dann existiert eine unabhängige $X'$ mit $\left|X'\right| \geq \left|X\right|$ und die Blätter sind in $X'$.
+	\end{lemma}
+	Graphen, die sich kaum von einem Baum unterscheiden, lassen sich mit fast dem selben Algorithmus auch lösen. Das motiviert die 
+	\begin{definition}
+		Sei $G$ ein beliebiger Graph. Eine \textit{Baumzerlegung} von $G$ ist ein Baum $T$, sodass jeder Knoten $t$ von $T$ mit einer Knotenmenge $X_t \subset V(G)$ korrespondiert. Also \begin{enumerate}
+			\item $V(G) = \bigcup_{t \in V(T)} X_t$
+			\item $\forall uv \in E(G) \; \exists t \in V(T)$ mit $u,v \in X_t$
+			\item $\forall v \in V$ mit $v \in X_s,X_t$, $s,t\in V(T)$ und ist $r$ auf $s-t$-Weg in $T$, dann $v \in X_r$.
+		\end{enumerate}
+		Die \textit{Weite} der Baumzerlegung ist $\max_{t \in V(T)} \{\left|X_t\right|-1\}$. Die Baumweite von $G$ ist \[tw(G) = \min \text{Weite einer Baumzerlegung}\]
+	\end{definition}
 \end{document}

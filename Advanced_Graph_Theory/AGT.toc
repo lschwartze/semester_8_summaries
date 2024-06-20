@@ -19,3 +19,7 @@
 \contentsline {subsection}{\numberline {3.5}Minimaler Schnitt als Streaming Algorithmus}{13}{}%
 \contentsline {subsection}{\numberline {3.6}Maximalgrad Streaming}{14}{}%
 \contentsline {subsection}{\numberline {3.7}Dynamisches Streaming}{15}{}%
+\contentsline {subsection}{\numberline {3.8}Sampling}{16}{}%
+\contentsline {subsection}{\numberline {3.9}Graph-Komponenten bestimmen}{16}{}%
+\contentsline {section}{\numberline {4}Schwere Probleme}{17}{}%
+\contentsline {subsection}{\numberline {4.1}Maximum Independent Set}{17}{}%

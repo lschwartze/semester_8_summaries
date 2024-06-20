@@ -246,4 +246,25 @@
 			\item $Y$ ist ein kompakter Raum
 		\end{enumerate}
 	\end{theorem}
+\section{Homotope Wege}
+	Die Idee ist, topologische Räume mit einer Gruppe zu identifizieren. Homöomorphe Räume haben dann isomorphe Gruppen. Auf diese Weise kann man die Überprüfung von Homöomorphie zurückführen auf die Überprüfung von Isomorphie.
+	\begin{definition}
+		Gegeben seien $X,Y$ topologische Räume und $f,f'$ zwei stetige Abbildungen von $X$ nach $Y$. Gibt es eine stetige Funktion $F:X\times [0,1] \to Y$ mit \[F(x,0) = f\] und \[F(x,1) = f'\] $\forall x \in X$, so heißen $f$ und $f'$ homotop. $F$ heißt Homotopie. Ist $f'$ zusätzlich konstant, so heißt $f$ nullhomotop. Man schreibt $f\simeq f'$.
+	\end{definition}
+	\begin{definition}
+		Seien $f,f': [0,1] \to X$ Wege. Wir nennen sie Wege, wenn sie dieselben Anfangs- und Endpunkte ($x_0$ und $x_1$) haben und es eine Abbildung $F: [0,1]\times [0,1] \to X$ gibt mit \[F(s,0) = f, \; F(s,1) = f' \; \forall s \in [0,1]\] und \[F(0,t) = x_0, \; F(1,t) = x_1 \; \forall t \in [0,1]\]
+		Ein solches $F$ heißt Weghomotopie. Man schreibt $f \simeq_p f'$.
+	\end{definition}
+	\begin{lemma}
+		$\simeq$ und $\simeq_p$ sind Äquivalenzrelationen.
+	\end{lemma}
+	\begin{definition}
+		Ist $f$ ein Weg, so ist $[f]$ die Äquivalenzklasse bezüglich $\simeq_p$.
+	\end{definition}
+	\begin{definition}
+		Wir bezeichnen mit $f*g$ die Komposition zweier Wege $f$ und $g$. Dann ist $[f]*[g] = [f*g]$ eine Operation auf den Äquivalenzklassen.
+	\end{definition}
+	\begin{remark}
+		Diese Operation erlaubt Assoziativität, die Existenz eines neutralen Elements und die Existenz eines inversen Element. Trotzdem ist die Menge der Homotopieklassen mit $*$ keine Gruppe, da $[f]*[g]$ nur definiert ist, wenn der Endpunkt von $f$ dem Anfangspunkt von $g$ entspricht. Daher liegt keine Gruppe vor sondern nur eine \textit{gruppoide Struktur}.
+	\end{remark}
 \end{document}

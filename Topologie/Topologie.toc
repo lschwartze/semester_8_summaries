@@ -9,3 +9,4 @@
 \contentsline {section}{\numberline {5}Zusammenhängende topologische Räume}{6}{}%
 \contentsline {section}{\numberline {6}Kompakte Topologische Räume}{7}{}%
 \contentsline {subsection}{\numberline {6.1}Riemann-Sphäre}{8}{}%
+\contentsline {section}{\numberline {7}Homotope Wege}{9}{}%

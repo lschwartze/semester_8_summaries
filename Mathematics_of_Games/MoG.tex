@@ -305,4 +305,21 @@
 		Thus $a(1-q)-q$ is the expected payoff when always fighting. So the incumbent can choose between two different commitments: to always fight and get an expected payoff of $a(1-q)-q$ or to always accommodate with expected payoff 0.\\
 		If $a(1-q)>q$ then the incumbent would do better by fighting with the smallest probability that deters entry which is $\frac{b}{b+1}$. This yields an expected payoff of \[a(1-q)-q\frac{b}{b+1}\] which is better than $a(1-q)-q$ from fighting with probability 1.
 	\end{example}
+	\subsection{First price sealed bid auctions with two periods}
+	Suppose that there are three bidders $a,b,c$ whose valuation is uniformly distributed in $[0,1]$. In the first round $a$ and $b$ fight for an item $i_1$ in which $c$ is not interested. Then in period 2 the loser of the first round fights with $c$ for item $i_2$. What would be a PBNE here?\\
+	Supposing that in the first auction $a$ and $b$ bid symmetrically we look at the second auction where $c$ is competing with the loser of the first auction. W.l.o.g. we can assume that is player $a$. Is has thus become common knowledge that $a$'s valuation is less than $b^{-1}(p_1)<1$, where $p_1$ was the price paid in the first auction by $b$. That is, $c$ knows that $a$'s valuation is uniformly distributed in \[0,b^{-1}(p_1)\] while $c$'s valuation is uniformly distributed on $[0,1]$. We know that this has an solution (similar to the exercises) given by \[b_a(v_a) = \frac{v_a}{1+\sqrt{1-tv_a^2}}\] and \[b_c(v_c) = \frac{v_c}{1+\sqrt{1+tv_c^2}}\] where $t = \frac{1}{(b^{-1}(p_1))^2}-1$.
+	What is the expected utility of a player losing compared to winning in the first auction?\\
+	In equilibrium the player should be indifferent, thus: \begin{itemize}
+		\item in case of losing we know that $u_a^2(v_a) = \frac{v_a}{1-h\sqrt{1-v_a^2}}$ whereas $u_a^1(x) = F_b(x)(v_a-b(x)) + (1-F_b(x))\mathbb{E}[u_a^2(v_a,b(t))] = x(v_a-b(x)) + \int_{x}^{1} u_a^2(v_a,b(t))\,dt$. This needs to be maximized by $\frac{d}{dx}u_a^1(x)|_{x=v_a} = 0$ \[v_a - b(v_a-v_a)b'(v_a) - u_a^2(v_a,b(v_a)) = 0\] and by using the boundary condition $b(0) = 0$ we get \[u_a^2(v_a,b(v_a)) = \frac{v_a^2}{1+v_a} = v_a-b(v_a)-v_a b'(v_a)\] and hence $b(v) = 1-\frac{ln(1+v)}{v}$.
+	\end{itemize}
+	\begin{lemma}
+		In a $n$-player first price auction game, each player bids \[\beta(v) = v- \int_{\underline{v}}^{v}\left(\frac{F(x)}{F(v)}\right)^{n-1} \; dx\] in equilibrium.
+	\end{lemma}
+	\begin{theorem}[Revenue Equivalence Theorem]
+		Suppose $n$ bidders have valuations $v_1,...,v_n$ identically independently distributed with cumulative function $F(\cdot)$. Then any equilibrium of any auction game in which \begin{enumerate}
+			\item the bidder with the highest valuation wins
+			\item the bidder with valuation $\underline{v}$ (the minimal valuation) gets zero profit
+		\end{enumerate}
+		then different auction types generate the same expected payoff.
+	\end{theorem}
 \end{document}

@@ -215,4 +215,39 @@
 		\item endfor
 		\item return \textit{keine Primzahl}
 	\end{enumerate}
+	\begin{theorem}
+		Die Ausgabe \textit{keine Primzahl} des Miller-Rabin-Primzahltests stimmt immer.\\
+		Die Fehlerwahrscheinlichkeit der Ausgabe \textit{(vermutlich) Primzahl} ist höchstens $\frac{1}{4}$. Die Laufzeit für eine Zahl $n$ mit $k$ Bits ist $\mathcal{O}(k^3)$.
+	\end{theorem}
+	\subsection{Zufallsprimzahlen in Binärdarstellung erzeugen}
+	Ziel ist es, eine $k$-Bit Zufallsprimzahl zu erzeugen.\\
+	\begin{enumerate}
+		\item das erste und das letzte Bit werden auf 1 gesetzt, damit die Zahl ungerade wird
+		\item die restlichen $k-2$ Bits werden zufällig gewählt und ein Primzahltest durchgeführt. 
+		\item ist die Zahl nicht prim, wiederhole Schritt 2
+	\end{enumerate}
+	Man benötigt etwa $0.35n$ Versuche, bis das Verfahren erfolgreich war. Die Laufzeit liegt dabei bei $\mathcal{O}(k^4)$.
+\section{Zufallsalgorithmen}
+	\subsection{Monte-Carlo-Algorithmen}
+	Hierbei handelt es sich um Entscheidungsalgorithmen, das heißt, es wird eines von zwei möglichen Ergebnissen geliefert. Mit einer gewissen Wahrscheinlichkeit $p$ kann ein falsches Ergebnis ermittelt werden. Wird der Algorithmus bei gleicher Eingabe $t$ mal wiederholt, so sinkt die Fehlerwahrscheinlichkeit auf $p^t$. Ist $p$ jedoch exponentiell klein, so muss der Algorithmus zu oft wiederholt werden, um gut zu funktionieren. Ist die Laufzeit einschließlich der benötigten Anzahl an Wiederholungen polynomiell, so kann ein Monte-Carlo Algorithmus als etwa gleich gut wie ein polynomieller deterministischer Algorithmus erachtet werden.
+	\subsection{Las Vegas Algorithmen}
+	Diese dürfen keine falschen Ergebnisse berechnen, es darf lediglich ein Misserfolg ausgegeben werden. Die Wahrscheinlichkeit hierfür sei $p$. Dann kann der Algorithmus bei gleicher Eingabe und sich ändernden Zufallszahlen wiederholt werden bis eine Lösung gefunden wurde. Die mittlere Anzahl an Wiederholungen hierfür ist $\frac{1}{1-p}$. 
+\section{Komplexitätsklassen}
+	Ein Problem $A$ ist auf ein anderes Problem $B$ effizient (\textit{Orakel}-)reduzierbar, geschrieben $A\preceq B$, wenn es einen effizienten Algorithmus gibt, der das Problem $A$ löst. Dieser Algorithmus darf ein Unterprogramm mehrfach mit verschiedenen Eingaben aufrufen, das $B$ löst. Die Komplexität von $B$ bleibt unspezifiziert und fließt nicht in die Laufzeit des Algorithmus ein. 
+	\begin{theorem}
+		Ist $B \in P$ und $A\preceq B$, so ist $A \in P$.
+	\end{theorem}
+	\begin{definition}
+		Ein Problem $L$ in NP ist NP-vollständig, wenn für jedes Problem $A$ in NP die Relation $A\preceq L$ besteht.
+	\end{definition}
+	\begin{definition}[Einwegfunktion]
+		Eine Einwegfunktion ist in die Vorwärtsrichtung leicht berechenbar, in die Rückwärtsrichtung hingegen nicht, d.h. $f\in P$ aber $f^{-1} \notin P$. Es gilt außerdem $\left|x\right| \leq poly(\left|y\right|)$ und $\left|y\right| \leq poly(\left|x\right|)$. 
+	\end{definition}
+	\begin{lemma}
+		Die Existenz von Einwegfunktionen würde $P\neq NP$ implizieren.
+	\end{lemma}
+	Im Folgenden werden aber auch Funktionen, für die bisher keine effizient ausführbare Umkehrung bekannt ist, als Einwegfunktionen bezeichnet.
+	\begin{definition}
+		Eine \textit{trapdoor one-way function} ist eine Einwegfunktion $f$, sodass es einen effizienten Algorithmus $M$ gibt und für jede Länge $n(y)$ gibt es einen Schlüssel $k_n$, sodass für alle $y$ gilt $M(y,k_n) = f^{-1}(y)$. Im Besitz des Schlüssels $k_n$ ist die Umkehrung also leicht berechenbar.
+	\end{definition}
 \end{document}
