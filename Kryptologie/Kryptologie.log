@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  20 JUN 2024 22:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  29 JUN 2024 18:02
 entering extended mode
 **./Kryptologie.tex
 (Kryptologie.tex
@@ -225,11 +225,11 @@ LaTeX Warning: No \author given.
 [1
 
 
-] (Kryptologie.toc)
+] (Kryptologie.toc [1])
 \tf@toc=\write3
 \openout3 = `Kryptologie.toc'.
 
- [1] [2]
+ [2]
 Overfull \hbox (7.81067pt too wide) in paragraph at lines 48--49
 []\OT1/cmr/m/n/12 Das Entschei-dende ist, dass jed-wede Kom-mu-nika-tion uber 
 einen abhorbaren Kanal verlauft.
@@ -250,4 +250,4 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  67i,8n,74p,854b,212s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Kryptologie.dvi (15 pages, 55128 bytes).
+Output written on Kryptologie.dvi (15 pages, 57344 bytes).

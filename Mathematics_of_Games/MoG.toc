@@ -22,3 +22,4 @@
 \contentsline {subsection}{\numberline {4.9}Perfect Bayesian Games: Signaling Games}{15}{}%
 \contentsline {section}{\numberline {5}Perfect Bayesian Model}{19}{}%
 \contentsline {subsection}{\numberline {5.1}First price sealed bid auctions with two periods}{26}{}%
+\contentsline {subsection}{\numberline {5.2}Coasian Dynamics}{27}{}%

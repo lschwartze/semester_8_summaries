@@ -355,4 +355,49 @@
 		\end{enumerate}
 		Die \textit{Weite} der Baumzerlegung ist $\max_{t \in V(T)} \{\left|X_t\right|-1\}$. Die Baumweite von $G$ ist \[tw(G) = \min \text{Weite einer Baumzerlegung}\]
 	\end{definition}
+	\begin{lemma}
+		Sei $(T,(V_t))$ die Baumzerlegung von $G$ und $st \in E(T)$. Seien $T_s,T_t$ die Komponenten von $T-st$ die $s$ bzw. $t$ enthalten. Seien \[U_s = \bigcup_{r \in V(T_s)} V_r \; \text{ und } U_t = \bigcup_{r \in V(T_r)} V_r\] dann trennt $V_s \cap V_t$ $U_s$ von $U_t$. 
+	\end{lemma}
+	\begin{lemma}
+		Sei $H$ ein Teilgraph von $G$ und $(T,(V_t))$ eine Baumzerlegung von $G$. Setze $V_t' = V_t \cap V(H)$ für alle $t \in V(T)$. Dann ist $(T,(V_t'))$ eine Baumzerlegung von $H$ und $tw(H)\leq tw(G)$. 
+	\end{lemma}
+	\begin{definition}
+		Ein Graph $H$ ist ein Minor von $G$, wenn sich $H$ aus Löschen von Ecken und Kanten und Kontraktionen von Kanten in $G$ ergibt. Man schreibt $H\preceq G$.\\
+		Alternativ: $\exists B_h \subset V(G)$ mit $h \in V(H)$ sodass \begin{enumerate}
+			\item $B_h$ pw. disjunkt
+			\item $G[B_h]$ zsh.
+			\item $\forall h,h' \in E(H)$ gilt $\exists$ Kante zwischen $B_h$ und $B_h'$
+		\end{enumerate}
+	\end{definition}
+	\begin{lemma}
+		Sei $H\preceq G$. Dann ist $tw(H)\leq tw(G)$.\\
+		Sei $(T,(V_t))$ die Baumzerlegung von $G$. Setze $V_t' = \{h \in V(H): B_h \cap V_t \neq \varnothing\}$ für alle $t \in V(T)$. Dann ist $(T,(V_t'))$ eine Baumzerlegung von $H$.
+	\end{lemma}
+	\begin{lemma}
+		Sei $(T,(V_t))$ eine Baumzerlegung von $G$ und $W\subseteq V(G)$. Dann entweder \begin{enumerate}
+			\item $\exists s,t \in V(T)$ und $w_1,w_2 \in W$mit $w_1,w_2 \notin V_2 \cap V_t$ und $V_s \cap V_t$ trennt $w_1$ und $w_2$ in $G$ oder
+			\item $\exists t \in V(T)$ mit $W \subseteq V_t$.
+		\end{enumerate}
+	\end{lemma}
+	\begin{lemma}
+		Es folgt $tw(G) = 1 \Leftrightarrow $ $G$ ist ein Wald.
+	\end{lemma}
+	\begin{lemma}
+		Jeder Graph $G$ hat Baumzerlegung $(T,(V_t))$ der Weite $tw(G)$, sodass $\forall s,t \in V(T), \; s\neq t$ gilt $V_s \not \subseteq V_t$ und $V_t \not \subseteq V_s$.
+	\end{lemma}
+	\begin{lemma}
+		Sei $(T,(V_t))$ Baumzerlegung von $G$, sodass $\forall s \neq t \in V(T)$ gilt $V_s \not \subseteq V_t$ und $V_s \not \subseteq Vs$ dann ist \[\left|V(T)\right| \leq \left|V(G)\right|\]
+	\end{lemma}
+	\begin{theorem}
+		Es gilt $tw(G) \leq 2$ genau dann, wenn $K_4 \not \preceq G$.
+	\end{theorem}
+	\begin{definition}
+		Ein Graph ist $k$-degeneriert, wenn jeder Teilgraph von $G$ eine Ecke vom Grad höchstens $k$ enthält.
+	\end{definition}
+	\begin{theorem}
+		Ist $tw(G) \leq k$, dann ist $G$ $k$-degeneriert.
+	\end{theorem}
+	\begin{corollary}
+		Aus $tw(G) \leq k$ folgt $\left|E(G)\right| \leq kn - \binom{k+1}{2}$. 
+	\end{corollary}
 \end{document}

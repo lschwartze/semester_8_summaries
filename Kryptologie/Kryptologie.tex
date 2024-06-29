@@ -250,4 +250,21 @@
 	\begin{definition}
 		Eine \textit{trapdoor one-way function} ist eine Einwegfunktion $f$, sodass es einen effizienten Algorithmus $M$ gibt und für jede Länge $n(y)$ gibt es einen Schlüssel $k_n$, sodass für alle $y$ gilt $M(y,k_n) = f^{-1}(y)$. Im Besitz des Schlüssels $k_n$ ist die Umkehrung also leicht berechenbar.
 	\end{definition}
+	\subsection{RSA-Sicherheit}
+	Sind $n,e$ und $c$ bekannt, so können verschiedene Probleme definiert werden.
+	\begin{enumerate}
+		\item Bestimme $m$
+		\item Bestimme $d$
+		\item Bestimme $\varphi(n)$
+		\item Bestimme einen Faktor $p$ von $n$
+	\end{enumerate}
+	Es ist klar, dass $1 \preceq 2 \preceq 3 \preceq 4$ gilt.
+	\begin{lemma}
+		Es gilt $4 \preceq 3$.
+	\end{lemma}
+	Das \textit{schwache Brechen} von RSA basiert auf $(n,e,c) \mapsto m$ und ist auf das Faktorisierungsproblem reduzierbar. Es gilt also $1 \preceq 4$ aber die Umkehrung ist nicht bewiesen.\\
+	Für das \textit{starke Brechen}, also $(n,e) \mapsto d$ gilt jedoch auch die Umkehrung also $4 \preceq 2$.
+	\subsection{Rabin-Verfahren Sicherheit}
+	Eine Quadratwurzel $\mod n$ mit $n = pq$ zu ziehen, ist Orakel-reduzierbarkeitsäquivalent zum Faktorisieren.
+	\subsection{Algorithmen zur Faktorisierung}
 \end{document}

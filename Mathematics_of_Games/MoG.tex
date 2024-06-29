@@ -322,4 +322,16 @@
 		\end{enumerate}
 		then different auction types generate the same expected payoff.
 	\end{theorem}
+	\subsection{Coasian Dynamics}
+	A single seller faces a continuum of infinitesimal buyers. The seller cannot distinguish between the buyers and only observes the measures of the sets who accept and reject. The seller and the buyers are infinitely-lived and the bargaining process has $T 0 \infty$. The buyers valuations are uniformly distributed on $[0,1]$. Let's find a equilibrium with the following properties: \begin{enumerate}
+		\item If $m^t$ is offered at date $t$ then the types $v \geq \lambda m^t$ where $\lambda > 1$ buy if they have not bought before. The other types do not.
+		\item If at some date $t$ types greater than $\kappa$ have purchased before and types less than $\kappa$ have not (so that the seller's posteriori beliefs are represented by the truncated uniform distribution on $[0,\kappa]$), then the seller charges $m^t(\kappa) = \gamma \kappa$ where $0<\gamma <1$.
+	\end{enumerate}
+	Let $U_s(\kappa)$ be the seller's discounted value of profits when the posteriori beliefs are uniform on $[0,\kappa]$. From dynamic programming, $U_s(\cdot)$ must satisfy \[U_s(\kappa) = \max_m(\kappa - \lambda m)m + \delta U_s(\lambda m)\]
+	The term $(\kappa - \lambda m)m$ is the fraction of population that will accept the offer $m \leq \frac{\kappa}{\lambda}$ and $U_s(\lambda m)$ is the continuation discounted value of profits. If $U_s$ is assumed to be differentiable the maximization with respect to $m$ yields $\kappa - 2 \lambda , + \delta U_s'(\lambda m) \overset{!}{=} 0$. On the other hand the envelope theorem can be applied \[U_s'(\kappa) = m(\kappa) = \gamma \kappa\] Substituting this yields \[1-2\lambda m + \delta \lambda^2 \gamma^2 = 0\]
+	Looking at the buyers' optimization, for type $\lambda m$ to be indifferent between accepting $m$ and waiting one period to buy at the price $\lambda m$ it must be the case that \[\lambda m - m = \delta (\lambda m - \gamma \lambda m)\] or equivalently \[\lambda -1 = \delta \lambda (1-\gamma)\] which gives \[\lambda = \frac{1}{\sqrt{1-\delta}} \text{ and } \gamma = \frac{\sqrt{1-\delta} - (1-\delta)}{\delta}\]\\
+	Now consider that the buyer accepts price $m^t$ at date $t$ when the buyer has valuation $v$ in a game with an arbitrary number of periods. Show the following skimming (or cutoff rule) property: the buyer accepts the price $m^t$ with probability 1 when he has valuation $v^t>v$. Let $h^t = (m^0,..., m^{t-1})$ be the history at date $t$. Type $v$ accepts $m^t$ iff \[v-m^t \geq \delta U_b(v,(h^t,m^t))\] or \[v-m^t \geq \mathbb{E}\left[\sum_{i=1}^{T-t} \delta^i(v-m^{t+i}(h^{t+i})) I^{t+i}(h^{t+i},m^{t+i},v) | (h^t,m^t)\right]\]
+	where $U_b(v,(h^t,m^t))$ is the continuation valuation of the type $v$ and where $I^{t+i}(h^{t+i},m^{t+i},v)|(h^t,m^t)$ is an indicator function indicating whether type $v$ buys $(I=1)$ or not $(I=0)$ at price $m^{t+i}(h^{t+i})$ at date $t+i$.\\
+	Since the expected discounted volume of trade is always less than  1 and because type $v'$ can mimic $v'$'s bargaining strategy and conversely \[\left|U_b(v',(h^t,m^t)) - U_b(v,(h^t,m^t))\right| \leq \left|v'-v\right|\]
+	Therefore, for $v'>v$, \[v'-m^t-\delta U_b(v',(h^t,m^t)) \geq (v'-v) - \delta(U_b(v',(h^t,m^t)) - U_b(v,(h^t,m^t))) > 0\]
 \end{document}
