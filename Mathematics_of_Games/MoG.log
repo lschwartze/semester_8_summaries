@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  25 JUN 2024 13:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  2 JUL 2024 14:01
 entering extended mode
 **./MoG.tex
 (MoG.tex
@@ -249,7 +249,7 @@ re $\OML/cmm/m/it/12 I[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 h[]; m[]; v\OT1/cmr/m
 /12 )$
  []
 
-[28] (MoG.aux) ) 
+[28] [29] [30] [31] (MoG.aux) ) 
 Here is how much of TeX's memory you used:
  2897 strings out of 479322
  39636 string characters out of 2856609
@@ -259,4 +259,4 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  67i,9n,74p,1747b,306s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on MoG.dvi (29 pages, 121028 bytes).
+Output written on MoG.dvi (32 pages, 129968 bytes).

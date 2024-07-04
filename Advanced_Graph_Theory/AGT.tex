@@ -299,7 +299,7 @@
 			\item wähle zufällig eine Kante unter $\bar x$ und kontrahiere diese
 			\item repeat
 		\end{enumerate}
-	Ist am Ende nur ein Knoten übrig, so sit der Graph mit hoher Wahrscheinlichkeit zusammenhängend.
+		Ist am Ende nur ein Knoten übrig, so sit der Graph mit hoher Wahrscheinlichkeit zusammenhängend.
 	\end{example}
 	\subsection{Sampling}
 	Ziel ist es, ein Element aus einem gegeben Vektor mittels Gleichverteilung zu samplen.
@@ -340,7 +340,7 @@
 	\begin{theorem}
 		Mit hoher Wahrscheinlichkeit ist $\mathcal{V}$ die Menge der Knotenmengen der Komponenten.
 	\end{theorem}
-\section{Schwere Probleme}
+	\section{Schwere Probleme}
 	\subsection{Maximum Independent Set}
 	Für einen Baum ist dieses Problem leicht zu lösen.
 	\begin{lemma}
@@ -400,4 +400,35 @@
 	\begin{corollary}
 		Aus $tw(G) \leq k$ folgt $\left|E(G)\right| \leq kn - \binom{k+1}{2}$. 
 	\end{corollary}
+	\subsection{Allgemeines Modell für Algorithmen der dynamischen Programmierung}
+	Die Idee ist es, mathematische Logik der ersten Stufe zu verwenden. Dabei sind die Variablen jeweils Ecken oder Kanten und es gibt die üblichen logischen Operatoren. Zusätzlich gibt es die beiden Operatoren \begin{enumerate}
+		\item $adj(u,v) \Leftrightarrow $ wenn $u,v$ benachbart
+		\item $inc(v,e) \Leftrightarrow$ wenn $e,v$ inzident
+	\end{enumerate}
+	Mit diesem Formalismus lassen sich einfache graphentheoretische Eigenschaften (zum Beispiel isolierte Knoten, Existenz von Dreiecken etc.) aufschreiben, aber nicht alle. Zum Beispiel lässt sich Bipartität nicht definieren.\\
+	Die nächste Stufe ist \textit{monadic second order logic} (MSO). Hier sind Mengen auch als Variablen erlaubt.
+	\begin{theorem}
+		Für jedes Problem, dass sich in MSO ausdrücken lässt und für jedes $k \in \mathbb{N}$ ein Linear-Zeit-Algorithmus auf Graphen $G$ mit $tw(G) \leq k$.
+	\end{theorem}
+	\subsection{Berechnung der Baumzerlegung}
+	\begin{theorem}
+		Es existiert ein Algorithmus, sodass, wenn $G$ Baumweite $\leq k$ hat, dann berechnet der Algorithmus eine Baumzerlegung der Weite $\leq k$ in $\mathcal{O}(2^{k^3}n)$ Zeit.
+	\end{theorem}
+	\begin{definition}
+		Sei $G$ ein Graph und $\varnothing\neq W\subset V(G)$, dann ist $S$ ein \textit{balanced $W$-separator}, wenn gilt $\left|W \cap V(C)\right| \leq \frac{1}{2}\left|W\right|$ für jede Komponente $C$ von $G-S$.
+	\end{definition}
+	\begin{lemma}
+		Ist $tw(G)\leq k$ existiert ein $S$ \textit{balanced $W$-separator} mit $\left|S\right| \leq k+1$.
+	\end{lemma}
+	\begin{definition}
+		Eine \textit{separatation} eines Graphen $G$ sind zwei Teilgraphen $A,B$, sodass $A\cup B = G$. Die Ordnung der separation ist $\left|V(A\cap B)\right|$.\\
+		Eine \textit{$W$-weakly balanced separation} sind zwei Teilgraphen $A,B$, sodass \begin{itemize}
+			\item $(A,B)$ ist ein separator
+			\item $1\leq \left|W\setminus B\right| \leq \frac{2}{3} \left|W\right|$
+			\item $1\leq \left|W\setminus A\right| \leq \frac{2}{3} \left|W\right|$
+		\end{itemize}
+	\end{definition}
+	\begin{lemma}
+		Ist $tw(G)\geq 2k+3$, $k\geq 2$, dann existiert eine \textit{$W$-weakly balanced separation} der Ordnung $\leq k+1$.
+	\end{lemma}
 \end{document}

@@ -37,11 +37,11 @@
 	\tableofcontents
 	\newpage
 	\section{Einführung}
-	Im Folgenden sei $m$ eine Nachricht, $E$ ein Verschlüsselungsverfahren, das $m$ und einen geheimen Schlüssel $k$ als Argumente nimmt und den Code $c = E(m,k)$ berechnet. Der Empfänger verwendet $k$ und einen Dechiffrieralgorithmus $D$, um $D(c,k) = m$ zu berechnen. Wie der Schlüssel $k$ zwischen den beiden Parteien ausgetauscht werden kann, ist ein anderes Problem, das hier als gelöst angenommen werden.
+	Im Folgenden sei $m$ eine Nachricht, $E$ ein Verschlüsselungsverfahren, das $m$ und einen geheimen Schlüssel $k$ als Argumente nimmt und den Code $c = E(m,k)$ berechnet. Der Empfänger verwendet $k$ und einen Dechiffrieralgorithmus $D$, um $D(c,k) = m$ zu berechnen. Wie der Schlüssel $k$ zwischen den beiden Parteien ausgetauscht werden kann, ist ein anderes Problem, das hier als gelöst angenommen werde.
 	\subsection{Transpositions- und Substitutionschiffre}
-	Bei Transpositionschiffren bleiben die Klartextbuchstaben unverändert, es es wird nur ihre Position im Chiffre verändert (d.h. es wird ein Anagramm erstellt). Bei einer Substitutionschiffre werden die Buchstaben durch andere ersetzt (z.B. Cäsarverschlüsselung).
+	Bei Transpositionschiffren bleiben die Klartextbuchstaben unverändert, es wird nur ihre Position im Chiffre verändert (d.h. es wird ein Anagramm erstellt). Bei einer Substitutionschiffre werden die Buchstaben durch andere ersetzt (z.B. Cäsarverschlüsselung).
 	\subsection{Mono- und Polyalphabetische Chiffre}
-	Bei monoalphabetischen Chiffren wird ein Klartextbuchstaben immer durch das selbe Zeichen ersetzt (z.B. Cäsar Chiffre). Bei polyalphabetischen Chiffren werden nicht immer die selben Zeichen zur Verschlüsselung des selben Buchstabens verwendet.
+	Bei monoalphabetischen Chiffren wird ein Klartextbuchstaben immer durch das selbe Zeichen ersetzt (z.B. Cäsar Chiffre). Bei polyalphabetischen Chiffren werden nicht immer die selben Zeichen zur Verschlüsselung eines Buchstabens verwendet.
 	\subsection{Block- und Stromchiffren}
 	Bei Blockchiffren werden immer Blöcke von Klartextbuchstaben zusammen chiffriert und die Verschlüsselung zwischen zwei Blöcken unterscheiden sich jeweils. Bei Stromchiffren hat der Verschlüsselungsalgorithmus einen inneren Zustand, der sich bei jeder Verschlüsselung ändert und Einfluss auf die Verschlüsselung der nächsten Buchstaben ausübt. Wenn eine Veränderung eines einzelnen Buchstabens im Klartext zu großen Veränderungen in der Chiffre führt, spricht man von Lawineneffekt.
 	\subsection{Moderne Kryptographie}
@@ -56,9 +56,9 @@
 	Der Schlüssel besteht aus zwei Komponenten $k = (a,b)$ und man berechnet \[E(x,k) = ax+b \mod 26\]
 	Damit $E$ injektiv ist, muss $ggT(a,26) = 1$. Das heißt $a \in \mathbb{Z}_n^*$. Da jedes Element ein Inverses hat, ist der Code eindeutig dechiffrierbar. Insbesondere ist $D$ auch ein affines Chiffre.
 	\subsection{Allgemeine Monoalphabetische Chiffre}
-	Jeder Buchstabe wird auf genau einen anderen gemappt. Es gibt daher $26!$ viele Schlüssel. Das Sicherheitsniveau ist aber nicht 88 Bits. Ab einer Textlänge von ca 50 Buchstaben kann der Text mittels Häufigkeitsanalyse entschlüsseln.
+	Jeder Buchstabe wird auf genau einen anderen gemappt. Es gibt daher $26!$ viele Schlüssel. Das Sicherheitsniveau ist aber nicht 88 Bits. Ab einer Textlänge von ca 50 Buchstaben kann der Text mittels Häufigkeitsanalyse entschlüsselt werden.
 	\subsection{Homophone Chiffre}
-	Jedem Buchstaben wird eine Menge an möglichen Verschlüsselungen zu, die abhängig von der Häufigkeit des Klartextbuchstabens sind. Um einen Buchstaben zu verschlüsseln, wird aus der Menge der möglichen Cypher zufällig ein Zeichen gezogen.
+	Jedem Buchstaben wird eine Menge an möglichen Verschlüsselungen zugeordnet, die abhängig von der Häufigkeit des Klartextbuchstabens sind. Um einen Buchstaben zu verschlüsseln, wird aus der Menge der möglichen Cypher zufällig ein Zeichen gezogen.
 	\subsection{Playfair Chiffre}
 	Hierbei werden immer zwei aufeinanderfolgende Zeichen (Bigramme) verschlüsselt. Man kann damit aber kein Bigramm verschlüsseln, das aus zwei gleichen Buchstaben besteht. Das kann aber leicht gelöst werden, indem im Klartext doppelte Buchstaben entfernt werden. Man identifiziert zwei Buchstaben miteinandern (z.B. I und J) und wählt ein Geheimwort der Länge 5 mit paarweise verschiedenen Buchstaben. Damit wird eine 5$\times$5 Tabelle gefüllt (Geheimwort in die erste Zeile und das restliche Alphabet darunter). Wenn die Buchstaben des zu verschlüsselnen Bigramms in der selben Zeile sind, wird der nächste Buchstabe dieser Zeile verwendet (bei Spalten analog). Ansonsten bildet man mit den beiden Buchstaben ein Rechteck wählt im Uhrzeigersinn die jeweils anderen Buchstaben, die in den Ecken des Rechtecks stehen.
 	\subsection{Vigenère Chiffre}
@@ -71,9 +71,9 @@
 	Es sei ein Text gegeben und es gebe eine Wahrscheinlichkeitsverteilung, nach der die Buchstaben im Text verteilt seien. Eine erwartungstreue Schätzung ist dann \[IC = \sum_{a} \frac{n(a)}{m}\cdot \frac{n(a)-1}{m-1}\] wobei $a$ jeder mögliche Buchstabe im Text ist, $n(a)$ die Anzahl wie oft $a$ vorkommt und $m$ die Länge des Texts.
 	\subsection{Methoden zum Knacken der Vigenère Chiffre}
 	Der Text sei $c_1c_2,...,c_m$ und für ein gegebenes $l$ definieren wir uns \[s_i = c_ic_{i+l}c_{i+2l}...\] für $i \in [l]$. Für alle $i$ berechnen wir uns den Koinzidenzindex und vergleichen den Wert mit dem der Sprache in der der Text geschrieben wurde (bei Englisch ungefähr $7\%$). Falls $l$ die gesuchte Schlüssellänge ist, sollten die beiden Werte ungefähr übereinstimmen.
-	Nun sind nur noch Cäsar Chiffren übrig. Um diese zu lösen, kann man alle 26 möglichen Schlüssel ausprobieren und anschließend jenen wählen, sodass die Wahrscheinlichkeitsverteilung des dechiffrierten Buchstaben am nächsten zu jeder der Sprache ist.
+	Nun sind nur noch Cäsar Chiffren übrig. Um diese zu lösen, kann man alle 26 möglichen Schlüssel ausprobieren und anschließend jenen wählen, sodass die Wahrscheinlichkeitsverteilung des dechiffrierten Buchstaben am nächsten zu jener der Sprache ist.
 	\subsection{Visuelle Kryptographie}
-	Der Schlüssel ist ein Bild auf einer Folie. Es werden jeweils vier Pixel in $2\times 2$ Blöcken gesammelt, wobei auf der Diagonalen zwei schwarze Pixel und sonst zwei durchsichtige Pixel sind. Es gibt also zwei verschiedene solche Cluster. Wenn diese zufällig gesetzt werden, scheint das Bild ein druchgehender Grauton zu sein. Die Dechiffrierung kann dieselbe Folie verwenden wie die Chiffrierung. Man kann den Schlüssel nur einmal verwenden.
+	Der Schlüssel ist ein Bild auf einer Folie. Es werden jeweils vier Pixel in $2\times 2$ Blöcken gesammelt, wobei auf einer Diagonalen zwei schwarze Pixel und sonst zwei durchsichtige Pixel sind. Es gibt also zwei verschiedene solche Cluster. Wenn diese zufällig gesetzt werden, scheint das Bild ein druchgehender Grauton zu sein. Die Dechiffrierung kann dieselbe Folie verwenden wie die Chiffrierung. Man kann den Schlüssel nur einmal verwenden.
 	\section{Shannons Modell eines klassischen Kryptosystems}
 	Ein Kryptosystem ist ein Tripel $(M,K,C)$ mit \begin{itemize}
 		\item $M$ ist die Nachricht
@@ -97,7 +97,7 @@
 	\begin{lemma}
 		Jedes one-time-pad Kryptosystem ist absolut sicher.
 	\end{lemma}
-	Rechnet man im Binärsystem kann als Schlüssel eine zufällige $n$-Bit Folge sein, die bitweise auf die Nachricht addiert werde. 
+	Rechnet man im Binärsystem kann als Schlüssel eine zufällige $n$-Bit Folge dienen, die bitweise auf die Nachricht addiert werde. 
 	\subsection{Pseudozufallsgeneratoren}
 	Man möchte Schlüssel haben, die so lange sind, dass man nicht alle ausprobieren kann. Sie sollten aber ebenso nicht viel länger sein als die benötigte Mindestlänge. Deshalb werden Pseudozufallsgeneratoren. Hierbei wird ein \textit{seed} verwendet, der zur Erzeugung herangezogen wird. Sender und Empfänger haben Zugriff auf den seed.
 	\subsubsection{Linearer Kongruenzgenerator}
@@ -114,7 +114,7 @@
 	Gegeben sind $n_1,...n_k \in \mathbb{Z}$ paarweise teilerfremd und $a_i \in \mathbb{Z}_{n_i}$ für $i \in \{1,2,...,k\}$. Gesucht ist ein $x$ sodass \[x = a_i \mod n_i\] für alle $i$. Diese Lösung ist eindeutig modulo $\prod_{i=1}^{k} n_i$. Das Problem wird wie folgt gelöst \begin{enumerate}
 		\item berechne $n = \prod_{i=1}^k n_i$
 		\item berechne $m_i = \frac{n}{n_i}$ für alle $i$
-		\item da $ggT(m_i,n_i) = 1$ existiert ein $y_i$ das invers zu $mi$ modulo $n_i$ ist
+		\item da $ggT(m_i,n_i) = 1$ existiert ein $y_i$ das invers zu $m_i$ modulo $n_i$ ist
 		\item es gilt $x = \sum_{i=1}^k y_i\cdot a_i \cdot m_i$
 	\end{enumerate}
 	\begin{lemma}
@@ -203,7 +203,7 @@
 	\begin{definition}[Carmichael-Zahlen]
 		Ist $n$ nicht prim aber \[a^{n-1} \equiv 1 \; \mod n \; \forall a \in \mathbb{Z}_n^*\] so nennt man $n$ eine Carmichael-Zahl.
 	\end{definition}
-	Das Ziel ist es nun, den Fermat-Test so zu verbessern, dass auch Carmichael-Zahlen erkannt werden. Der Trick ist hierbei die Beobachtung, dass eine Primzahl $n>2$ eine Quadratwurzel $x$ von 1 mit $x \not \equiv \pm 1 \; \mod n$, dann ist $n$ nicht prim. Das daraus entstandene Verfahren heißt \textit{Probabilistischer Primzahltest} nach Miller-Rabin. Wir schreiben die ungerade Zahl $n$ als $1+2^r\cdot u$ mit $u$ ungerade.
+	Das Ziel ist es nun, den Fermat-Test so zu verbessern, dass auch Carmichael-Zahlen erkannt werden. Der Trick ist hierbei die Beobachtung, dass wenn eine Primzahl $n>2$ eine Quadratwurzel $x$ von 1 mit $x \not \equiv \pm 1 \; \mod n$ hat, dann ist $n$ nicht prim. Das daraus entstandene Verfahren heißt \textit{Probabilistischer Primzahltest} nach Miller-Rabin. Wir schreiben die ungerade Zahl $n$ als $1+2^r\cdot u$ mit $u$ ungerade.
 	\begin{enumerate}
 		\item $a = random(1,n-1)$
 		\item if $ggt(a,n) \neq 1$ return \textit{keine Primzahl}
@@ -216,8 +216,8 @@
 		\item return \textit{keine Primzahl}
 	\end{enumerate}
 	\begin{theorem}
-		Die Ausgabe \textit{keine Primzahl} des Miller-Rabin-Primzahltests stimmt immer.\\
-		Die Fehlerwahrscheinlichkeit der Ausgabe \textit{(vermutlich) Primzahl} ist höchstens $\frac{1}{4}$. Die Laufzeit für eine Zahl $n$ mit $k$ Bits ist $\mathcal{O}(k^3)$.
+		Die Ausgabe \textbf{keine Primzahl} des Miller-Rabin-Primzahltests stimmt immer.\\
+		Die Fehlerwahrscheinlichkeit der Ausgabe \textbf{(vermutlich) Primzahl} ist höchstens $\frac{1}{4}$. Die Laufzeit für eine Zahl $n$ mit $k$ Bits ist $\mathcal{O}(k^3)$.
 	\end{theorem}
 	\subsection{Zufallsprimzahlen in Binärdarstellung erzeugen}
 	Ziel ist es, eine $k$-Bit Zufallsprimzahl zu erzeugen.\\
@@ -267,4 +267,68 @@
 	\subsection{Rabin-Verfahren Sicherheit}
 	Eine Quadratwurzel $\mod n$ mit $n = pq$ zu ziehen, ist Orakel-reduzierbarkeitsäquivalent zum Faktorisieren.
 	\subsection{Algorithmen zur Faktorisierung}
+	Das Faktorisierungsproblem ist auf das Problem, die Ordnung eines Elementes zu bestimmen, reduzierbar.
+	\begin{theorem}[Shor-Faktorisierung]
+		\begin{enumerate}
+			\item wähle (ggf. mehrfach) ein zufälliges $x$ mit $1<x<n$.
+			\item berechne $g=ggT(x,n)$. Falls $g\neq 1$, gib $g$ zurück
+			\item sonst ist $x \in \mathbb{Z}_n^*$
+			\item it Orakel bestimme die Ordnung $k$
+			\item wähle ein neues $x$ falls $k$ ungerade ist oder $x^{\frac{k}{2}} \equiv -1 \mod n$
+			\item gib $ggT(x^{\frac{k}{2}}-1,n)$ zurück
+		\end{enumerate}
+	\end{theorem}
+	\begin{lemma}
+		Jede ungerade nicht prime Zahl $n>9$ lässt sich schreiben als $n = x^2-y^2$. 
+	\end{lemma}
+	\begin{theorem}[Fermat-Faktorisierung]
+		\begin{enumerate}
+			\item Sei $x_0 = \lceil\sqrt{n}\rceil$
+			\item Man berechne sukzessive $d_k = x_k^2 - n$ wobei $x_k = x_0 + k$ bis man $d_k = y^2$.
+			\item dann ist $(x_k+y)(x_k-y) = n$.
+		\end{enumerate}
+		Hierbei kann man aus Effizienzgründen verwenden, dass $d_{k+1} = d_k + 2x_k+1$. Die Laufzeit ist im worst-case $\mathcal{O}(2^{\frac{k}{2}})$.
+	\end{theorem}
+	Das Verfahren lässt sich verallgemeinern:\\
+	Man sucht Zahlen $x,y$ sodass $x^2 \equiv y^2 \mod n$, damit $(x-y)(x+y) = kn$ für ein $k$. Sofern $x \not \equiv \pm y \mod n$, so sind $ggT(x-y,n)$ und $ggT(x+y,n)$ nicht-triviale Teiler von $n$.
+	\begin{theorem}[Pollards $(p-1)$-Methode]
+		Diese funktioniert besonders gut, wenn $p-1$ nur kleine Primfaktoren hat, d.h. $p-1$ ist Teiler einer Zahl $B!$ für ein kleines $B$.
+		\begin{enumerate}
+			\item $a = 2, B=1$
+			\item REPEAT
+			\item $B = B+1,\; a = modexp(a,B,n),\; g = ggT(a-1,n)$
+			\item UNTIL $g \neq 1$
+			\item if $g=n$ return \textit{fail}
+			\item else return $g$ 
+		\end{enumerate}
+		Die worst-case Laufzeit ist $\mathcal{O}(2^{\frac{k}{2}})$.
+	\end{theorem}
+	\begin{theorem}[Pollards $\rho$-Methode]
+		\begin{enumerate}
+			\item sei $n=pq$ mit $p\leq q\leq \sqrt{n}$
+			\item man erzeugt Pseudozufallszahlen $z_{i+1} = f(z_i) = (z_i^2 + 1) \mod n$
+			\item nach ungefähr $\sqrt{p} \leq n^{\frac{1}{4}}$ Schritten gibt es $z_i \equiv z_j \mod p$
+			\item es ist sehr wahrscheinlich, dass $z_i \not \equiv z_j \mod q$ also $z_i \neq z_j$
+			\item dann ist $ggT(z_i-z_j,n)$ ein Teiler von $n$
+		\end{enumerate}
+	\end{theorem}
+	Die worst-case Laufzeit ist $\mathcal{O}(\sqrt{p}) \approx \mathcal{O}(2^{\frac{k}{4}})$
+	\subsection{Algorithmen zur Berechnung des Diskreten Logarithmus}
+	Sei $n$ eine Primzahl und $a \in \mathbb{Z}_n^*$ eine Primitivwurzel. Dann hat jedes $y \in \mathbb{Z}_n^*$ eine eindeutige Potenz $x$, d.h. es existiert ein $x \leq \varphi(n)$ sodass $y=a^x \mod n$. Ein naiver Algorithmus, der alle $x<n$ ausprobiert, hat Laufzeit $\mathcal{O}(2^k)$.
+	\begin{theorem}[Babystep-Giantstep]
+		Man schreibt $x = x_1 \lceil\sqrt{n}\rceil + x_2$ und muss nur noch die $x_i$ bestimmen. Das funktioniert mit der Überlegung \[y\cdot \left(a^{-1}\right)^{x_2} = \left(a^{\lceil\sqrt{n}\rceil}\right)^{x_1}\]
+		Mit der Definition $u = a^{-1}$ und $v = a^{\lceil\sqrt{n}\rceil}$ muss das Problem $yu^{x_2} = v^{x_1}$ gelöst werden. Dafür wird zuerst die Menge \[L = \{(x_1,v^{x_1}) : x_1 \in \{0,1,...,\lfloor\sqrt{n}\rfloor\}\}\] der Giantsteps bestimmt. Anschließend werden die Babysteps durchgegangen und schrittweise $y\cdot u^{x_2}$ berechnet. Ist das Ergebnis an zweiter Stelle in einem Tupel in $L$, so wird $x_2$ und das dazugehörige $x_1$ ausgegeben.
+	\end{theorem}
+	\begin{theorem}[Pollard-$\rho$-Algorithmus]
+		\begin{enumerate}
+			\item Mittels Zufallsgenerator, erzeuge $z_1 = a^{i_1}y^{j_1}$, $z_2 = a^{i_2}y^{j_2}, ...$
+			\item Nach ungefähr $\sqrt{n}$ Schritten gibt es $\mu < \sigma$ mit $z_\mu = z_\sigma$
+			\item Somit gilt $a^{i_\mu}a^{xj_\mu} \equiv a^{i_\sigma}a^{xj_\sigma} \mod n$ und damit \[i_\mu + xj_\mu \equiv i_\sigma + xj_\sigma \mod n\]
+		\end{enumerate}
+	\end{theorem}
+\section{Digitale Signaturen}
+	\subsection{RSA-Signaturen}
+	Unterschreiben eines Dokumentes $m$ mittels RSA bedeutet, $u = m^d \mod n$ zu berechnen. Um sicherzustellen, dass ein Teilnehmer $A$ tatsächlich $m$ unterschrieben hat, wird $m = u^e \mod n$ berechnet. $(n,e)$ ist dabei der öffentliche und $d$ der geheime RSA Schlüssel.
+	\subsection{El-Gamal Signaturen}
+	$n$ sei eine Primzahl und $a$ eine Primitivwurzel. Der Teilnehmer möchte ein Dokument $n$ unterschreiben. Er stellt den geheimen Schlüssel $k$ und den öffentlichen Schlüssel $\tilde{k} = a^k \mod n$. Als nächstes erzeugt er eine Zufallszahl $z$ die teilerfremd zu $n-1$ ist und berechnet $\tilde{z} = a^z \mod n$. Anschließend löst er die Gleichung \[m \equiv k \cdot \tilde{z} + z \cdot x \mod n-1\] nach $x$ auf. Die Unterschrift besteht aus dem Paar $(\tilde{z},x)$. Verifiziert wird, indem man überprüft, dass \[a^m \equiv \tilde{k}^{\tilde{z}}\cdot \tilde{z}^x \mod n\]
 \end{document}

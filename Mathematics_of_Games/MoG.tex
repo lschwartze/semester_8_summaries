@@ -334,4 +334,50 @@
 	where $U_b(v,(h^t,m^t))$ is the continuation valuation of the type $v$ and where $I^{t+i}(h^{t+i},m^{t+i},v)|(h^t,m^t)$ is an indicator function indicating whether type $v$ buys $(I=1)$ or not $(I=0)$ at price $m^{t+i}(h^{t+i})$ at date $t+i$.\\
 	Since the expected discounted volume of trade is always less than  1 and because type $v'$ can mimic $v'$'s bargaining strategy and conversely \[\left|U_b(v',(h^t,m^t)) - U_b(v,(h^t,m^t))\right| \leq \left|v'-v\right|\]
 	Therefore, for $v'>v$, \[v'-m^t-\delta U_b(v',(h^t,m^t)) \geq (v'-v) - \delta(U_b(v',(h^t,m^t)) - U_b(v,(h^t,m^t))) > 0\]
+	\section{Congestion Games}
+	\begin{definition}[Congestion Games]
+		This is a game with the following elements
+		\begin{itemize}
+			\item Resource set $R$
+			\item congestion functions: each resource $r \in R$ is associated with a congestion function $c_r: \{0,1,2,...\} \to \mathbb{R}$ where $c_r(k)$ denotes the congestion on resource $r$ with $k \geq 0$ players
+			\item player set $N$
+			\item action sets $A_i \subseteq 2^R$
+			\item player's cost functions $J_i: A \to \mathbb{R}$ where for any joint action $a = (a_i, a_{-i}) \in A$ \[J_i(a_i, a_{-i}) = \sum_{r \in a_i} c_r(\left|a\right|_r)\]
+		\end{itemize}
+	\end{definition}
+	\begin{definition}[Potential Games]
+		A game with player set $N$, action sets $(A_i)-{i \in N}$ and utility function $U_i: A \to \mathbb{R}$ is called a potential game if there exists a function $\varphi: A \to \mathbb{R}$ such that for every profile $a \in A$ player $i \in N$ and alternative choice $a_i' \in A_i$ \[U_i(a_i',a_{-i}) - U_i(a_i'',a_{-i}) = \varphi(a_i',a_{-i}) - \varphi(a_i'',a_{-i})\]
+	\end{definition}
+	\begin{theorem}
+		Any congestion game is a potential game. This also shows that any congestion game has a Nash Equilibrium.
+	\end{theorem}
+	\begin{definition}
+		Let $C:A \to \mathbb{R}$ be a system-defined objective. If a pure NE exists, then the Price of Anarchy (PoA) is defined as the ratio of performance between the worst EN and the optimal action profile.
+	\end{definition}
+	\begin{definition}[smooth games]
+		A game is called $(\lambda,\mu)$-smooth for $\lambda > 0$ and $\mu \leq 1$ if for every pair of states $s,s^* \in S$ we have \[\sum_{i \in N} c_i(s_i^*,s_{-i}) \leq \lambda cost(s^*) + \mu cost(s)\]
+	\end{definition}
+	\begin{theorem}
+		In a $(\lambda, \mu)$-smooth game the PoA for coarse correlated equilibria is at most $\frac{\lambda}{1-\mu}$.
+	\end{theorem}
+	\section{examples}
+	\begin{example}
+		A train company offers overnight trains from Ulm to Nice.it chooses \begin{enumerate}
+			\item the price $p \in \mathbb{R_{\geq 0}}$ to be charged for a ticket
+			\item the quality of service $q \in \mathbb{R}_{\geq 0}$ to be offered to the customers.
+		\end{enumerate}
+		Offering quality $q$ for a service costs the company $q^2$. A customer can decide whether to buy a ticket for price $p$ or not. If they decide to buy, their payoff is $aq-p$ where $a \geq 0$ is a fixed valuation constant and common knowledge.The company chooses $p$ and $q$ first. The customer observes $p$ and $q$ and decides whether to buy or not.
+		\begin{enumerate}
+			\item Suppose that the company knows $a$. Find the optimal price $p^*$ and quality $q^*$
+			\item Now suppose that the company offers two types of tickets (first and second class) and that there are two types of customers: tourists and businesspersons. A ticket in class $i$ costs $p_i$ and gives servie $q_i \in \mathbb{R}_{\geq 0}$. The businesspersons have valuation $a_1$ and the tourists have valuation $a_2$ where $a_1 \geq a_2$ being common knowledge. The company knows that a randomly chosen customer is of business type with probability $\alpha$. Suppose $a_2 \geq \alpha a_1$. The company wants to choose $p_i,q_i$ such that businesspersons always buy a first class ticket. Find a 2-period PBNE.
+		\end{enumerate}
+		\underline{solution:}
+		\begin{enumerate}
+			\item In an NE the customer is indifferent about buying or not. Therefore the company aims to choose $p$ and $q$ such that $aq-p = 0 \Leftrightarrow p = aq$. The company's payoff is $p-q^2$ and under the above equation this becomes $aq-q^2$. The company aims to maximize this by \[a-2q = 0 \Leftrightarrow q = \frac{a}{2}\]
+			Thus the company chooses $q = \frac{a}{2}$ and $p = \frac{a^2}{2}$. This is an NE.
+			\item Optimization problem for the company is \[\max \alpha (p_1-q_1^2) + (1-\alpha)(p_2-q_2^2)\] subject to \[a_1q_1-p_1 \geq 0 \text{ and } a_2q_2-p_2 \geq 0 \text{ and } a_1q_1-p_1 \geq a_1q_2-p_2\] Now to get the boundary condition we use Lagrange multipliers. \[L = \alpha(p_1-q_1^2) + (1-\alpha)(a_2q_2-q_2^2) + \lambda(a_1q_1-p_1 - a_2q_2 + a_2q_2)\] the first order condition is \[\partial L_{p_1} = \alpha - \lambda \overset{!}{=} 0 \Rightarrow \lambda = \alpha\]
+			\[\partial L_{q_1} = -2\alpha q_1 + \lambda a_1 \overset{!}{=} 0 \Rightarrow q_1 = \frac{a_1}{2}\]
+			\[\partial L_{q_2} = (1-\alpha)(a_2-2q_2) + \lambda(a_2-a_1) \overset{!}{=} 0 \Rightarrow q_2 = \frac{a_2- \alpha a_1}{2(1-\alpha)}\]
+		\end{enumerate}
+	\end{example}
 \end{document}

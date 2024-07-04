@@ -23,3 +23,5 @@
 \contentsline {subsection}{\numberline {3.9}Graph-Komponenten bestimmen}{16}{}%
 \contentsline {section}{\numberline {4}Schwere Probleme}{17}{}%
 \contentsline {subsection}{\numberline {4.1}Maximum Independent Set}{17}{}%
+\contentsline {subsection}{\numberline {4.2}Allgemeines Modell für Algorithmen der dynamischen Programmierung}{19}{}%
+\contentsline {subsection}{\numberline {4.3}Berechnung der Baumzerlegung}{19}{}%
