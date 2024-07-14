@@ -431,4 +431,38 @@
 	\begin{lemma}
 		Ist $tw(G)\geq 2k+3$, $k\geq 2$, dann existiert eine \textit{$W$-weakly balanced separation} der Ordnung $\leq k+1$.
 	\end{lemma}
+	\begin{theorem}
+		Es gibt einen Algorithmus der auf $G$ und Eckenmengen $X,Y$ und Integer $k$ entscheidet, ob es eine Separation ($A,B$) gibt, sodass $X\subseteq A, Y \subseteq Y$ und er berechnet $A,B$, falls diese existieren in Laufzeit $\mathcal{O}(km)$.
+	\end{theorem}
+	\begin{theorem}
+		Es gibt einen Algorithmus der \textit{$W$-weakly-balanced-separations} in $\mathcal{O}(3^{3k}km)$ berechnet. 
+	\end{theorem}
+	\begin{theorem}
+		$\forall r \exists k$ sodass $\forall G$ mit $tw(G) \geq k$ folgt $G$ enthält $r$-wall.
+	\end{theorem}
+	\begin{corollary}
+		Sei $H$ plättbar, dann existiert $r$, sodass $H\preceq$ \textit{elementary $r$-wall}.
+	\end{corollary}
+	\begin{theorem}
+		Für alle $H$ plättbar existiert $k$, sodass \[tw(G) \leq k \Rightarrow H \preceq G\]
+	\end{theorem}
+	\begin{definition}
+		Sei $\mathcal{H}$ eine Menge an Graphen, dann ist $Forb(\mathcal{H}) = \{G: H\not\preceq G \; \forall H \in \mathcal{H}\}$.
+	\end{definition}
+	\begin{theorem}
+		Ein Graph $G$ ist plättbar genau dann, wenn $K_{3,3},K_5 \not \preceq G$. Man schreibt Plättbare Graphen $= Forb(K_5,K_{3,3})$.
+	\end{theorem}
+	Es gilt tatsächlich, dass wenn $P$ eine Menge an Graphen, die abgeschlossen unter Minoren ist, dann gibt es $\mathcal{H}$ mit $P = Forb(\mathcal{H})$.
+	\begin{theorem}
+		Sei $P$ abgeschlossen unter Minoren, dann existiert ein endliches $\mathcal{H}$ mit $P = Forb(\mathcal{H})$.
+	\end{theorem}
+	\begin{theorem}
+		Für jedes $H$ existiert ein Algorithmus mit Laufzeit $\mathcal{O}(n^3)$, der überprüft, ob $H \preceq G$.
+	\end{theorem}
+	\begin{theorem}
+		Ist $P$ eine Grapheneigenschaft, abgeschlossen unter Minorenbildung, existiert ein Algorithmus mit Laufzeit $\mathcal{O}(n^3)$, der überprüft, ob $G\in P$.
+	\end{theorem}
+	\begin{lemma}
+		Klein heißt nicht groß.
+	\end{lemma}
 \end{document}

@@ -380,4 +380,79 @@
 			\[\partial L_{q_2} = (1-\alpha)(a_2-2q_2) + \lambda(a_2-a_1) \overset{!}{=} 0 \Rightarrow q_2 = \frac{a_2- \alpha a_1}{2(1-\alpha)}\]
 		\end{enumerate}
 	\end{example}
+	random fact: in a $t$-price $n$-player auction with uniformly distributed valuations, the expected price paid by the winner $i$ is $b_i = \frac{n-1}{n-t+1}v_i$.
+	\begin{example}
+		\begin{enumerate}
+			\item Consider a $n$-player $t$-price auction. Give a symmetric BNE. Use a linear strategy.\\
+			\underline{Solution:}\\
+			This is a direct consequence of Kagel/Levin (1993).
+			\item Consider a $3$-player first price auction with uncertain participation where the valuations are drawn from the uniform distribution on $[0,1]$ and player 1 believes that there will be only them participating with probability $p$, that there will be 2 bidders in the auction with probability $q$ and 3 bidders with probability $1-p-q$.\\
+			\underline{Solution:}\\
+			We assume symmetric bids $b_i(v_i) = b$. Assume that a player $i$ plays $b(w)$. Then their expected payoff is \[p(v_i-b(w)) + q(v_i-b(w))\mathbb{P}[v_{-i}<w] + (1-p-q)(v_i-b(w))\mathbb{P}[v_{-i}<w]\] As the valuations are drawn uniformly from the unit interval this is \[p(v_i-b(w)) + q(v_i-b(w))\cdot w + (1-p-q)(v_i-b(w))\cdot w^2\]
+			This is maximized via the f.o.c. \[-pb'(w) + q(v_i-b(w)) - qb'(w)\cdot w + (1-p-q)(v_i-b(w))\cdot 2w - (1-p-q)b'(w)w^2 \overset{!}{=} 0\]
+			Equivalently \[b'(w)(-p-qw-(1-p-q)w^2) + b(w)(-q-2w(1-p-q)) +qv_i+(1-p-q)v_i\cdot 2w \overset{!}{=} 0\]
+			We set $f(w) = -p-qw-(1-p-q)w^2$, then $f'(w) = -q-2(1-p-q)w$ and we get \[b'(w)f(w) + b(w)f'(w) +qv_i+(1-p-q)v_i\cdot 2w \overset{!}{=} 0\]
+			This evaluated at $w=v_i$ must be zero, i.e. \[b'(v_i)f(v_i) + b(v_i)f'(v_i) + qv_i + 2(1-p-q)v_i^2 = b'(v_i)f(v_i) + b(v_i)f'(v_i) - v_if'(v_i) = 0\]
+			By integrating both sides we get \[b(v_i)f(v_i) + \frac{1}{2}qv_i^2 + \frac{2}{3}(1-p-q)v_i^3 = 0\]
+			\[\Leftrightarrow b(v_i) = (\frac{1}{2}qv_i^2 + \frac{2}{3}(1-p-q)v_i^3)/(p+qv_i+(1-p-q)v_i^2)\]
+			\item The following game is played as long as every previous round was $(A,A)$ and ends the first time at least one of the players picks $B$. Give a symmetric mixed-strategy SPNE where each player picks $A$ with probability $p$
+			\begin{center}
+				\begin{table}[h]
+					\centering
+					\begin{tabular}{|c|c|}
+						\hline
+						(-1,-1) & (-1,0)\\
+						\hline
+						(0,-1) & (-4,-4)\\
+						\hline
+					\end{tabular}
+				\end{table}
+			\end{center}
+			\underline{Solution:}\\
+			In this sort of equilibrium in a stopping game a player is indifferent between picking $B$ this turn or in the next round. W.l.o.g. we consider this in teh very first turn. His expected payoff for playing $B$ in the first turn is $p\cdot 0 + (1-p)\cdot (-4)$ while his expected payoff for playing $A$ in the first turn and then playing $B$ in the second turn, in case the fame continues, is $-1+p(p\cdot 0 + (1-p)(-4))$. Setting these two payoffs equyl, we obtain $p = \frac{8 \pm 4}{8}$ and as $\frac{12}{8}>1$, we get $p = \frac{1}{2}$.
+			\item Consider the following infinite horizon 2-player game with strategy \textbf{Play (B,X) in the first round and every round afterwards as long as there is no deviation. If player 1 deviates, play (B,Y) avery round afterwards and if player 2 deviates, play (A,X) afterwards}. Give the minimum $\delta$ such that this strategy is a SPNE.
+			\begin{center}
+				\begin{table}[h]
+					\centering
+					\begin{tabular}{c|c|c|}
+						 & X & Y\\
+						\hline
+						A & (8,1) & (1,0)\\
+						\hline
+						B & (4,6) & (2,7)\\
+						\hline
+					\end{tabular}
+				\end{table}
+			\end{center}
+			\underline{Solution}:\\
+			Let $0 < \delta < 1$. If player 1 never deviates, they receive $4(1+\delta + \delta^2 + \delta^3 + ...) = \frac{4}{1-\delta}$. Similarly, player 2 gets payoff $\frac{6}{1-\delta}$ if they never deviate. The strategy is a BE if at any stage, deviation there and adherence later on results in a worse payoff. Therefore, this must be in particular true in stage $t=0$.
+			If player 1 deviates in $t=0$, they receive 8 in this stage and $2(\delta + \delta^2 + ...) = 6 + \frac{2}{1-\delta}$ thereafter. It must therefore hold that \[\frac{4}{1-\delta} \geq 6+\frac{2}{1-\delta} \Leftrightarrow 4 \geq 6(1-\delta) + 2 \Leftrightarrow \delta \geq \frac{2}{3}\]
+			Similarly, player 2 receives 7 in the round $t=0$ and $\delta + \delta^2 + ...$ afterwards. Total payoff is then $6 + 1 + \delta + \delta^2 ... = 6 + \frac{1}{1-\delta}$. In a BNE it must now hold \[\frac{6}{1-\delta} \geq 6 + \frac{1}{1-\delta} \Leftrightarrow 6 \geq 6(1-\delta) + 1 \Leftrightarrow \delta \geq \frac{1}{6}\]
+			Therefore the minimum $\delta$ is $\frac{2}{3}$.
+			\item Consider the following infinite horizon 2player game with the strategy \textbf{Play (B,R) in the first round and every round afterwards as long as there is no deviation. If a player deviates, play (T,L) afterwards}. For a discount factor of $\delta = \frac{1}{2}$ is there any SPNE yielding a higher payoff as the given one? If so, give the SPNE, if not justify why.
+			\begin{center}
+				\begin{table}[h]
+					\centering
+					\begin{tabular}{c|c|c|}
+						& L & R\\
+						\hline
+						T & (1,1) & (4,0)\\
+						\hline
+						B & (0,4) & (3,3)\\
+						\hline
+					\end{tabular}
+				\end{table}
+			\end{center}
+			\underline{Solution:}\\
+			Since this is a SPNE, no player would deviate from playing (B,R) giving payoff \[3(1+\delta + \delta^2 + ...) = \frac{3}{1-\delta} = 6\] to both players.\\
+			The strategy \textbf{In all even rounds play (T,R) and in all odd rounds play(B,R). If someone deviated, play (T,L) from then on} gives player 1 a payoff of 7 and it is easy to check that it is a SPNE.
+			\item Consider an infinite-horizon version of Rubinstein's game where all partitions are restricted to multiples of $0.01$. Give a SPNE along with a high enough discount factor $\delta$ so that all partitions are supported.\\
+			\underline{Solution:}\\
+			Demand $x_i$ is the highest share for $i$ that is accepted by $j$, so $i$ cannot gain by making a lower offer. Making a higher (and rejected) offer and waiting to accept player $j$'s next offer hurts player $i$: $\delta(1-x_2) = \delta x_1 < x_1$. Optimal for $i$ to accept any offer at least $x_i$ because $\delta x_i < x_i$. Optimal for $i$ to reject any lower share: If he rejects, he receives $\delta x_i$ next period. The next possible lower share for this period is $x_i - 0.01$. But since $\delta > 0.99$ we have \[1-\delta < 0.01 \Rightarrow x_i - 0.01 < \delta x_i\]
+			\item Consider a 2-player public good game where the costs $c_i$ are drawn from the uniform distribution on $[\frac{y}{x}, \frac{x-y}{x}]$. Give a symmetric BNE where there is a positive chance for contribution.\\
+			\underline{Solution:} Let $c^*$ be such that both players contribute if and only if $c_i\geq c^*$. Therefore, expected payoff when contributing is $1-c_i$. Let $p$ be the probability that a player contributes, than expected payoff for not contributing is $1\cdot p = \mathbb{P}[c_i \leq c^*] = \frac{c^*-\frac{y}{x}}{\frac{x-2y}{x}} = \frac{c^*x - y}{x-2y}$.
+			Thus, a player contributes if and only if $1-c_i \geq \frac{c^*x - y}{x-2y} \Leftrightarrow c_i \leq 1- \frac{c^*x - y}{x-2y}$.\\
+			Therefore, by assumption $c^* = \frac{x-2y-c^*x+y}{x-2y} \Leftrightarrow \frac{c^*(2x-2y)}{x-2y} = \frac{x-y}{x-2y} \Leftrightarrow c^* = \frac{1}{2}$
+		\end{enumerate}
+	\end{example}
 \end{document}

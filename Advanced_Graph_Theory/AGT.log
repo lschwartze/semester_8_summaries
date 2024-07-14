@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  3 JUL 2024 11:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  10 JUL 2024 11:05
 entering extended mode
 **./AGT.tex
 (AGT.tex
@@ -261,7 +261,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 288--290
 
  []
 
-[15] [16] [17] [18] [19] (AGT.aux) ) 
+[15] [16] [17] [18] [19] [20] (AGT.aux) ) 
 Here is how much of TeX's memory you used:
  2905 strings out of 479322
  39718 string characters out of 2856609
@@ -271,4 +271,4 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  67i,12n,74p,745b,231s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on AGT.dvi (20 pages, 81552 bytes).
+Output written on AGT.dvi (21 pages, 84852 bytes).

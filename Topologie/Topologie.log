@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  18 JUN 2024 11:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=latex 2021.5.10)  9 JUL 2024 10:31
 entering extended mode
 **./Topologie.tex
 (Topologie.tex
@@ -243,7 +243,7 @@ nes topol-o-gis-chen Raums $\OML/cmm/m/it/12 X$ \OT1/cmr/m/it/12 sind zusam-men
 hangende,
  []
 
-[7] [8] [9] (Topologie.aux) ) 
+[7] [8] [9] [10] (Topologie.aux) ) 
 Here is how much of TeX's memory you used:
  2897 strings out of 479322
  39665 string characters out of 2856609
@@ -253,4 +253,4 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  67i,8n,74p,500b,250s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Topologie.dvi (10 pages, 33180 bytes).
+Output written on Topologie.dvi (11 pages, 34416 bytes).
